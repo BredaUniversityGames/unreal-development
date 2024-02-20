@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Development Setup - Unreal Development</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="development_setup.html" class="active"><strong aria-hidden="true">2.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Unreal Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="development-tools"><a class="header" href="#development-tools">Development Tools</a></h1>
+<p>Before we dive into the exciting world of game engines and compilers, let's talk about two essential tools every developer needs: a trusty text editor and a reliable terminal. And guess what? With VS Code, you get both bundled in one neat package! Now, I know there are alternatives out there like Sublime Text and Cmder, but for this walkthrough, I'll be sticking with VS Code—it's my go-to choice when working with Unreal Engine.</p>
+<h3 id="why-vs-code-you-ask"><a class="header" href="#why-vs-code-you-ask">Why VS Code, you ask?</a></h3>
+<p>Let me break it down for you. VS Code doesn't clutter your workspace, it's highly customizable to match your preferences, packed with awesome features, and incredibly lightweight and responsive. Even when dealing with massive codebases like Unreal, it won't drag you down.</p>
+<h3 id="what-about-visual-studio"><a class="header" href="#what-about-visual-studio">What about Visual Studio?</a></h3>
+<p>Unreal Engine is designed to integrate smoothly with Visual Studio, allowing you to make code changes in your projects “quickly” and easily, and “immediately” see results upon compilation but it's essential to understand that for Unreal Engine, it serves primarily as a frontend. Unreal doesn't utilize the Visual Studio “toolset” directly for building; instead, it relies on a batch script that invokes builds for your target platform. However, the Visual Studio installation comes with certain features that are required to invoke builds ( on Windows ) so in order to use VS Code we have to go through the process of installing Visual Studio.</p>
+<h2 id="installing-vs-code"><a class="header" href="#installing-vs-code">Installing VS Code</a></h2>
+<p><img src="download-vs-code.png" alt="Download Visual Studio Code" /></p>
+<p>Here's how to get started:</p>
+<ul>
+<li>Head over to the <a href="https://code.visualstudio.com">official VS Code website</a> and download the installer.</li>
+<li>Run the installer and follow the setup instructions.</li>
+<li>Once installed, let's beef up the IDE with some essential extensions:
+<ul>
+<li>C++ IntelliSense: Your coding buddy that provides smart suggestions and auto-completions.</li>
+<li>Visual Studio Keymaps: For those familiar shortcuts to keep your workflow smooth.</li>
+<li>Tasks: We'll get into this later.</li>
+</ul>
+</li>
+</ul>
+<p><img src="c-cpp-code-extension.png" alt="C/C++ - VS Code Extension" />
+<img src="visual-studio-keymap-code-extension.png" alt="Visual Studio Keymap - VS Code Extension" />
+<img src="tasks-code-extension.png" alt="Tasks - VS Code Extension" /></p>
+<h3 id="vs-code---unreal-snippets"><a class="header" href="#vs-code---unreal-snippets">VS Code - Unreal Snippets</a></h3>
+<p><a href="https://github.com/Dyronix/unreal-snippets-vscode"><img src="unreal-snippets-repository.png" alt="Unreal Engine VS Code Snippets Repository" /></a></p>
+<p>Make your life easier by setting up Unreal snippets in VS Code:</p>
+<ul>
+<li>Grab or clone the Unreal Snippets <a href="https://github.com/Dyronix/unreal-snippets-vscode">repository</a> onto your machine.</li>
+<li>Navigate to <code>%APPDATA%/Code/User/snippets</code>.</li>
+<li>Paste the repository contents (excluding the .git folder) into this directory.</li>
+<li>Restart VS Code (if it's open) to apply the changes. </li>
+</ul>
+<p><img src="unreal-engine-snippets.png" alt="Unreal Engine VS Code Snippets Directory" /></p>
+<h3 id="optional-vs-code---theme"><a class="header" href="#optional-vs-code---theme">[Optional] VS Code - Theme</a></h3>
+<p>Add a touch of personality to your coding environment:</p>
+<ul>
+<li>Customize your VS Code with a sleek theme like Dracula.</li>
+<li>Enhance it further with vscode-icons for some visual flair.</li>
+</ul>
+<p><img src="dracula-code-extension.png" alt="Dracula - VS Code Extension" />
+<img src="icons-code-extension.png" alt="Icons - VS Code Extension" /></p>
+<h3 id="optional-vs-code---launch-from-windows-explorer-windows-only"><a class="header" href="#optional-vs-code---launch-from-windows-explorer-windows-only">[Optional] VS Code - Launch from Windows Explorer (Windows Only)</a></h3>
+<p>For seamless integration, follow these steps:</p>
+<ul>
+<li>Open the Start menu and search for &quot;environment variables.&quot;</li>
+<li>Access the &quot;Edit the system environment variables&quot; dialog.</li>
+<li>In the environment variables section, edit the PATH variable.</li>
+<li>Add the path to your VS Code installation directory (typically located at 
+<ul>
+<li><code>C:\Users\${username}\AppData\Local\Programs\Microsoft VS Code</code>).</li>
+</ul>
+</li>
+<li>Open the Task Manager and restart Explorer.exe to finalize the changes (this will refresh everything related to Windows Explorer).</li>
+</ul>
+<p><img src="edit-environment-variables.png" alt="Edit Environment Variables" /></p>
+<p>Equipped with these essential tools, you're primed to traverse the intricacies of game development using VS Code. With precision and proficiency, let us embark on this journey into the realm of coding excellence.</p>
+<h2 id="installing-visual-studio"><a class="header" href="#installing-visual-studio">Installing Visual Studio</a></h2>
+<p><img src="download-visual-studio-installer.png" alt="Download Visual Studio Installer" /></p>
+<p>When it comes to installing Visual Studio, it's not as straightforward as opting for the latest version. Unreal Engine has specific requirements regarding the version of Visual Studio and its components. To determine the compatible version, you'll need to consult the <a href="https://docs.unrealengine.com/5.0/en-US/unreal-engine-5.0-release-notes/">release notes</a> corresponding to your chosen version of Unreal Engine. For instance, if you're using Unreal Engine 5.0, refer to the release notes and navigate to the &quot;Build farm&quot; section to identify the officially supported version.</p>
+<p><img src="unreal-engine-build-farm-output.png" alt="Unreal Engine Release Notes - Build Farm" /></p>
+<p>While it's not mandatory to install the exact version specified in the release notes, it's advisable for team collaboration and to minimize potential build issues. However, if you already have a newer version installed, downgrading isn't necessary, but keep in mind potential compatibility issues.</p>
+<p>To install Visual Studio, download the installer from the <a href="https://visualstudio.microsoft.com/vs/">official website</a> and run it. The Visual Studio Installer allows you to select and install various components, including the Visual C++ toolset, debugger, runtime SDKs, and more. Additionally, I recommend installing the .NET workload, as many external tools used within Unreal Engine are written in C#. This ensures compatibility and provides flexibility if you ever need to build these tools from source.</p>
+<p><img src="desktop-development-with-cpp.png" alt="Desktop Development With C++" />
+<img src="net-desktop-development.png" alt=".NET Desktop Development" /></p>
+<p>Before proceeding, verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This meticulous approach ensures a smooth development experience and minimizes compatibility hurdles down the line.
+For more information about setting up Visual Studio and some additional tips and tricks on how to modify Visual Studio as an IDE, you can visit the official documentation of Unreal: <a href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/">Unreal Engine: Visual Studio Setup</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="creating_unreal_project_from_scratch.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="creating_unreal_project_from_scratch.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Creating an Unreal Project - Unreal Development</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">2.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Unreal Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="creating-an-unreal-project-from-scratch"><a class="header" href="#creating-an-unreal-project-from-scratch">Creating an Unreal Project from Scratch</a></h1>
+<p>Let's peek behind the scenes to understand how project files and build processes interconnect. Instead of diving straight into the complexities, let me guide you through setting up a new project in Unreal Engine from scratch.</p>
+<p>Begin by carving out a cozy space for your project on your disk drive. When it comes to naming your project, simplicity reigns supreme. This name isn't etched in stone as part of your public-facing brand—it merely serves as a convenient identifier. A short codename suffices.</p>
+<ul>
+<li>Set up a folder where we'll work our magic.</li>
+<li>Give your project a name.
+<ul>
+<li>Again, keep it simple, nothing too crazy.</li>
+</ul>
+</li>
+</ul>
+<p>We're gonna start with a .uproject file to lay down the basics and we'll need a Source folder for all our C++ goodness. Inside, we'll organize our code into different modules. Let's call the main one <strong>{projectname}{modulename}</strong>, where we'll stash all our core gameplay code.</p>
+<ul>
+<li>Drop a .uproject file in the main folder.</li>
+<li>Make a Source folder in there too.</li>
+</ul>
+<p><img src="starting-pos-unreal-project-from-scratch.png" alt="Starting Position Unreal Project From Scratch" /></p>
+<h2 id="the-uproject-file"><a class="header" href="#the-uproject-file">The .uproject File</a></h2>
+<p>A .uproject file, short for &quot;Unreal Project File,&quot; serves as the entry point and configuration file for an Unreal Engine project. It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules or plugins it uses. An Unreal Project File is recognized by the UnrealVersionSelector which is stored in the your registry by Unreal when installing Unreal. The following attributes can be found within a .uproject file:</p>
+<table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>FileVersion</strong></td><td>Descriptor version number.</td></tr>
+<tr><td><strong>EngineAssociation</strong></td><td>Specifies the engine to open the project with. <br> Allows for opening the correct engine version when double-clicking on a project file. <br> Differentiates between editor versions for upgrade/downgrade UI flow. <br> For Launcher users, it indicates a stable version like &quot;5.0&quot; or &quot;5.1&quot;. <br> For Perforce or Git users, it's left blank, allowing determination of the engine based on the directory hierarchy. <br> For source build users with a foreign project, uses a random identifier for engine mapping. <br> For users with the engine mounted through a Git submodule, can be manually edited as a relative path.</td></tr>
+<tr><td><strong>Category</strong></td><td>Category to show under the project browser.</td></tr>
+<tr><td><strong>Description</strong></td><td>Description to show in the project browser.</td></tr>
+<tr><td><strong>Modules</strong></td><td>List of all modules associated with this project.</td></tr>
+<tr><td><strong>Plugins</strong></td><td>List of plugins for this project, which may be enabled or disabled.</td></tr>
+<tr><td><strong>TargetPlatforms</strong></td><td>Array of platforms that this project is targeting.</td></tr>
+<tr><td><strong>EpicSampleNameHash</strong></td><td>A hash used to determine if the project was forked from a sample.</td></tr>
+<tr><td><strong>PreBuildSteps</strong></td><td>Custom steps to execute before building targets in this project.</td></tr>
+<tr><td><strong>PostBuildSteps</strong></td><td>Custom steps to execute after building targets in this project.</td></tr>
+<tr><td><strong>Enterprise</strong></td><td>Indicates if this project is an Enterprise project.</td></tr>
+<tr><td><strong>DisableEnginePluginsByDefault</strong></td><td>Indicates that enabled by default engine plugins should not be enabled unless explicitly enabled by the project or target files.</td></tr>
+</tbody></table>
+<p><em>Note:</em></p>
+<p><em>When project file association is not working properly one can simply run <strong>UnrealVersionSelector.exe -fileassociations</strong> from the Unreal Engine Binaries.</em>
+<em>You could refer to the following files for proper debugging capabilities.</em></p>
+<ul>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealVersionSelector/Private/UnrealVersionSelector.cpp#L40">UnrealVersionSelector.cpp</a></em></li>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Developer/DesktopPlatform/Private/Windows/DesktopPlatformWindows.cpp#L491https://">DesktopPlatformWindows.cpp</a></em></li>
+</ul>
+<p><em>For more information about the Project Descriptor please visit the following files:</em></p>
+<ul>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Public/ProjectDescriptor.h">ProjectDescriptor.h</a></em></li>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Private/ProjectDescriptor.cpp">ProjectDescriptor.cpp</a></em></li>
+</ul>
+<p>The following is an example descriptor of an Unreal Project:</p>
+<pre><code class="language-json">{
+	&quot;FileVersion&quot;: 3,
+	&quot;EngineAssociation&quot;: &quot;5.3&quot;,
+	&quot;Category&quot;: &quot;&quot;,
+	&quot;Description&quot;: &quot;&quot;,
+	&quot;Modules&quot;: [
+		{
+			&quot;Name&quot;: &quot;PatrolCore&quot;,
+			&quot;Type&quot;: &quot;Runtime&quot;,
+			&quot;LoadingPhase&quot;: &quot;Default&quot;
+		},
+		{
+			&quot;Name&quot;: &quot;PatrolGame&quot;,
+			&quot;Type&quot;: &quot;Runtime&quot;,
+			&quot;LoadingPhase&quot;: &quot;Default&quot;
+		}
+	]
+}
+</code></pre>
+<p>When the project file is loaded into memory it is stored within a <code>FProjectDescriptor</code> which contains all the information contained within a .uproject file. Each .uproject file when containing source files is accompanied with a list of modules and/or plugins available to the project. These modules (and plugins) have their own set of attributes as specification when and how they should be loaded by the engine, all information is stored within a structure call <code>FModuleDescriptor</code>. The following attributes can be found within a module definition:</p>
+<table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>Name</strong></td><td>Name of this module.</td></tr>
+<tr><td><strong>Type</strong></td><td>Usage type of the module.</td></tr>
+<tr><td><strong>LoadingPhase</strong></td><td>Specifies when the module should be loaded during the startup sequence.</td></tr>
+<tr><td><strong>PlatformAllowList</strong></td><td>List of allowed platforms for the module.</td></tr>
+<tr><td><strong>PlatformDenyList</strong></td><td>List of disallowed platforms for the module.</td></tr>
+<tr><td><strong>TargetAllowList</strong></td><td>List of allowed build target types for the module.</td></tr>
+<tr><td><strong>TargetDenyList</strong></td><td>List of disallowed build target types for the module.</td></tr>
+<tr><td><strong>TargetConfigurationAllowList</strong></td><td>List of allowed build configurations for the module.</td></tr>
+<tr><td><strong>TargetConfigurationDenyList</strong></td><td>List of disallowed build configurations for the module.</td></tr>
+<tr><td><strong>ProgramAllowList</strong></td><td>List of allowed programs for the module.</td></tr>
+<tr><td><strong>ProgramDenyList</strong></td><td>List of disallowed programs for the module.</td></tr>
+<tr><td><strong>AdditionalDependencies</strong></td><td>List of additional dependencies required for building this module.</td></tr>
+</tbody></table>
+<p><em>Note:</em> 
+<em>For more information about the Module Descriptor please visit the following files:</em></p>
+<ul>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Public/ModuleDescriptor.h">ModuleDescriptor.h</a></em></li>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Private/ModuleDescriptor.cpp">ModuleDescriptor.cpp</a></em></li>
+</ul>
+<p>The following is an example descriptor of a single module:
+This does not funciton on it's own, it needs to be encapsulated by either an Unreal Project or an Unreal Plugin</p>
+<pre><code class="language-json">{
+  &quot;Name&quot;: &quot;PatrolCore&quot;,
+  &quot;Type&quot;: &quot;Runtime&quot;,
+  &quot;LoadingPhase&quot;: &quot;Default&quot;
+}
+</code></pre>
+<p>Last architectural piece of the Unreal Engine are plugins, due to the complexity of UE plugins I will not go into full detail here rather give you a brief overview of what they are and how to use them. Plugins are collections of code and data that developers can easily enable or disable within the Editor on a per-project basis. Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins. The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak. Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. Last I'll leave you with an overview of some of the more common attributes of a Plugin that you need to be aware of, this data is stored in a structure called <code>FPluginDescriptor</code>, you'll notice that they are quite similar to the ones of an Unreal Project:</p>
+<table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>FileVersion</strong></td><td>Descriptor version number.</td></tr>
+<tr><td><strong>Version</strong></td><td>Version number for the plugin. The version number must increase with every version of the plugin, so that the system can determine whether one version of a plugin is newer than another, or to enforce other requirements. This version number is not displayed in front-facing UI. Use the VersionName for that.</td></tr>
+<tr><td><strong>VersionName</strong></td><td>Name of the version for this plugin. This is the front-facing part of the version number. It doesn't need to match the version number numerically, but should be updated when the version number is increased accordingly.</td></tr>
+<tr><td><strong>FriendlyName</strong></td><td>Friendly name of the plugin.</td></tr>
+<tr><td><strong>Description</strong></td><td>Description of the plugin.</td></tr>
+<tr><td><strong>Category</strong></td><td>The name of the category this plugin.</td></tr>
+<tr><td><strong>DocsURL</strong></td><td>Documentation URL string.</td></tr>
+<tr><td><strong>MarketplaceURL</strong></td><td>Marketplace URL for this plugin. This URL will be embedded into projects that enable this plugin, so we can redirect to the marketplace if a user doesn't have it installed.</td></tr>
+<tr><td><strong>SupportURL</strong></td><td>Support URL/email for this plugin.</td></tr>
+<tr><td><strong>EngineVersion</strong></td><td>Version of the engine that this plugin is compatible with.</td></tr>
+<tr><td><strong>EnabledByDefault</strong></td><td>Whether this plugin should be enabled by default for all projects.</td></tr>
+<tr><td><strong>CanContainContent</strong></td><td>Can this plugin contain content?</td></tr>
+<tr><td><strong>IsBetaVersion</strong></td><td>Marks the plugin as beta in the UI.</td></tr>
+<tr><td><strong>Installed</strong></td><td>Signifies that the plugin was installed on top of the engine.</td></tr>
+<tr><td><strong>Modules</strong></td><td>List of all modules associated with this plugin.</td></tr>
+</tbody></table>
+<p>For more information about Plugins I will refer you to the <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/">Official Unreal Documentation</a> about Plugins.</p>
+<p><em>Note:</em> 
+<em>For more information about the Plugin Descriptor please visit the following files:</em></p>
+<ul>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Public/PluginDescriptor.h">PluginDescriptor.h</a></em></li>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Private/PluginDescriptor.cpp">PluginDescriptor.cpp</a></em></li>
+</ul>
+<p>The following is an example descriptor of an Unreal Plugin</p>
+<pre><code class="language-json">{
+	&quot;FileVersion&quot;: 3,
+	&quot;Version&quot;: 1,
+	&quot;VersionName&quot;: &quot;4.25.0&quot;,
+	&quot;FriendlyName&quot;: &quot;Advanced Locomotion System Community&quot;,
+	&quot;Description&quot;: &quot;Performance optimized community version of LongmireLocomotion's Advanced Locomotion System V4&quot;,
+	&quot;Category&quot;: &quot;Animation&quot;,
+	&quot;CreatedBy&quot;: &quot;Doga Can Yanikoglu&quot;,
+	&quot;CreatedByURL&quot;: &quot;https://github.com/dyanikoglu&quot;,
+	&quot;DocsURL&quot;: &quot;https://github.com/dyanikoglu/ALS-Community&quot;,
+	&quot;SupportURL&quot;: &quot;https://github.com/dyanikoglu/ALS-Community/issues&quot;,
+	&quot;EngineVersion&quot;: &quot;5.3.0&quot;,
+	&quot;EnabledByDefault&quot;: true,
+	&quot;CanContainContent&quot;: true,
+	&quot;IsBetaVersion&quot;: false, 
+	&quot;IsExperimentalVersion&quot;: false,
+	&quot;Installed&quot;: false,
+	&quot;Modules&quot;: [
+		{
+			&quot;Name&quot;: &quot;ALSV4_CPP&quot;,
+			&quot;Type&quot;: &quot;Runtime&quot;,
+			&quot;LoadingPhase&quot;: &quot;Default&quot;,
+			&quot;AdditionalDependencies&quot;: [
+				&quot;Engine&quot;,
+				&quot;AIModule&quot;,
+				&quot;GameplayTasks&quot;,
+				&quot;PhysicsCore&quot;
+			]
+		}
+	],
+	&quot;Plugins&quot;: [
+		{
+			&quot;Name&quot;: &quot;Niagara&quot;,
+			&quot;Enabled&quot;: true
+		},
+		{
+			&quot;Name&quot;: &quot;EnhancedInput&quot;,
+			&quot;Enabled&quot;: true
+		}
+	]
+}
+</code></pre>
+<h2 id="populating-the-uproject-file"><a class="header" href="#populating-the-uproject-file">Populating the .uproject file</a></h2>
+<p>Now that we understand what a Unreal Project file is and how it is structured let's complete our own.</p>
+<p>For those who <strong>setup the environment variables</strong>, this should open up VS Code within the current directory</p>
+<ul>
+<li>Open VS Code within your project directory
+<ul>
+<li>CTRL + L ( to focus the address bar )</li>
+<li>Type: code .</li>
+<li>Press Enter</li>
+</ul>
+</li>
+</ul>
+<p>For those who have <strong>not setup the environment variables</strong>, this should open up VS Code within the current directory</p>
+<ul>
+<li>
+<p>Open VS Code within your project directory</p>
+<ul>
+<li>Right Click somewhere within your folder</li>
+<li>Select: Show more options</li>
+<li>Select: Open with Code</li>
+</ul>
+</li>
+<li>
+<p>Create a {modulename}Core sub directory within the Source directory</p>
+<ul>
+<li>A good convention for naming modules would be to start each module with your {projectname}
+<ul>
+<li>{projectname}Core</li>
+<li>{projectname}AI</li>
+<li>{projectname}GamePlay</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="create-new-module.png" alt="Create a new module" /></p>
+<ul>
+<li>Open the .uproject file</li>
+<li>Type: <strong>uuproj</strong>
+<ul>
+<li>This should trigger a snippet that we setup earlier</li>
+</ul>
+</li>
+<li>Verify the EngineAssociation is correct</li>
+</ul>
+<p><img src="populate-uproject-file.png" alt="Populate the Unreal Project file" /></p>
+<p><em>Note:</em>
+<em>Additional modules and/or plugins that are required for your project also go here.</em>
+<em>The following is an example when multiple modules are required:</em></p>
+<pre><code class="language-json">{
+	&quot;FileVersion&quot;: 3,
+	&quot;EngineAssociation&quot;: &quot;5.3&quot;,
+	&quot;Category&quot;: &quot;&quot;,
+	&quot;Description&quot;: &quot;&quot;,
+	&quot;Modules&quot;: [
+		{
+			&quot;Name&quot;: &quot;PatrolCore&quot;,
+			&quot;Type&quot;: &quot;Runtime&quot;,
+			&quot;LoadingPhase&quot;: &quot;Default&quot;
+		},
+		{
+			&quot;Name&quot;: &quot;PatrolGame&quot;,
+			&quot;Type&quot;: &quot;Runtime&quot;,
+			&quot;LoadingPhase&quot;: &quot;Default&quot;
+		}
+	]
+}
+</code></pre>
+<h2 id="build-targets"><a class="header" href="#build-targets">Build Targets</a></h2>
+<p>Now that the initial setup for our project is setup we have to move on to Build Targets. We first require a Target Rules Definition file. It will tell the Unreal build system how to build our project. Supported target types are as followed:</p>
+<table><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>Game</strong></td><td>A standalone game which requires cooked data to run.</td></tr>
+<tr><td><strong>Client</strong></td><td>Same as Game, but does not include any server code. Useful for networked games.</td></tr>
+<tr><td><strong>Server</strong></td><td>Same as Game, but does not include any client code. Useful for dedicated servers in networked games.</td></tr>
+<tr><td><strong>Editor</strong></td><td>A target which extends the Unreal Editor.</td></tr>
+<tr><td><strong>Program</strong></td><td>A standalone utility program built on top of the Unreal Engine.</td></tr>
+</tbody></table>
+<p>Targets are declared through C# source files with a .target.cs extension, and are stored under your project's Source directory. Each .target.cs file declares a class deriving from the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs">TargetRules</a> base class, and sets properties controlling how it should be built from its constructor. When asked to build a target, UnrealBuildTool will compile your target.cs file and construct the class inside it to determine its settings.</p>
+<p>The <strong>name of the class must match the name of the file</strong> it's declared in <strong>followed by 'Target'</strong> (so for example, Patrol.target.cs defines the class 'PatrolTarget'). They typical structure of a target file is as followed:</p>
+<pre><code class="language-Csharp">using UnrealBuildTool;
+using System.Collections.Generic;
+
+public class PatrolTarget : TargetRules
+{
+    public PatrolTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Game;
+
+        // Other properties go here
+    }
+}
+</code></pre>
+<p>Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the <a href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/BuildTools/UnrealBuildTool/TargetFiles/">Official Unreal Documentation</a> or examining the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs">Source Code</a> (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to two properties that may prove particularly useful.</p>
+<ul>
+<li><strong>DefaultBuildSettings</strong> Specifies the engine version to maintain backwards-compatible default build settings with (eg. DefaultSettingsVersion.Release_4_23, DefaultSettingsVersion.Release_4_24). Specify DefaultSettingsVersion.Latest to always use defaults for the current engine version, at the risk of introducing build errors while upgrading.</li>
+<li><strong>ExtraModuleNames</strong> List of additional modules to be compiled into the target.</li>
+</ul>
+<h2 id="populating-the-target-rules"><a class="header" href="#populating-the-target-rules">Populating the Target Rules</a></h2>
+<p>As mentioned the Target Rule Definitions need to be stored under your project's Source directory. So let's do that now.</p>
+<ul>
+<li>Navigate to your Source directory</li>
+<li>Create a new Target Rules file
+<ul>
+<li>{projectname}{modulename}.Target.cs</li>
+<li>We can use the snippet <strong>umt</strong> to autocomplete this file</li>
+</ul>
+</li>
+</ul>
+<p><img src="game-target-rules-definition.png" alt="Game Target Rules Definition" /></p>
+<ul>
+<li>Navigate to your Source directory again</li>
+<li>Create a new Target Rules file
+<ul>
+<li>{projectname}{modulename}Editor.Target.cs</li>
+<li>We can use the snippet <strong>umt</strong> to autocomplete this file</li>
+</ul>
+</li>
+<li>Change the Target Type within this Editor Target Rules file to &quot;Editor&quot; instead of &quot;Game&quot;</li>
+</ul>
+<p><img src="editor-target-rules-definition.png" alt="Editor Target Rules Definition" /></p>
+<h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap up</a></h2>
+<p>That's it for the creation of our project, in the <a href="./setup_unreal_project_from_scratch.html">next section</a> we will discuss how we can setup our Unreal Project properly by adding source code and Build Rule Definition files. Within this section we learned that the .uproject file tells Unreal Editor that it can open this directory as an Unreal Project using the specified version. It also specifies that when the Editor opens this project, it should find and load the DLL for the module called &quot;PatrolCore&quot;. The .Target.cs file tells the Unreal Build System that it can build all the necessary code for this project by building the &quot;PatrolCore&quot; module. </p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="development_setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="setup_unreal_project_from_scratch.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="development_setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="setup_unreal_project_from_scratch.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
