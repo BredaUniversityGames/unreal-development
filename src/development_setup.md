@@ -1,16 +1,16 @@
-#Development Tools
+# Development Tools
 
 Before we dive into the exciting world of game engines and compilers, let's talk about two essential tools every developer needs: a trusty text editor and a reliable terminal. And guess what? With VS Code, you get both bundled in one neat package! Now, I know there are alternatives out there like Sublime Text and Cmder, but for this walkthrough, I'll be sticking with VS Code—it's my go-to choice when working with Unreal Engine.
 
-###Why VS Code, you ask?
+### Why VS Code, you ask?
 
 Let me break it down for you. VS Code doesn't clutter your workspace, it's highly customizable to match your preferences, packed with awesome features, and incredibly lightweight and responsive. Even when dealing with massive codebases like Unreal, it won't drag you down.
 
-###What about Visual Studio?
+### What about Visual Studio?
 
 Unreal Engine is designed to integrate smoothly with Visual Studio, allowing you to make code changes in your projects “quickly” and easily, and “immediately” see results upon compilation but it's essential to understand that for Unreal Engine, it serves primarily as a frontend. Unreal doesn't utilize the Visual Studio “toolset” directly for building; instead, it relies on a batch script that invokes builds for your target platform. However, the Visual Studio installation comes with certain features that are required to invoke builds ( on Windows ) so in order to use VS Code we have to go through the process of installing Visual Studio.
 
-##Installing VS Code
+## Installing VS Code
 
 ![Download Visual Studio Code](download-vs-code.png)
 
@@ -27,7 +27,7 @@ Here's how to get started:
 ![Visual Studio Keymap - VS Code Extension](visual-studio-keymap-code-extension.png)
 ![Tasks - VS Code Extension](tasks-code-extension.png)
 
-###VS Code - Unreal Snippets
+### VS Code - Unreal Snippets
 
 [![Unreal Engine VS Code Snippets Repository](unreal-snippets-repository.png)](https://github.com/Dyronix/unreal-snippets-vscode)
 
@@ -40,7 +40,7 @@ Make your life easier by setting up Unreal snippets in VS Code:
 
 ![Unreal Engine VS Code Snippets Directory](unreal-engine-snippets.png)
 
-###[Optional] VS Code - Theme
+### [Optional] VS Code - Theme
 
 Add a touch of personality to your coding environment:
 
@@ -50,7 +50,7 @@ Add a touch of personality to your coding environment:
 ![Dracula - VS Code Extension](dracula-code-extension.png)
 ![Icons - VS Code Extension](icons-code-extension.png)
 
-###[Optional] VS Code - Launch from Windows Explorer (Windows Only)
+### [Optional] VS Code - Launch from Windows Explorer (Windows Only)
 
 For seamless integration, follow these steps:
 
@@ -65,7 +65,7 @@ For seamless integration, follow these steps:
 
 Equipped with these essential tools, you're primed to traverse the intricacies of game development using VS Code. With precision and proficiency, let us embark on this journey into the realm of coding excellence.
 
-##Installing Visual Studio
+## Installing Visual Studio
 
 ![Download Visual Studio Installer](download-visual-studio-installer.png)
 

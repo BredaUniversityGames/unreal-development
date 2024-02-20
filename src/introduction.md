@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 
 You don’t need to use Visual Studio to write game code in Unreal. You can generate a solution file, crack it open, and start writing code. That’s the officially supported workflow, and it’s a perfectly valid approach. It’s great for beginners since it’s an easy way to get started. However, I’ve found it also leads a lot of people to miss out on an opportunity to form an understanding of how an Unreal project fits together and how the build system works. Let’s face it, the Visual Studio experience is not everybody’s cup of tea.
 
