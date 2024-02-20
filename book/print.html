@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">2.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_the_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -203,7 +203,7 @@
 <p>To install Visual Studio, download the installer from the <a href="https://visualstudio.microsoft.com/vs/">official website</a> and run it. The Visual Studio Installer allows you to select and install various components, including the Visual C++ toolset, debugger, runtime SDKs, and more. Additionally, I recommend installing the .NET workload, as many external tools used within Unreal Engine are written in C#. This ensures compatibility and provides flexibility if you ever need to build these tools from source.</p>
 <p><img src="desktop-development-with-cpp.png" alt="Desktop Development With C++" />
 <img src="net-desktop-development.png" alt=".NET Desktop Development" /></p>
-<p>Before proceeding, verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This meticulous approach ensures a smooth development experience and minimizes compatibility hurdles down the line.
+<p>Before proceeding to the <a href="./creating_unreal_project_from_scratch.html">next section</a>, verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This meticulous approach ensures a smooth development experience and minimizes compatibility hurdles down the line.
 For more information about setting up Visual Studio and some additional tips and tricks on how to modify Visual Studio as an IDE, you can visit the official documentation of Unreal: <a href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/">Unreal Engine: Visual Studio Setup</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="creating-an-unreal-project-from-scratch"><a class="header" href="#creating-an-unreal-project-from-scratch">Creating an Unreal Project from Scratch</a></h1>
 <p>Let's peek behind the scenes to understand how project files and build processes interconnect. Instead of diving straight into the complexities, let me guide you through setting up a new project in Unreal Engine from scratch.</p>
@@ -610,6 +610,134 @@ public class PatrolCore : ModuleRules
 </li>
 </ul>
 <p><img src="create-log-definition-source.png" alt="Create Log Definition Source" /></p>
+<h2 id="wrap-up-1"><a class="header" href="#wrap-up-1">Wrap up</a></h2>
+<p>That's it for the setup of our project, in the <a href="./building_unreal_project_from_scratch.html">next section</a> we will discuss how we can build our Unreal Project. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="build-an-unreal-project-from-scratch"><a class="header" href="#build-an-unreal-project-from-scratch">Build an Unreal Project from Scratch</a></h1>
+<p>Now that we have an entry point to our project by setting up our primary module we have a project that is ready to be build from Source. We have done all this without the usage of Visual Studio or Unreal Editor, not because they are bad tools but just because this gives us a changes to see what's happening under the hood. Unreal uses the Visual C++ compiler and linker and it recommends Visual Studio as an officially supported IDE, but it does not actually use Microsoft's build system. Instead Unreal has it's own cross-platform build system, which is why we need to write those C# files to configure our target and its modules. When you generate Visual Studio project files, those solution and project files aren't actually an essential part of the build. They're just Visual Studio compatible frontend for Unreal's build process. If we navigate to <code>{UE-Install-Directory}/Engine/Build/BatchFiles</code> directory we can see a file called Build.bat. This just calls UnrealBuildTool.exe, which invokes builds. When you build your project in Visual Studio, it's essentially just running this Batch file. </p>
+<p><img src="new-project-vs-frontend.png" alt="Running UBT" /></p>
+<p>This batch file has 4 essential steps:</p>
+<ul>
+<li><strong>Setting up the environment</strong> It checks if the batch file exists in the expected directory and sets up the environment for the build process.</li>
+<li><strong>Building the UnrealBuildTool</strong> It verifies the presence of the UnrealBuildTool and compiles it if necessary, either using Visual Studio or dotnet, depending on the context.</li>
+<li><strong>Running the UnrealBuildTool</strong> It executes UnrealBuildTool with the provided arguments, which typically include the game name, platform name, configuration name, and any additional arguments required for the build process.</li>
+<li><strong>Error Handling</strong> It includes error handling mechanisms to detect and report errors that may occur during the build process, such as missing dependencies, compilation failures, or missing files.</li>
+</ul>
+<h2 id="unreal-build-tool"><a class="header" href="#unreal-build-tool">Unreal Build Tool</a></h2>
+<p>The <strong>Unreal Build Tool</strong> (UBT) is a crucial component of the Unreal Engine, managing the process of building Unreal source code across a variety of build configurations. The Unreal Engine supports a wide range of platforms, including Windows, macOS, Linux, iOS, Android, consoles like PlayStation and Xbox, and VR/AR devices. UBT plays a central role in managing the complexities of building projects for these diverse platforms, abstracting away much of the platform-specific details and providing a unified build system. Its primary responsibility lies in compiling, linking, and managing the code and assets integral to Unreal Engine projects. As we already discussed Unreal is split into many modules. Each module has a .build.cs file that controls how it is built, including options for defining module dependencies, additional libraries, include paths, etc. By default, these modules are compiled into DLLs and loaded by a single executable (You can also choose to build a monolithic executable in the BuildConfiguration.cs file). Understanding UBT and its role within the Unreal Engine ecosystem is essential for developers working with the platform. It empowers developers to effectively manage the intricacies of building Unreal projects, facilitating efficient development workflows and optimized project outcomes. Mastery of UBT not only enhances technical proficiency but also underscores foundational principles in software engineering and project management. For more information about the Unreal Build Tool I would like to advise you to read the <a href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/BuildTools/UnrealBuildTool/">Official Documentation</a>.</p>
+<h2 id="using-ubt"><a class="header" href="#using-ubt">Using UBT</a></h2>
+<p>We've already established that we don't require Visual Studio to build our project, we can still leave Visual Studio out of the equation when it comes to building our project while still making use of UBT. All we have to do is invoke Build.bat and pass in a few arguments. We need to tell it which Target we want to build, then we need to give it a platform and a build configuration. Then we just pass in the path to the .uproject file, and we can kick off the build. </p>
+<ul>
+<li>Open your terminal
+<ul>
+<li>CTRL + Tilde (~)</li>
+<li>Type <code>{UE-BatchFiles}/Build.bat</code>
+<ul>
+<li><code>I:\Epic Games Unreal Engine\UE_5.3\Engine\Build\BatchFiles\Build.bat</code></li>
+</ul>
+</li>
+<li>Define a Target that you would like to build
+<ul>
+<li><code>{projectname}Editor</code></li>
+</ul>
+</li>
+<li>Define a Platform that would like to build for
+<ul>
+<li><code>Win64</code></li>
+</ul>
+</li>
+<li>Define a build configuration
+<ul>
+<li><code>Development</code></li>
+</ul>
+</li>
+<li>Define a path to the .uproject</li>
+<li>Define <code>-waitMutex</code> and <code>-NoHotReload</code></li>
+</ul>
+</li>
+</ul>
+<p>The full command should look like this: </p>
+<pre><code class="language-shell">{UE-BatchFiles}/Build.bat PatrolEditor Win64 Development “{project_path}/Patrol.uproject&quot; -waitMutex -NoHotReload
+</code></pre>
+<p><em>Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&amp;“</em></p>
+<pre><code class="language-shell">&amp; &quot;{UE-BatchFiles}/Build.bat&quot; PatrolEditor Win64 Development “{project_path}/Patrol.uproject&quot; -waitMutex -NoHotReload
+</code></pre>
+<p>A limitation of the UnrealBuildTool is that it can only build 1 project at a time, so we pass in <code>waitMutex</code> to make sure if there is an exception thrown when multiple builds have been started at the same time.
+We are not going to be concerned with hot reloading our code when developing our project so lets specify <code>NoHotReload</code> as well.</p>
+<p>Once the build gets going, we start getting build artifacts in the Intermediate directory. Eventually, Unreal Header Tool parses our source and spits out generated source files, then everything gets compiled to object code, and then finally our module is linked together into a DLL that the editor can load. We can see that DLL in the Binaries directory this file contains all the code we've written in our {modulename}Core module, in a compiled binary form. Next to that is the corresponding PDB, or symbol file this essentially contains debugging information so that symbols in the compiled binary version of our code can be traced back to the corresponding functions, variables, and other identifiers in the source code. We also get a .modules file, which is just a bit of metadata telling the editor which DLLs should be loaded for this module, and which Engine version those DLLs were compiled against this is why you'll get an error if you build editor binaries on one version of Unreal, then try to open them with a different version. There's also a .target file, which is just more metadata spit out by the build system which is not important for us.</p>
+<p><img src="unreal-compilation-result.png" alt="Compilation Result" /></p>
+<h2 id="wrap-up-2"><a class="header" href="#wrap-up-2">Wrap up</a></h2>
+<p>That's it for the builing our project, in the <a href="./opening_unreal_project_from_scratch.html">next section</a> everything will come togheter, and we will start opening our project in Editor, Editor Standalone and Running our game. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="open-an-unreal-project-from-scratch"><a class="header" href="#open-an-unreal-project-from-scratch">Open an Unreal Project from Scratch</a></h1>
+<p>We've created our project using the .uproject file and Target Rule Definitions. We've setup our project by creating an entry point for our application using a primary module definition and specified Module Build Rules to declare the dependencies of our project. After that we build our project and created a DLL which will be linked when we start our project. Now it's time to open our project and let Designers, Artists and other Developers experiment and test our functionality. We've pieced together our project using the .uproject file and Target Rule Definitions. We've got our entry point sorted by making use of the primary module and declared the dependencies within Module Build Rules. After all that, we've asked UBT to build our project and conjured up a DLL. Now we can let the Designers, Artists, and fellow Developers loose to tinker, tweak, and test-drive our creation.</p>
+<h2 id="open-in-editor"><a class="header" href="#open-in-editor">Open in Editor</a></h2>
+<p>To open your project: </p>
+<ul>
+<li>Run ${Unreal-Install-Dir}/Engine/Binaries/Win64/UnrealEditor.exe</li>
+<li>Define the path to your .uproject</li>
+<li>Define -log</li>
+</ul>
+<p>The full command should look like this: </p>
+<pre><code class="language-shell">{UE-Bin}/UnrealEditor.exe “{project_path}/Patrol.uproject&quot; -log
+</code></pre>
+<p><em>Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&amp;“</em></p>
+<p>Since this is our first time booting up the project, we can see the Editor writing out some new files in our project directory.</p>
+<ul>
+<li><strong>Saved</strong> contains logs and other files created at runtime, either by the game or the editor</li>
+<li><strong>Derived Data Cache</strong> where the editor can cache data that it has built for specfic assets</li>
+<li><strong>Content</strong> which maps directly to our project's assets in the Content Browser</li>
+<li><strong>Config</strong> project configuration changes have been stored in .ini files</li>
+</ul>
+<h3 id="derived-data-cache"><a class="header" href="#derived-data-cache">Derived Data Cache</a></h3>
+<p>Small word about Derived Data Cache (DDC) folder, Many Unreal Engine Assets require additional &quot;derived data&quot; before they can be used. (A simple example would be a Material that has a shader). Before the Material can be rendered, the shader must be compiled for the platform the editor is running on. Because the derived data is large, and at times may need regenerating, it is not checked into source control. Instead it's kept in the Derived Data Cache (DDC). Depending on how your project and system are configured, there can be several DDC caches in a hierarchy that ranges from fast to slow. When assessing derived data, your system will do the following to determine how quickly it can access it:</p>
+<ul>
+<li>When a piece of derived data is needed, the fastest cache is checked first, then the next fastest, and so on, until the data is found.</li>
+<li>When the data is found, it is copied into the fastest local cache so that it is quicker to access next time.</li>
+<li>If the data is not found, then it is first generated, then asynchronously copied into the caches so it is available for you (and potentially your team) in the future.</li>
+</ul>
+<p>Content stored in the DDC is disposable, and can be regenerated at any time using the data stored in the .uasset file. Storing these derived formats externally makes it possible to easily add or change the formats used by the engine without needing to modify the source Asset file.</p>
+<p>For more information about DDC please visit the <a href="https://docs.unrealengine.com/5.3/en-US/derived-data-cache/">Official Documentation</a>.</p>
+<h3 id="altering-our-project"><a class="header" href="#altering-our-project">Altering our project</a></h3>
+<p>As we get ready to showcase our project, I'm going to shake things up a bit and tweak the defaults to give it some extra flavor. When we fire up the &quot;Standalone Editor&quot; and &quot;Standalone Game&quot; for testing, we'll be making sure our special map and engine settings are all loaded up correctly. To view the changes I made please navigate to the following <a href="./altering_the_project.html">page</a>.</p>
+<h2 id="open-in-standalone-editor"><a class="header" href="#open-in-standalone-editor">Open in Standalone Editor</a></h2>
+<p>Opening the Editor is cool, but as a developer we might not always need full control of the Editor this is why we can specify the <code>-game</code> flag to the previously defined command mentioned in the &quot;Open in Editor&quot; section. Like any program the Unreal Editor accepts different types of Command-Line Arguments. When passing it different arguments the application (in this case the Unreal Editor) will react differently. Previously we only mentioned the Command-Line Argument <code>-log</code> to display a log window while the application is running. When we specify the <code>-game</code> flag we ask the Editor to launch itself as a game client instead of the full application. </p>
+<p>Several useful commands to remember when running in Standalone mode are as followed:</p>
+<table><thead><tr><th>Command</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>-log</td><td>Flag</td><td>Display a log window while the client or server is running.</td></tr>
+<tr><td>-game</td><td>Flag</td><td>Mode flag to launch game client.</td></tr>
+<tr><td>-windowed</td><td>Flag</td><td>Launch the client in windowed mode. Use in conjunction with -ResX=&lt;HORIZONTAL_RES&gt; -ResY=&lt;VERTICAL_RES&gt;.</td></tr>
+<tr><td>-fullscreen</td><td>Flag</td><td>Launch the client in full-screen mode.</td></tr>
+<tr><td>-ResX=&lt;HORIZONTAL_RES&gt; -ResY=&lt;VERTICAL_RES&gt;</td><td>Key-Value Pair</td><td>Specify the horizontal (X) and vertical (Y) resolution size for a client. Example: -ResX=1920 -ResY=1080</td></tr>
+</tbody></table>
+<p>For more information about how to create custom command line arguments, customize command line arguments or other types of command line arguments such as graphics command line arguments please visit the <a href="https://docs.unrealengine.com/5.3/en-US/command-line-arguments-in-unreal-engine/">Official Documentation</a>.</p>
+<p>To run our the editor as a single game client we run the following command: </p>
+<pre><code class="language-shell">{UE-Bin}/UnrealEditor.exe “{project_path}/Patrol.uproject&quot; -log -game -ResX=1280 -ResY=720
+</code></pre>
+<p><em>Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&amp;“</em></p>
+<p><img src="run-standalone-editor.png" alt="Run Standalone Editor" /></p>
+<p>This is a fully playable instance of our game. We can fly around, we can use console commands. This results in a quick way to test out the game in a development setting running from editor binaries, but that means we need this full installation of Unreal Engine in order to run this build. If we want a standalone version of our project, that's what our non-editor target is for, in the <a href="./running_the_game.html">next section</a> we will demonstrate how we can run our game without the Editor attached. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="running-a-game"><a class="header" href="#running-a-game">Running a Game</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="altering-our-project-1"><a class="header" href="#altering-our-project-1">Altering our project</a></h1>
+<p>As we get ready to showcase our project, I'm going to shake things up a bit and tweak the defaults to give it some extra flavor. When we fire up the &quot;Standalone Editor&quot; and &quot;Standalone Game&quot; for testing, we'll be making sure our special map and engine settings are all loaded up correctly.</p>
+<ul>
+<li>First let us alter the maps atmosphere.</li>
+</ul>
+<p><img src="altering-the-atmosphere.png" alt="Altering the atmosphere" /></p>
+<ul>
+<li>Save the map in the Content Browser</li>
+</ul>
+<p><img src="altering-save-to-content-browser.png" alt="Save to the Content Browser" /></p>
+<ul>
+<li>Generate a unique project ID</li>
+</ul>
+<p><img src="altering-unique-project-id.png" alt="Generate a unique ID" /></p>
+<ul>
+<li>Setup target hardware</li>
+</ul>
+<p><img src="altering-setup-target-hardware.png" alt="Setup target hardware" /></p>
+<ul>
+<li>Change the default map to our new map we just saved</li>
+</ul>
+<p><img src="altering-change-default-map.png" alt="Change default map" /></p>
 
                     </main>
 

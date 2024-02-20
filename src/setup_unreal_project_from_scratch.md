@@ -103,3 +103,7 @@ We will also add a Log category that is specific to our module. These files are 
     - We can use the snipper **ulc** to autocomplete this file
 
 ![Create Log Definition Source](create-log-definition-source.png)
+
+## Wrap up
+
+That's it for the setup of our project, in the [next section](./building_unreal_project_from_scratch.md) we will discuss how we can build our Unreal Project. 
