@@ -63,6 +63,6 @@ To run our the editor as a single game client we run the following command:
 ```
 *Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&“*
 
-![Run Standalone Editor](run-standalone-editor.png)
+![Run Standalone Editor](./resources/run-standalone-editor.png)
 
 This is a fully playable instance of our game. We can fly around, we can use console commands. This results in a quick way to test out the game in a development setting running from editor binaries, but that means we need this full installation of Unreal Engine in order to run this build. If we want a standalone version of our project, that's what our non-editor target is for, in the [next section](./running_the_game.md) we will demonstrate how we can run our game without the Editor attached. 

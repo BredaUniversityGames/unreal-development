@@ -2,7 +2,7 @@
 
 Now that we have an entry point to our project by setting up our primary module we have a project that is ready to be build from Source. We have done all this without the usage of Visual Studio or Unreal Editor, not because they are bad tools but just because this gives us a changes to see what's happening under the hood. Unreal uses the Visual C++ compiler and linker and it recommends Visual Studio as an officially supported IDE, but it does not actually use Microsoft's build system. Instead Unreal has it's own cross-platform build system, which is why we need to write those C# files to configure our target and its modules. When you generate Visual Studio project files, those solution and project files aren't actually an essential part of the build. They're just Visual Studio compatible frontend for Unreal's build process. If we navigate to `{UE-Install-Directory}/Engine/Build/BatchFiles` directory we can see a file called Build.bat. This just calls UnrealBuildTool.exe, which invokes builds. When you build your project in Visual Studio, it's essentially just running this Batch file. 
 
-![Running UBT](new-project-vs-frontend.png)
+![Running UBT](./resources/new-project-vs-frontend.png)
 
 This batch file has 4 essential steps:
 - **Setting up the environment** It checks if the batch file exists in the expected directory and sets up the environment for the build process.
@@ -46,7 +46,7 @@ We are not going to be concerned with hot reloading our code when developing our
 
 Once the build gets going, we start getting build artifacts in the Intermediate directory. Eventually, Unreal Header Tool parses our source and spits out generated source files, then everything gets compiled to object code, and then finally our module is linked together into a DLL that the editor can load. We can see that DLL in the Binaries directory this file contains all the code we've written in our {modulename}Core module, in a compiled binary form. Next to that is the corresponding PDB, or symbol file this essentially contains debugging information so that symbols in the compiled binary version of our code can be traced back to the corresponding functions, variables, and other identifiers in the source code. We also get a .modules file, which is just a bit of metadata telling the editor which DLLs should be loaded for this module, and which Engine version those DLLs were compiled against this is why you'll get an error if you build editor binaries on one version of Unreal, then try to open them with a different version. There's also a .target file, which is just more metadata spit out by the build system which is not important for us.
 
-![Compilation Result](unreal-compilation-result.png)
+![Compilation Result](./resources/unreal-compilation-result.png)
 
 ## Wrap up
 

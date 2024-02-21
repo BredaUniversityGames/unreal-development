@@ -13,7 +13,7 @@ We're gonna start with a .uproject file to lay down the basics and we'll need a 
 - Drop a .uproject file in the main folder.
 - Make a Source folder in there too.
 
-![Starting Position Unreal Project From Scratch](starting-pos-unreal-project-from-scratch.png)
+![Starting Position Unreal Project From Scratch](./resources/starting-pos-unreal-project-from-scratch.png)
 
 
 ## The .uproject File
@@ -201,14 +201,14 @@ For those who have **not setup the environment variables**, this should open up 
     - {projectname}AI
     - {projectname}GamePlay
 
-![Create a new module](create-new-module.png)
+![Create a new module](./resources/create-new-module.png)
 
 - Open the .uproject file
 - Type: **uuproj**
   - This should trigger a snippet that we setup earlier
 - Verify the EngineAssociation is correct
 
-![Populate the Unreal Project file](populate-uproject-file.png)
+![Populate the Unreal Project file](./resources/populate-uproject-file.png)
 
 *Note:*
 *Additional modules and/or plugins that are required for your project also go here.*
@@ -280,7 +280,7 @@ As mentioned the Target Rule Definitions need to be stored under your project's 
   - {projectname}{modulename}.Target.cs
   - We can use the snippet **umt** to autocomplete this file
 
-![Game Target Rules Definition](game-target-rules-definition.png)
+![Game Target Rules Definition](./resources/game-target-rules-definition.png)
 
 - Navigate to your Source directory again
 - Create a new Target Rules file
@@ -288,7 +288,7 @@ As mentioned the Target Rule Definitions need to be stored under your project's 
   - We can use the snippet **umt** to autocomplete this file
 - Change the Target Type within this Editor Target Rules file to "Editor" instead of "Game"
 
-![Editor Target Rules Definition](editor-target-rules-definition.png)
+![Editor Target Rules Definition](./resources/editor-target-rules-definition.png)
 
 ## Wrap up
 

@@ -8,7 +8,7 @@ Let's start by doing that.
 - Add a Private directory
 - Add a Public directory
 
-![Adding Public and Private source directories](adding-public-private-directory.png)
+![Adding Public and Private source directories](./resources/adding-public-private-directory.png)
 
 ## Module Build Rules
 
@@ -59,7 +59,7 @@ Numerous properties are accessible from the base class, the details of which are
     - CoreUObject
     - Engine
 
-![Populate Module Build Rules Definition](populate-module-build-rules-definition.png)
+![Populate Module Build Rules Definition](./resources/populate-module-build-rules-definition.png)
 
 ## Module Source Code
 
@@ -79,14 +79,14 @@ Every module necessitates, at minimum, a module definition, typically found in a
     - {modulename}.h
     - We can use the snipper **umh** to autocomplete this file
 
-![Create Module Definition Header](create-module-definition-header.png)
+![Create Module Definition Header](./resources/create-module-definition-header.png)
 
 - Navigate to Source/{projectname}{modulename}/Private
 - Create a new Source file
     - {modulename}.cpp
     - We can use the snipper **umcp** to autocomplete this file
 
-![Create Module Definition Source](create-module-definition-source.png)
+![Create Module Definition Source](./resources/create-module-definition-source.png)
 
 We will also add a Log category that is specific to our module. These files are internal to our module, so we can define the `Log.h` and `Log.cpp` within the Private directory of our module. Now from any source file within our module we can `#include Log.h` and add log output using an Unreal log line (`UE_LOG`). This will show up in the console output and the log files for our game, and we can filter by our category to get output from this module specifically.
 
@@ -95,14 +95,14 @@ We will also add a Log category that is specific to our module. These files are 
     - Log.h
     - We can use the snipper **ulh** to autocomplete this file
 
-![Create Log Definition Header](create-log-definition-header.png)
+![Create Log Definition Header](./resources/create-log-definition-header.png)
 
 - Navigate to Source/{projectname}{modulename}/Private
 - Create a new Source file
     - Log.cpp
     - We can use the snipper **ulc** to autocomplete this file
 
-![Create Log Definition Source](create-log-definition-source.png)
+![Create Log Definition Source](./resources/create-log-definition-source.png)
 
 ## Wrap up
 

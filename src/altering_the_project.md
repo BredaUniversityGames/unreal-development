@@ -5,20 +5,20 @@ As we get ready to showcase our project, I'm going to shake things up a bit and 
 
 - First let us alter the maps atmosphere.
 
-![Altering the atmosphere](altering-the-atmosphere.png)
+![Altering the atmosphere](./resources/altering-the-atmosphere.png)
 
 - Save the map in the Content Browser
 
-![Save to the Content Browser](altering-save-to-content-browser.png)
+![Save to the Content Browser](./resources/altering-save-to-content-browser.png)
 
 - Generate a unique project ID
 
-![Generate a unique ID](altering-unique-project-id.png)
+![Generate a unique ID](./resources/altering-unique-project-id.png)
 
 - Setup target hardware
 
-![Setup target hardware](altering-setup-target-hardware.png)
+![Setup target hardware](./resources/altering-setup-target-hardware.png)
 
 - Change the default map to our new map we just saved
 
-![Change default map](altering-change-default-map.png)
+![Change default map](./resources/altering-change-default-map.png)
