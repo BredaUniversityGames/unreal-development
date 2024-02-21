@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Appendix 1 - Altering the Template - Unreal Development</title>
+        <title>Appendix 2 - Additional Workflow Items - Unreal Development</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html" class="active">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html" class="active">Appendix 2 - Additional Workflow Items</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,38 +134,41 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="altering-our-project"><a class="header" href="#altering-our-project">Altering our project</a></h1>
-<p>As we get ready to showcase our project, I'm going to shake things up a bit and tweak the defaults to give it some extra flavor. When we fire up the &quot;Standalone Editor&quot; and &quot;Standalone Game&quot; for testing, we'll be making sure our special map and engine settings are all loaded up correctly.</p>
+                        <h1 id="additional-workflow-items"><a class="header" href="#additional-workflow-items">Additional Workflow Items</a></h1>
+<h2 id="looking-for-files"><a class="header" href="#looking-for-files">Looking for files</a></h2>
 <ul>
-<li>First let us alter the maps atmosphere.</li>
+<li>If you hit Ctrl+P, you can quickly browse to any file that's been included in the project.</li>
 </ul>
-<p><img src="./resources/altering-the-atmosphere.png" alt="Altering the atmosphere" /></p>
+<p><img src="./resources/workflow-looking-for-files.png" alt="Looking for files" /></p>
+<h2 id="creating-a-code-workspace"><a class="header" href="#creating-a-code-workspace">Creating a Code workspace</a></h2>
 <ul>
-<li>Save the map in the Content Browser</li>
+<li>You can add ${unreal}/Source/Runtime directory to your project workspace so you have the Unreal source code at your fingertips.</li>
 </ul>
-<p><img src="./resources/altering-save-to-content-browser.png" alt="Save to the Content Browser" /></p>
+<p>If we add UE's ${unreal}/Engine/Source/Runtime directory, then we'll also have the Engine source at our fingertips. The key distinction here is that where Visual Studio tries to be smart, VS Code just tries to be fast. With Visual Studio, you're dealing with IntelliSense, which has to parse the entire Engine codebase and run extensive static analysis, and then it has to reason about that codebase while working around the fact that huge chunks of it rely on a custom code generation process... and if you ask me, expecting it to be reliably correct and responsive is just too much to ask. Back when I was using Visual Studio, I found I couldn't rely on IntelliSense, and I'd end up just searching through the API documentation all the time. But the code itself contains the exact same documentation you can cut out the middle-man and Ctrl+P your way straight to an answer, faster than it takes for an IntelliSense completion window to appear. This approach keeps you in the driver's seat.</p>
+<p><img src="./resources/workflow-creating-a-code-workspace.png" alt="Create a Code workspace" /></p>
+<h2 id="looking-for-symbols"><a class="header" href="#looking-for-symbols">Looking for symbols</a></h2>
 <ul>
-<li>Generate a unique project ID</li>
+<li>Use CTRL + SHIFT + F to search the entire codebase to see how a symbol is used or referenced</li>
 </ul>
-<p><img src="./resources/altering-unique-project-id.png" alt="Generate a unique ID" /></p>
+<p><img src="./resources/workflow-looking-for-symbols.png" alt="Looking for symbols" /></p>
+<h2 id="plugin-directory"><a class="header" href="#plugin-directory">Plugin directory</a></h2>
 <ul>
-<li>Setup target hardware</li>
+<li>Use the ${unreal}/Engine/Plugins directory as a reference on how to structure Unreal modules within your project</li>
 </ul>
-<p><img src="./resources/altering-setup-target-hardware.png" alt="Setup target hardware" /></p>
+<p>A good source of example code is the Engine Plugins directory. If we limit our search there, we can find usage examples that are set up in the same way our project code should be.</p>
+<p><img src="./resources/workflow-plugin-directory.png" alt="Plugin directory" /></p>
+<h2 id="documentation"><a class="header" href="#documentation">Documentation</a></h2>
 <ul>
-<li>Change the default map to our new map we just saved</li>
+<li>Use the Engine Source Code as documentation</li>
 </ul>
-<p><img src="./resources/altering-change-default-map.png" alt="Change default map" /></p>
+<p>I've found that if you treat the Engine source as documentation in and of itself, and if you optimize your workflow for browsing that source, you'll gain a much more intuitive understanding of it over time.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="conclusion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="altering_the_project.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a rel="next" href="additional_workflow_items.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -173,11 +176,8 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="conclusion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="altering_the_project.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a rel="next" href="additional_workflow_items.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 

@@ -17,4 +17,4 @@
 -----------
 
 [Appendix 1 - Altering the Template](./altering_the_project.md)
-[Appendix 2 - Additional Workflow Items](./altering_the_project.md)
+[Appendix 2 - Additional Workflow Items](./additional_workflow_items.md)
