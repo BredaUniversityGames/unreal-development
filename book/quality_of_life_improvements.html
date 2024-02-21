@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - Unreal Development</title>
+        <title>Quality of Life - Unreal Development</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_the_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_the_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html" class="active"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 2 - Additional Workflow Items</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,17 +134,82 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<p>You don’t need to use Visual Studio to write game code in Unreal. You can generate a solution file, crack it open, and start writing code. That’s the officially supported workflow, and it’s a perfectly valid approach. It’s great for beginners since it’s an easy way to get started. However, I’ve found it also leads a lot of people to miss out on an opportunity to form an understanding of how an Unreal project fits together and how the build system works, and let’s face it, the Visual Studio experience is not everybody’s cup of tea.</p>
-<p><img src="./resources/visual-studio-experience.png" alt="Visual Studio Experience" /></p>
-<p>Within this document I will show you how you can create an Unreal project from scratch with just a text editor. I will explain how we can build and run that project from the command line. After going through this document I hope that you get a basic understanding on what happens when you build an Unreal project. If down the line you are ever faced with a wall of cryptic error messages, you’ll have a better idea of how to diagnose the problem and get moving again.</p>
-<p>But first let us <a href="./development_setup.html">setup the environment</a> I use to work within Unreal.</p>
+                        <h1 id="quality-of-life"><a class="header" href="#quality-of-life">Quality of Life</a></h1>
+<p>In the <a href="./running_a_game.html">previous section</a> we noticed that there are a lot of commands we have to enter in order to work with Unreal from the command line. This however will only slow us down rather than improve iteration speed. Luckily, we as developers can remedy this by introducing a quick fix and make our own batch files that invoke these commands. I will not bore you with writing these files yourself as we did with the snippets for VS Code you can download a script from <a href="https://github.com/Dyronix/unreal-generation">this GitHub repository</a> that will setup these files for you. I know batch files aren't really the state of the art in build automation, but we're not doing anything fancy here, so this approach works fine. Feel free to upgrade it to your liking.</p>
+<h2 id="additional-unreal-batch-files"><a class="header" href="#additional-unreal-batch-files">Additional Unreal Batch Files</a></h2>
+<p><a href="https://github.com/Dyronix/unreal-generation"><img src="./resources/unreal-engine-batch-file-generation.png" alt="Unreal Engine Generation" /></a></p>
+<ul>
+<li>Download/Clone the repository to disk</li>
+<li>Copy the contents of the repository (except the .git folder)</li>
+<li>Go to ${project_path}</li>
+<li>Paste repository contents</li>
+</ul>
+<p><img src="./resources/unreal-generation-copied-repository-contents.png" alt="Unreal Generation Copied Repository Contents" /></p>
+<ul>
+<li>Run setup.py -p=${ue5_path}
+<ul>
+<li>py setup.py –p=“C:\Program Files\Epic Games\UE_5.3”</li>
+</ul>
+</li>
+</ul>
+<p><img src="./resources/unreal-generation-run-python-script.png" alt="Unreal Generation Run Python Script" /></p>
+<ul>
+<li>Batch scripts to run the Unreal commands should have been generated</li>
+</ul>
+<p><img src="./resources/unreal-generation-generation-result.png" alt="Unreal Generation Generation Result" /></p>
+<p>What's great about using the command-line is that we can easily chain multiple commands together. If we run <code>build_editor &amp;&amp; run_editor</code>, that will build and if and only if the build succeeds, it'll launch the editor. This lets us jump quickly back and forth between code and editor.</p>
+<h2 id="vs-code-tasks"><a class="header" href="#vs-code-tasks">VS Code Tasks</a></h2>
+<p>An extension that was installed in the <a href="./development_setup.html">development setup</a> chapter was called VS Code Tasks. Now that the batch files have been created we can setup these tasks. You see you can specify certain commands within VS Code without using the terminal. It's like having the &quot;Run&quot; button of Visual Studio but better.</p>
+<p><img src="./resources/vs-code-tasks.png" alt="VS Code Tasks" /></p>
+<ul>
+<li>Create .vscode folder in your {project_directory}</li>
+<li>Add a <code>tasks.json</code> file to this folder</li>
+<li>Fill the contents of this file with commands you would like to execute</li>
+<li>Created tasks will end up at the bottom of the IDE</li>
+</ul>
+<p>And example of the tasks.json fill looks as followed:</p>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;tasks&quot;: [
+        {
+            &quot;label&quot;: &quot;Build Editor&quot;,
+            &quot;type&quot;: &quot;shell&quot;,
+            &quot;command&quot;: &quot;./build_editor.bat&quot;,
+            &quot;windows&quot;: {
+                &quot;command&quot;: &quot;./build_editor.bat&quot;
+            },
+            &quot;group&quot;: &quot;none&quot;,
+            &quot;presentation&quot;: {
+                &quot;reveal&quot;: &quot;always&quot;,
+                &quot;clear&quot;: true
+            }
+        },
+        {
+            &quot;label&quot;: &quot;Run Editor&quot;,
+            &quot;type&quot;: &quot;shell&quot;,
+            &quot;command&quot;: &quot;./run_editor.bat&quot;,
+            &quot;windows&quot;: {
+                &quot;command&quot;: &quot;./run_editor.bat&quot;
+            },
+            &quot;group&quot;: &quot;none&quot;,
+            &quot;presentation&quot;: {
+                &quot;reveal&quot;: &quot;always&quot;,
+                &quot;clear&quot;: true
+            }
+        },
+    ]
+}
+</code></pre>
+<p>Now everything is in place to start working on our new project, in the <a href="./testing_the_setup.html">next section</a> we will test the setup we created with a simple example.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="next" href="development_setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="prev" href="running_the_game.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="testing_the_setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -153,7 +218,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="next" href="development_setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="prev" href="running_the_game.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="testing_the_setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

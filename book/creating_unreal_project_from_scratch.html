@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_the_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_the_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 2 - Additional Workflow Items</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,14 +145,14 @@
 </ul>
 </li>
 </ul>
-<p>We're gonna start with a .uproject file to lay down the basics and we'll need a Source folder for all our C++ goodness. Inside, we'll organize our code into different modules. Let's call the main one <strong>{projectname}{modulename}</strong>, where we'll stash all our core gameplay code.</p>
+<p>We're gonna start with a .uproject file to lay down the basics and we'll need a Source folder for all our C++ goodness.</p>
 <ul>
 <li>Drop a .uproject file in the main folder.</li>
 <li>Make a Source folder in there too.</li>
 </ul>
-<p><img src="starting-pos-unreal-project-from-scratch.png" alt="Starting Position Unreal Project From Scratch" /></p>
+<p><img src="./resources/starting-pos-unreal-project-from-scratch.png" alt="Starting Position Unreal Project From Scratch" /></p>
 <h2 id="the-uproject-file"><a class="header" href="#the-uproject-file">The .uproject File</a></h2>
-<p>A .uproject file, short for &quot;Unreal Project File,&quot; serves as the entry point and configuration file for an Unreal Engine project. It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules or plugins it uses. An Unreal Project File is recognized by the UnrealVersionSelector which is stored in the your registry by Unreal when installing Unreal. The following attributes can be found within a .uproject file:</p>
+<p>A .uproject file, short for &quot;Unreal Project File,&quot; serves as the entry point and configuration file for an Unreal Engine project. It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules and/or plugins it uses. An Unreal Project File is recognized by the UnrealVersionSelector, this setting is stored in the your registry by Unreal when you installed it. The following attributes can be found within a .uproject file:</p>
 <table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
 <tr><td><strong>FileVersion</strong></td><td>Descriptor version number.</td></tr>
 <tr><td><strong>EngineAssociation</strong></td><td>Specifies the engine to open the project with. <br> Allows for opening the correct engine version when double-clicking on a project file. <br> Differentiates between editor versions for upgrade/downgrade UI flow. <br> For Launcher users, it indicates a stable version like &quot;5.0&quot; or &quot;5.1&quot;. <br> For Perforce or Git users, it's left blank, allowing determination of the engine based on the directory hierarchy. <br> For source build users with a foreign project, uses a random identifier for engine mapping. <br> For users with the engine mounted through a Git submodule, can be manually edited as a relative path.</td></tr>
@@ -199,7 +199,8 @@
 	]
 }
 </code></pre>
-<p>When the project file is loaded into memory it is stored within a <code>FProjectDescriptor</code> which contains all the information contained within a .uproject file. Each .uproject file when containing source files is accompanied with a list of modules and/or plugins available to the project. These modules (and plugins) have their own set of attributes as specification when and how they should be loaded by the engine, all information is stored within a structure call <code>FModuleDescriptor</code>. The following attributes can be found within a module definition:</p>
+<h3 id="modules"><a class="header" href="#modules">Modules</a></h3>
+<p>When the project file is loaded into memory it is stored within a <code>FProjectDescriptor</code> which contains all the information contained within a .uproject file. Each .uproject file when containing source files is accompanied with a list of modules and/or plugins available to the project. Modules have their own set of attributes as specification when and how they should be loaded by the engine, all information is stored within a structure called <code>FModuleDescriptor</code>. The following attributes can be found within a module definition:</p>
 <table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
 <tr><td><strong>Name</strong></td><td>Name of this module.</td></tr>
 <tr><td><strong>Type</strong></td><td>Usage type of the module.</td></tr>
@@ -228,7 +229,11 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
   &quot;LoadingPhase&quot;: &quot;Default&quot;
 }
 </code></pre>
-<p>Last architectural piece of the Unreal Engine are plugins, due to the complexity of UE plugins I will not go into full detail here rather give you a brief overview of what they are and how to use them. Plugins are collections of code and data that developers can easily enable or disable within the Editor on a per-project basis. Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins. The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak. Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. Last I'll leave you with an overview of some of the more common attributes of a Plugin that you need to be aware of, this data is stored in a structure called <code>FPluginDescriptor</code>, you'll notice that they are quite similar to the ones of an Unreal Project:</p>
+<h3 id="plugins"><a class="header" href="#plugins">Plugins</a></h3>
+<p>Last architectural piece of the Unreal Engine are plugins, due to the complexity of UE plugins I will not go into full detail here rather give you a brief overview of what they are and how to use them. </p>
+<p>Plugins are collections of code and data that developers can easily enable or disable within the Editor on a per-project basis. Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins.</p>
+<p>The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak. Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. </p>
+<p>Last I'll leave you with an overview of some of the more common attributes of a Plugin that you need to be aware of, this data is stored in a structure called <code>FPluginDescriptor</code>, you'll notice that they are quite similar to the ones of an Unreal Project:</p>
 <table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
 <tr><td><strong>FileVersion</strong></td><td>Descriptor version number.</td></tr>
 <tr><td><strong>Version</strong></td><td>Version number for the plugin. The version number must increase with every version of the plugin, so that the system can determine whether one version of a plugin is newer than another, or to enforce other requirements. This version number is not displayed in front-facing UI. Use the VersionName for that.</td></tr>
@@ -331,7 +336,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 </ul>
 </li>
 </ul>
-<p><img src="create-new-module.png" alt="Create a new module" /></p>
+<p><img src="./resources/create-new-module.png" alt="Create a new module" /></p>
 <ul>
 <li>Open the .uproject file</li>
 <li>Type: <strong>uuproj</strong>
@@ -341,7 +346,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 </li>
 <li>Verify the EngineAssociation is correct</li>
 </ul>
-<p><img src="populate-uproject-file.png" alt="Populate the Unreal Project file" /></p>
+<p><img src="./resources/populate-uproject-file.png" alt="Populate the Unreal Project file" /></p>
 <p><em>Note:</em>
 <em>Additional modules and/or plugins that are required for your project also go here.</em>
 <em>The following is an example when multiple modules are required:</em></p>
@@ -404,7 +409,7 @@ public class PatrolTarget : TargetRules
 </ul>
 </li>
 </ul>
-<p><img src="game-target-rules-definition.png" alt="Game Target Rules Definition" /></p>
+<p><img src="./resources/game-target-rules-definition.png" alt="Game Target Rules Definition" /></p>
 <ul>
 <li>Navigate to your Source directory again</li>
 <li>Create a new Target Rules file
@@ -415,7 +420,7 @@ public class PatrolTarget : TargetRules
 </li>
 <li>Change the Target Type within this Editor Target Rules file to &quot;Editor&quot; instead of &quot;Game&quot;</li>
 </ul>
-<p><img src="editor-target-rules-definition.png" alt="Editor Target Rules Definition" /></p>
+<p><img src="./resources/editor-target-rules-definition.png" alt="Editor Target Rules Definition" /></p>
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap up</a></h2>
 <p>That's it for the creation of our project, in the <a href="./setup_unreal_project_from_scratch.html">next section</a> we will discuss how we can setup our Unreal Project properly by adding source code and Build Rule Definition files. Within this section we learned that the .uproject file tells Unreal Editor that it can open this directory as an Unreal Project using the specified version. It also specifies that when the Editor opens this project, it should find and load the DLL for the module called &quot;PatrolCore&quot;. The .Target.cs file tells the Unreal Build System that it can build all the necessary code for this project by building the &quot;PatrolCore&quot; module. </p>
 
