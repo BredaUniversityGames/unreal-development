@@ -13,8 +13,8 @@ In the [previous section](./running_a_game.md) we noticed that there are a lot o
 
 ![Unreal Generation Copied Repository Contents](./resources/unreal-generation-copied-repository-contents.png)
 
--	Run setup.py -p=${ue5_path}
-    -	py setup.py –p=“C:\Program Files\Epic Games\UE_5.3”
+-	Run `setup.py -p=${ue5_path}`
+    -	`py setup.py –p="C:\Program Files\Epic Games\UE_5.3"`
 
 ![Unreal Generation Run Python Script](./resources/unreal-generation-run-python-script.png)
 
