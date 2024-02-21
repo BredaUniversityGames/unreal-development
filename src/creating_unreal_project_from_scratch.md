@@ -8,7 +8,7 @@ Begin by carving out a cozy space for your project on your disk drive. When it c
 - Give your project a name.
     - Again, keep it simple, nothing too crazy.
 
-We're gonna start with a .uproject file to lay down the basics and we'll need a Source folder for all our C++ goodness. Inside, we'll organize our code into different modules. Let's call the main one **{projectname}{modulename}**, where we'll stash all our core gameplay code.
+We're gonna start with a .uproject file to lay down the basics and we'll need a Source folder for all our C++ goodness.
 
 - Drop a .uproject file in the main folder.
 - Make a Source folder in there too.
@@ -18,7 +18,7 @@ We're gonna start with a .uproject file to lay down the basics and we'll need a 
 
 ## The .uproject File
 
-A .uproject file, short for "Unreal Project File," serves as the entry point and configuration file for an Unreal Engine project. It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules or plugins it uses. An Unreal Project File is recognized by the UnrealVersionSelector which is stored in the your registry by Unreal when installing Unreal. The following attributes can be found within a .uproject file:
+A .uproject file, short for "Unreal Project File," serves as the entry point and configuration file for an Unreal Engine project. It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules and/or plugins it uses. An Unreal Project File is recognized by the UnrealVersionSelector, this setting is stored in the your registry by Unreal when you installed it. The following attributes can be found within a .uproject file:
 
 | Property                          | Description                                                                                                                                                   |
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------     |
@@ -70,7 +70,9 @@ The following is an example descriptor of an Unreal Project:
 }
 ```
 
-When the project file is loaded into memory it is stored within a `FProjectDescriptor` which contains all the information contained within a .uproject file. Each .uproject file when containing source files is accompanied with a list of modules and/or plugins available to the project. These modules (and plugins) have their own set of attributes as specification when and how they should be loaded by the engine, all information is stored within a structure call `FModuleDescriptor`. The following attributes can be found within a module definition:
+### Modules
+
+When the project file is loaded into memory it is stored within a `FProjectDescriptor` which contains all the information contained within a .uproject file. Each .uproject file when containing source files is accompanied with a list of modules and/or plugins available to the project. Modules have their own set of attributes as specification when and how they should be loaded by the engine, all information is stored within a structure called `FModuleDescriptor`. The following attributes can be found within a module definition:
 
 | Property                        | Description                                                                                                                                                   |
 |---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -104,7 +106,15 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 }
 ```
 
-Last architectural piece of the Unreal Engine are plugins, due to the complexity of UE plugins I will not go into full detail here rather give you a brief overview of what they are and how to use them. Plugins are collections of code and data that developers can easily enable or disable within the Editor on a per-project basis. Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins. The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak. Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. Last I'll leave you with an overview of some of the more common attributes of a Plugin that you need to be aware of, this data is stored in a structure called `FPluginDescriptor`, you'll notice that they are quite similar to the ones of an Unreal Project:
+### Plugins
+
+Last architectural piece of the Unreal Engine are plugins, due to the complexity of UE plugins I will not go into full detail here rather give you a brief overview of what they are and how to use them. 
+
+Plugins are collections of code and data that developers can easily enable or disable within the Editor on a per-project basis. Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins.
+
+The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak. Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. 
+
+Last I'll leave you with an overview of some of the more common attributes of a Plugin that you need to be aware of, this data is stored in a structure called `FPluginDescriptor`, you'll notice that they are quite similar to the ones of an Unreal Project:
 
 | Property          | Description                                                                                                                                                                 |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------        |

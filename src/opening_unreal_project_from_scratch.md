@@ -1,6 +1,6 @@
 # Open an Unreal Project from Scratch
 
-We've created our project using the .uproject file and Target Rule Definitions. We've setup our project by creating an entry point for our application using a primary module definition and specified Module Build Rules to declare the dependencies of our project. After that we build our project and created a DLL which will be linked when we start our project. Now it's time to open our project and let Designers, Artists and other Developers experiment and test our functionality. We've pieced together our project using the .uproject file and Target Rule Definitions. We've got our entry point sorted by making use of the primary module and declared the dependencies within Module Build Rules. After all that, we've asked UBT to build our project and conjured up a DLL. Now we can let the Designers, Artists, and fellow Developers loose to tinker, tweak, and test-drive our creation.
+We've pieced together our project using the .uproject file and Target Rule Definitions. We've got our entry point sorted by making use of the primary module and declared the dependencies within Module Build Rules. After all that, we've asked UBT to build our project and conjured up a DLL that the editor can load. Now we can let the Designers, Artists, and fellow Developers loose to tinker, tweak, and test-drive our creation.
 
 ## Open in Editor
 
@@ -42,17 +42,17 @@ As we get ready to showcase our project, I'm going to shake things up a bit and 
 
 ## Open in Standalone Editor
 
-Opening the Editor is cool, but as a developer we might not always need full control of the Editor this is why we can specify the `-game` flag to the previously defined command mentioned in the "Open in Editor" section. Like any program the Unreal Editor accepts different types of Command-Line Arguments. When passing it different arguments the application (in this case the Unreal Editor) will react differently. Previously we only mentioned the Command-Line Argument `-log` to display a log window while the application is running. When we specify the `-game` flag we ask the Editor to launch itself as a game client instead of the full application. 
+Opening the Editor is cool, but as a developer we might not always need full control of the Editor this is why we can specify the `-game` flag to the previously defined command mentioned in the "Open in Editor" section. Like any program the Unreal Editor accepts different types of command-line arguments. When passing it different arguments the application (in this case the Unreal Editor) will react differently. Previously we only mentioned the command-line argument `-log` to display a log window while the application is running. When we specify the `-game` flag we ask the Editor to launch itself as a game client instead of the full application. 
 
 Several useful commands to remember when running in Standalone mode are as followed:
 
 | Command           | Type           | Description                                                                                                      |
 |-------------------|----------------|------------------------------------------------------------------------------------------------------------------|
-| -log              | Flag           | Display a log window while the client or server is running.                                                     |
-| -game             | Flag           | Mode flag to launch game client.                                                                                  |
-| -windowed         | Flag           | Launch the client in windowed mode. Use in conjunction with -ResX=<HORIZONTAL_RES> -ResY=<VERTICAL_RES>.         |
-| -fullscreen       | Flag           | Launch the client in full-screen mode.                                                                           |
-| -ResX=<HORIZONTAL_RES> -ResY=<VERTICAL_RES> | Key-Value Pair | Specify the horizontal (X) and vertical (Y) resolution size for a client. Example: -ResX=1920 -ResY=1080     |
+| **-log**              | Flag           | Display a log window while the client or server is running.                                                     |
+| **-game**             | Flag           | Mode flag to launch game client.                                                                                  |
+| **-windowed**         | Flag           | Launch the client in windowed mode. Use in conjunction with -ResX=<HORIZONTAL_RES> -ResY=<VERTICAL_RES>.         |
+| **-fullscreen**       | Flag           | Launch the client in full-screen mode.                                                                           |
+| **-ResX=<HORIZONTAL_RES> -ResY=<VERTICAL_RES>** | Key-Value Pair | Specify the horizontal (X) and vertical (Y) resolution size for a client. Example: -ResX=1920 -ResY=1080     |
 
 For more information about how to create custom command line arguments, customize command line arguments or other types of command line arguments such as graphics command line arguments please visit the [Official Documentation](https://docs.unrealengine.com/5.3/en-US/command-line-arguments-in-unreal-engine/).
 
@@ -65,4 +65,4 @@ To run our the editor as a single game client we run the following command:
 
 ![Run Standalone Editor](./resources/run-standalone-editor.png)
 
-This is a fully playable instance of our game. We can fly around, we can use console commands. This results in a quick way to test out the game in a development setting running from editor binaries, but that means we need this full installation of Unreal Engine in order to run this build. If we want a standalone version of our project, that's what our non-editor target is for, in the [next section](./running_the_game.md) we will demonstrate how we can run our game without the Editor attached. 
+This is a fully playable instance of our game. We can fly around and we can use console commands as this is still a development build. This results in a quick way to test out the game in a development setting running from editor binaries. Because we are running from editor binaries we need this full installation of Unreal Engine in order to run the build. When we want to ship our game and avoid people having to install the entire Engine we need a standalone version of our project, that's what our non-editor target is for, in the [next section](./running_a_game.md) we will demonstrate how we can run our game without the Editor attached. 

@@ -8,7 +8,7 @@ Let me break it down for you. VS Code doesn't clutter your workspace, it's highl
 
 ### What about Visual Studio?
 
-Unreal Engine is designed to integrate smoothly with Visual Studio, allowing you to make code changes in your projects “quickly” and easily, and “immediately” see results upon compilation but it's essential to understand that for Unreal Engine, it serves primarily as a frontend. Unreal doesn't utilize the Visual Studio “toolset” directly for building; instead, it relies on a batch script that invokes builds for your target platform. However, the Visual Studio installation comes with certain features that are required to invoke builds ( on Windows ) so in order to use VS Code we have to go through the process of installing Visual Studio.
+Unreal Engine is designed to integrate smoothly with Visual Studio, allowing you to make code changes in your projects “quickly” and "easily", and “immediately” see results upon compilation but it's essential to understand that for Unreal, it serves primarily as a frontend. Unreal doesn't utilize the Visual Studio “toolset” directly for building; instead, it relies on a batch script that invokes builds for your target platform. However, the Visual Studio installation comes with certain features that are required to invoke builds (on Windows) so in order to use VS Code we have to go through the process of installing Visual Studio.
 
 ## Installing VS Code
 
@@ -33,7 +33,7 @@ Here's how to get started:
 
 Make your life easier by setting up Unreal snippets in VS Code:
 
-- Grab or clone the Unreal Snippets [repository](https://github.com/Dyronix/unreal-snippets-vscode) onto your machine.
+- Grab or clone the [Unreal Snippets repository](https://github.com/Dyronix/unreal-snippets-vscode) onto your machine.
 - Navigate to `%APPDATA%/Code/User/snippets`.
 - Paste the repository contents (excluding the .git folder) into this directory.
 - Restart VS Code (if it's open) to apply the changes. 
@@ -42,7 +42,7 @@ Make your life easier by setting up Unreal snippets in VS Code:
 
 ### [Optional] VS Code - Theme
 
-Add a touch of personality to your coding environment:
+Add a touch of personality to your coding environment for extra cuteness:
 
 - Customize your VS Code with a sleek theme like Dracula.
 - Enhance it further with vscode-icons for some visual flair.
