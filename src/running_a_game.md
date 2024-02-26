@@ -28,26 +28,26 @@ All we must do to run a standalone game is invoke the same build process, passin
 
 ## Cooking Content
 
-Before running our executable, we must first take the essential step of preparing our content also known as "cooking". In the realm of Unreal, content assets are stored in specific internal formats, such as PNG for textures and WAV for audio. However, this content needs to be converted to different formats for the various platforms, either because the platform uses a proprietary format, does not support the format Unreal uses to store the asset, or a more memory- or performance-effective format exists.
+Before running our executable, we must first take the essential step of preparing our content also known as "cooking". **In the realm of Unreal, content assets are stored in specific internal formats,** such as PNG for textures and WAV for audio. However, this content needs to be converted to different formats for the various platforms, either because the platform uses a proprietary format, does not support the format Unreal uses to store the asset, or a more memory- or performance-effective format exists.
 
-This conversion process, known as "cooking," is crucial for the seamless integration of content into the final game. We can start this process either through command-line operations or by utilizing in-editor tools. It's important to note that, for some platforms, all content must undergo the cooking process before it can be used on the device to ensure proper functionality. You should verify with the specifications of the platform they are targeting to ensure compliance with these requirements.
+This conversion process, **known as "cooking,"** is crucial for the seamless integration of content into the final game. We can start this process either through command-line operations or by utilizing in-editor tools. It's important to note that, for some platforms, all content must undergo the cooking process before it can be used on the device to ensure proper functionality. You should verify with the specifications of the platform they are targeting to ensure compliance with these requirements.
 
-There are two ways to cook content for your projects
+There are **two ways to cook content** for your projects
 
-- by the book 
-- on the fly
+- **by the book**
+- **on the fly**
 
 ![How would you like to cook](./resources/unreal-cooking-manner.png)
 
 ### By the Book
 
-Cook by the book performs the entirety of the cook process ahead of time allowing for the build to deploy the cooked assets all at once rather than as needed while playing the level (if you were using a cook server). This option is useful for developers who are not iterating on individual assets or for those who want the game to perform at full-speed without waiting for a server to deliver the necessary cooked content. Typically, performance testing and playtests will want to use this method.
+Cook by the book **performs the entirety of the cook process ahead of time** allowing for the build to deploy the cooked assets all at once rather than as needed while playing the level (if you were using a cook server). This option is useful for developers who are not iterating on individual assets or for those who want the game to perform at full-speed without waiting for a server to deliver the necessary cooked content. Typically, performance testing and playtests will want to use this method.
 
 When performing a cook by the book, there is no extra setup required for the build.
 
 ### On the Fly
 
-When you choose to cook content on the fly (COTF), it will delay cooking it until after the game has been deployed to the platform. Only the executable and some other basic files are installed, which use network communication with a Cook Server to make requests on-demand as the content is needed. COTF allows for faster iteration for developers who will be making changes to content regularly or those who will only be exploring sections of the game.
+When you choose to cook content on the fly (COTF), it will **delay cooking it until after the game has been deployed to the platform**. Only the executable and some other basic files are installed, which use network communication with a Cook Server to make requests on-demand as the content is needed. COTF allows for faster iteration for developers who will be making changes to content regularly or those who will only be exploring sections of the game.
 
 To cook on the fly, you will first need to start a Cook Server on a machine which has the full project available to it. This can be either your local machine or a remote server which performs the cook.
 

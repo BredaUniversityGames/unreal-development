@@ -2,7 +2,7 @@
 
 Let's peek behind the scenes to understand how project files and build processes interconnect. Instead of diving straight into the complexities, let me guide you through setting up a new project in Unreal Engine from scratch.
 
-Begin by carving out a cozy space for your project on your disk drive. When it comes to naming your project, simplicity reigns supreme. This name isn't etched in stone as part of your public-facing brand—it merely serves as a convenient identifier. A short codename suffices.
+Begin by carving out a cozy space for your project on your disk drive. When it comes to naming your project, don't overthink it. This name isn't etched in stone as part of your public-facing brand—it merely serves as a convenient identifier. A short codename suffices.
 
 - Set up a folder where we'll work our magic.
 - Give your project a name.
@@ -18,7 +18,7 @@ We're gonna start with a .uproject file to lay down the basics and we'll need a 
 
 ## The .uproject File
 
-A .uproject file, short for "Unreal Project File," serves as the entry point and configuration file for an Unreal Engine project. It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules and/or plugins it uses. An Unreal Project File is recognized by the UnrealVersionSelector, this setting is stored in the your registry by Unreal when you installed it. The following attributes can be found within a .uproject file:
+A .uproject file, short for **"Unreal Project File," serves as the entry point and configuration file for an Unreal Engine project.** It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules and/or plugins it uses. An Unreal Project File is **recognized by the UnrealVersionSelector**, this setting is stored in the your registry by Unreal when you installed it. The following attributes can be found within a .uproject file:
 
 | Property                          | Description                                                                                                                                                   |
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------     |
@@ -72,7 +72,9 @@ The following is an example descriptor of an Unreal Project:
 
 ### Modules
 
-When the project file is loaded into memory it is stored within a `FProjectDescriptor` which contains all the information contained within a .uproject file. Each .uproject file when containing source files is accompanied with a list of modules and/or plugins available to the project. Modules have their own set of attributes as specification when and how they should be loaded by the engine, all information is stored within a structure called `FModuleDescriptor`. The following attributes can be found within a module definition:
+Modules are **the basic building block of Unreal Engine's software architecture.** These encapsulate specific editor tools, runtime features, libraries, or other functionality in standalone units of code.
+
+When the project file is loaded into memory it is stored within a `FProjectDescriptor` which contains all the information contained within a .uproject file. Each .uproject file **when containing source files** is accompanied with a **list of modules and/or plugins** available to the project. Modules have their own set of attributes as specification when and how they should be loaded by the engine, all information is stored within a structure called `FModuleDescriptor`. The following attributes can be found within a module definition:
 
 | Property                        | Description                                                                                                                                                   |
 |---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -110,9 +112,9 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 
 Last architectural piece of the Unreal Engine are plugins, due to the complexity of UE plugins I will not go into full detail here rather give you a brief overview of what they are and how to use them. 
 
-Plugins are collections of code and data that developers can easily enable or disable within the Editor on a per-project basis. Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins.
+Plugins are **collections of code and data that developers can easily enable or disable within the Editor on a per-project basis.** Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins.
 
-The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak. Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. 
+The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense **they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak.** Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. 
 
 Last I'll leave you with an overview of some of the more common attributes of a Plugin that you need to be aware of, this data is stored in a structure called `FPluginDescriptor`, you'll notice that they are quite similar to the ones of an Unreal Project:
 
@@ -247,7 +249,7 @@ For those who have **not setup the environment variables**, this should open up 
 
 ## Build Targets
 
-Now that the initial setup for our project is setup we have to move on to Build Targets. We first require a Target Rules Definition file. It will tell the Unreal build system how to build our project. Supported target types are as followed:
+Now that the initial setup for our project is setup we have can move on to setting up a build target. We will require a Target Rules Definition file for this. It will tell the Unreal build system how to build our project. Supported target types are as followed:
 
 | Type    | Description                                                                                          |
 |---------|------------------------------------------------------------------------------------------------------|
@@ -257,7 +259,7 @@ Now that the initial setup for our project is setup we have to move on to Build 
 | **Editor** | A target which extends the Unreal Editor.                                                           |
 | **Program** | A standalone utility program built on top of the Unreal Engine.                                      |
 
-Targets are declared through C# source files with a .target.cs extension, and are stored under your project's Source directory. Each .target.cs file declares a class deriving from the [TargetRules](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs) base class, and sets properties controlling how it should be built from its constructor. When asked to build a target, UnrealBuildTool will compile your target.cs file and construct the class inside it to determine its settings.
+Targets are declared through C# source files with a .target.cs extension, and are stored under your project's Source directory. **Each .target.cs** file declares a class deriving from the [TargetRules](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs) base class, and sets **properties controlling how it should be built** from its constructor. When asked to build a target, UnrealBuildTool will compile your target.cs file and construct the class inside it to determine its settings.
 
 The **name of the class must match the name of the file** it's declared in **followed by 'Target'** (so for example, Patrol.target.cs defines the class 'PatrolTarget'). They typical structure of a target file is as followed:
 

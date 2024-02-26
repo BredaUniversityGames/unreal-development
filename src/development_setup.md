@@ -1,6 +1,6 @@
 # Development Tools
 
-Before we dive into the exciting world of game engines and compilers, let's talk about two essential tools every developer needs: a trusty text editor and a reliable terminal. And guess what? With VS Code, you get both bundled in one neat package! Now, I know there are alternatives out there like Sublime Text and Cmder, but for this walkthrough, I'll be sticking with VS Code—it's my go-to choice when working with Unreal Engine.
+Before we dive into the exciting world of game engines and compilers, let's talk about two essential **tools every developer needs: a trusty text editor and a reliable terminal.** And guess what? With VS Code, you get both bundled in one neat package! Now, I know there are alternatives out there like Sublime Text and Cmder, but for this walkthrough, I'll be sticking with VS Code—it's my go-to choice when working with Unreal Engine.
 
 ### Why VS Code, you ask?
 
@@ -8,7 +8,7 @@ Let me break it down for you. VS Code doesn't clutter your workspace, it's highl
 
 ### What about Visual Studio?
 
-Unreal Engine is designed to integrate smoothly with Visual Studio, allowing you to make code changes in your projects “quickly” and "easily", and “immediately” see results upon compilation but it's essential to understand that for Unreal, it serves primarily as a frontend. Unreal doesn't utilize the Visual Studio “toolset” directly for building; instead, it relies on a batch script that invokes builds for your target platform. However, the Visual Studio installation comes with certain features that are required to invoke builds (on Windows) so in order to use VS Code we have to go through the process of installing Visual Studio.
+Unreal Engine is designed to integrate smoothly with Visual Studio, allowing you to make code changes in your projects “quickly” and "easily", and “immediately” see results upon compilation but it's essential to understand that for Unreal, **the Visual Studio IDE serves primarily as a frontend.** Unreal doesn't utilize the Visual Studio “toolset” directly for building; instead, it relies on a batch script that invokes builds for your target platform. However, the Visual Studio installation comes with certain features that are required to invoke builds (on Windows) so in order to use VS Code we have to go through the process of installing Visual Studio.
 
 ## Installing VS Code
 
@@ -80,5 +80,6 @@ To install Visual Studio, download the installer from the [official website](htt
 ![Desktop Development With C++](./resources/desktop-development-with-cpp.png)
 ![.NET Desktop Development](./resources/net-desktop-development.png)
 
-Before proceeding to the [next section](./creating_unreal_project_from_scratch.md), verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This meticulous approach ensures a smooth development experience and minimizes compatibility hurdles down the line.
+Before proceeding to the [next section](./creating_unreal_project_from_scratch.md), verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This approach ensures a smooth development experience and minimizes compatibility hurdles down the line.
+
 For more information about setting up Visual Studio and some additional tips and tricks on how to modify Visual Studio as an IDE, you can visit the official documentation of Unreal: [Unreal Engine: Visual Studio Setup](https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/)
