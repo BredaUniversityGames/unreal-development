@@ -1,5 +1,17 @@
 # Additional Workflow Items
 
+## Console Commands
+
+As a developer most of the time you will not require the use of the full editor. The standalone game is sufficient most of the time. This will make the iterations speed of developing a certain feature a lot faster as you don't have to boot up the entire editor every time while you are testing if the adjustment you made actually works. If you do need to be able to make changes while testing alternatives are available to make this happen. These alternatives come in the form of **console commands**. Unreal allows you to write custom console commands which can execute certain functionality that adjust the flow or state of your game. You need to be aware that console commands can only be created within certain class and will not function in any other class. Most of the time you will create a new instance of the a CheatManager class and assign this one to the PlayerController
+
+![Assign CheatManager](./resources/assign-cheat-manager.png)
+
+To create an actual console command functions have to be tagged with the **Exec** category in a UFUNCTION macro ```UFUNCTION(Exec, Category="Console Commands")```. This will make sure Unreal recognized the function and you are able to call it from the standalone binaries. 
+
+*Note: It might be that the default key to open up the console window within Unreal does not work properly, the reason for this is that different keyboards have different layouts attached to them and the default key " ` " does not function properly on all keyboards. Therefore I recommend to change this key to something a bit more userfriendly such as F1 for instance. You can adjust this button in the Editor.*
+
+![Adjust Console Command Key](./resources/adjust-console-command-key.png)
+
 ## Looking for files
 
 - If you hit Ctrl+P, you can quickly browse to any file that's been included in the project.
