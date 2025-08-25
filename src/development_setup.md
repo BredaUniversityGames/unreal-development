@@ -21,7 +21,7 @@ Here's how to get started:
 - Once installed, let's beef up the IDE with some essential extensions:
     - C++ IntelliSense: Your coding buddy that provides smart suggestions and auto-completions.
     - Visual Studio Keymaps: For those familiar shortcuts to keep your workflow smooth.
-    - Tasks: We'll get into this later.
+    - Tasks: see [quality of life improvements](./quality_of_life_improvements.md).
 
 ![C/C++ - VS Code Extension](./resources/c-cpp-code-extension.png)
 ![Visual Studio Keymap - VS Code Extension](./resources/visual-studio-keymap-code-extension.png)

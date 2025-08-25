@@ -135,6 +135,12 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="additional-workflow-items"><a class="header" href="#additional-workflow-items">Additional Workflow Items</a></h1>
+<h2 id="console-commands"><a class="header" href="#console-commands">Console Commands</a></h2>
+<p>As a developer most of the time you will not require the use of the full editor. The standalone game is sufficient most of the time. This will make the iterations speed of developing a certain feature a lot faster as you don't have to boot up the entire editor every time while you are testing if the adjustment you made actually works. If you do need to be able to make changes while testing alternatives are available to make this happen. These alternatives come in the form of <strong>console commands</strong>. Unreal allows you to write custom console commands which can execute certain functionality that adjust the flow or state of your game. You need to be aware that console commands can only be created within certain class and will not function in any other class. Most of the time you will create a new instance of the a CheatManager class and assign this one to the PlayerController</p>
+<p><img src="./resources/assign-cheat-manager.png" alt="Assign CheatManager" /></p>
+<p>To create an actual console command functions have to be tagged with the <strong>Exec</strong> category in a UFUNCTION macro <code>UFUNCTION(Exec, Category=&quot;Console Commands&quot;)</code>. This will make sure Unreal recognized the function and you are able to call it from the standalone binaries. </p>
+<p><em>Note: It might be that the default key to open up the console window within Unreal does not work properly, the reason for this is that different keyboards have different layouts attached to them and the default key &quot; ` &quot; does not function properly on all keyboards. Therefore I recommend to change this key to something a bit more userfriendly such as F1 for instance. You can adjust this button in the Editor.</em></p>
+<p><img src="./resources/adjust-console-command-key.png" alt="Adjust Console Command Key" /></p>
 <h2 id="looking-for-files"><a class="header" href="#looking-for-files">Looking for files</a></h2>
 <ul>
 <li>If you hit Ctrl+P, you can quickly browse to any file that's been included in the project.</li>
