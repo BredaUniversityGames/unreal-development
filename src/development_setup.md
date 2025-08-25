@@ -80,6 +80,6 @@ To install Visual Studio, download the installer from the [official website](htt
 ![Desktop Development With C++](./resources/desktop-development-with-cpp.png)
 ![.NET Desktop Development](./resources/net-desktop-development.png)
 
-Before proceeding to the [next section](./creating_unreal_project_from_scratch.md), verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This approach ensures a smooth development experience and minimizes compatibility hurdles down the line.
+Before proceeding to the [next section](./creating_unreal_project_from_scratch.md), verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This approach ensures a smooth development experience and minimizes compatibility hurdles down the line. You are also able to take a look at the [recommended workflow](./official_development_setup.md) by Epic on how to setup a project for beginners.
 
 For more information about setting up Visual Studio and some additional tips and tricks on how to modify Visual Studio as an IDE, you can visit the official documentation of Unreal: [Unreal Engine: Visual Studio Setup](https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/)

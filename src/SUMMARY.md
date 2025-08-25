@@ -5,6 +5,7 @@
 # User Guide
 
 - [Development Setup](./development_setup.md)
+- [Official Workflow](./official_development_setup.md)
 - [Creating an Unreal Project](./creating_unreal_project_from_scratch.md)
 - [Setup an Unreal Project](./setup_unreal_project_from_scratch.md)
 - [Build an Unreal Project](./building_unreal_project_from_scratch.md)
