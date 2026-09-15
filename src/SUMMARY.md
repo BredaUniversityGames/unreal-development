@@ -23,6 +23,7 @@
     - [UObjects and Garbage Collection](./profiling_uobjects.md)
     - [Physics](./profiling_physics.md)
     - [GPU](./profiling_gpu.md)
+- [For Designers and Artists](./for_designers_and_artists.md)
 
 -----------
 
