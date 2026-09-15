@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>For Designers and Artists - Unreal Development</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="profiling.html"><strong aria-hidden="true">12.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html"><strong aria-hidden="true">12.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">12.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">12.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">12.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html" class="active"><strong aria-hidden="true">13.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Unreal Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="for-designers-and-artists"><a class="header" href="#for-designers-and-artists">For Designers and Artists</a></h1>
+<p>Every other chapter in this book is written for the person <em>building</em> the structure: the modules,
+the dependencies, the build rules. This one is for everybody who then has to work inside it.</p>
+<p>You will probably never open a <code>.Build.cs</code> file. But you cross the boundaries those files define
+several times a day, usually by doing something entirely reasonable: dragging one asset into another,
+picking a mesh from a dropdown, referencing a material from a Blueprint. Each of those creates a
+dependency, and dependencies have costs that are invisible at the moment you create them and very
+visible three months later when the main menu takes twelve seconds to open.</p>
+<p>The good news is that Unreal ships excellent tools for <em>seeing</em> this, and almost nobody opens them.
+So we will start with the tools, because those are what you can use on Monday, and get to the
+concepts afterwards, each one attached to the tool that makes it visible.</p>
+<h2 id="reference-viewer"><a class="header" href="#reference-viewer">Reference Viewer</a></h2>
+<p><strong>Right-click any asset in the Content Browser &gt; Reference Viewer.</strong></p>
+<p>You get a graph. Your asset sits in the middle; everything that <em>references it</em> is on one side,
+everything <em>it depends on</em> is on the other. Between them those two sides answer the questions that
+come up most often: &quot;is anything still using this?&quot; and &quot;what am I dragging along when I use
+this?&quot;</p>
+<p>The controls that make it actually usable live in the search panel in the upper left:</p>
+<ul>
+<li><strong>Search References Depth</strong> and <strong>Search Dependencies Depth</strong> control how many hops out to follow
+in each direction. Start shallow. A depth of 1 tells you the immediate story; going deep on a busy
+asset produces a hairball nobody can read.</li>
+<li><strong>Search Breadth Limit</strong> is the maximum number of references shown per column. When it kicks in
+you get an <strong>overflow node</strong>; double-click it to expand.</li>
+<li><strong>Collection Filter</strong> restricts the graph to a single Collection. This is the main reason to keep
+Collections around: scope a reference graph to &quot;the assets in this level&quot; and it becomes legible.</li>
+<li><strong>Filters</strong> work by asset type, the same way the Content Browser filters do.</li>
+</ul>
+<p>Nodes are colour-coded by asset type and carry a name, type and thumbnail. Assets filtered out go
+semi-transparent rather than disappearing, so the chain stays readable.</p>
+<p>Keyboard shortcuts toggle which <em>kinds</em> of reference are drawn. Learn these, because the difference
+between a hard and a soft reference is the difference between an asset loading and not loading:</p>
+<table><thead><tr><th>Key</th><th>Reference type</th></tr></thead><tbody>
+<tr><td><strong>S</strong></td><td>Soft references</td></tr>
+<tr><td><strong>H</strong></td><td>Hard references</td></tr>
+<tr><td><strong>E</strong></td><td>Editor-only references</td></tr>
+<tr><td><strong>M</strong></td><td>Management references (Primary Asset IDs)</td></tr>
+<tr><td><strong>N</strong></td><td>Name references (searchable names)</td></tr>
+<tr><td><strong>C</strong></td><td>C++ package references</td></tr>
+<tr><td><strong>V</strong></td><td>Toggle compact / full node view</td></tr>
+</tbody></table>
+<h2 id="size-map"><a class="header" href="#size-map">Size Map</a></h2>
+<p><strong>Right-click an asset &gt; Size Map.</strong></p>
+<p>A treemap of that asset <em>and everything it drags in with it</em>, sized by how much space each thing
+takes. The Reference Viewer tells you the shape of the problem; the Size Map tells you how much it
+costs, and it does it in a single glance that you do not need any training to interpret. If a widget
+you thought was small opens a Size Map showing half your character art, you have found something.</p>
+<p><code>Ctrl+E</code> opens whatever you are hovering over.</p>
+<p>One honest caveat: in the editor, things are loaded that a packaged game would not load, so the
+editor's Size Map can paint a gloomier picture than shipping reality. Use it to compare assets and to
+spot the outrageous cases, which is what it is good at, rather than as an exact memory figure.</p>
+<h2 id="asset-audit"><a class="header" href="#asset-audit">Asset Audit</a></h2>
+<p><strong>Tools &gt; Audit &gt; Asset Disk Size.</strong></p>
+<p>Where the previous two tools look at one asset, this one looks at many, in a sortable table. Two
+columns carry the entire lesson of this chapter:</p>
+<ul>
+<li><strong>Exclusive Disk Kb</strong> is what this asset costs by itself.</li>
+<li><strong>Disk Kb</strong> is what this asset costs <em>including everything it manages</em>.</li>
+</ul>
+<p>When those two numbers are close, the asset is self-contained. When Disk Kb is enormously larger than
+Exclusive Disk Kb, that asset is a doorway into the rest of the project. Sort by the gap between them
+and you have a prioritised list of what to look at, produced in about four seconds.</p>
+<p>The <strong>Chunk</strong> column shows where each asset will land when the project is cooked, which is how you
+check that your packaging split is doing what you intended. There is more on what sits behind this in
+Epic's <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/asset-management-in-unreal-engine">Asset Management documentation</a>.</p>
+<h2 id="plugin-reference-viewer"><a class="header" href="#plugin-reference-viewer">Plugin Reference Viewer</a></h2>
+<p>The same idea, one level up: which plugins depend on which. It needs enabling in <strong>Edit &gt; Plugins</strong>
+first.</p>
+<p>This stops being academic the moment a project uses Game Feature plugins, where content is <em>supposed</em>
+to stay inside its own plugin boundary and the whole design falls apart quietly if it does not. On a
+large project the dependency web is too big to keep track of from memory, and seeing it drawn is
+usually the point at which someone says &quot;wait, why does that depend on that?&quot;</p>
+<p>Worth knowing alongside it: Unreal's asset validation tooling can <strong>refuse</strong> a drag-and-drop that
+would create a reference across a plugin boundary the target does not depend on, and tell you what to
+do instead. That turns the rule below from advice into a guardrail, which is the only form of this
+rule that survives contact with a deadline.</p>
+<h2 id="now-the-concepts"><a class="header" href="#now-the-concepts">Now the concepts</a></h2>
+<h3 id="content-modules-plugins"><a class="header" href="#content-modules-plugins">Content, modules, plugins</a></h3>
+<p>The chapters before this one built a structure. In terms you can see from the Content Browser:</p>
+<ul>
+<li>A <strong>module</strong> is a unit of <em>code</em>. It compiles to one DLL. Your project has at least one.</li>
+<li>A <strong>plugin</strong> is a self-contained bundle that can hold its own modules <em>and its own content</em>. Think
+of it as a sub-project: its own <code>Source</code> folder, its own <code>Content</code> folder, its own boundary.</li>
+<li><strong>Content</strong> is everything in the Content Browser: assets, not code.</li>
+</ul>
+<p>The boundaries between these are real. Code in one module can only use another module if the
+programmer declared that dependency in a <code>.Build.cs</code> file. Content, by contrast, will happily
+reference across boundaries the moment you drag something, with nothing asking whether that
+dependency was intended. That asymmetry is the whole reason this chapter exists: the code side has an
+enforcement mechanism and the content side mostly does not.</p>
+<h3 id="hard-and-soft-references"><a class="header" href="#hard-and-soft-references">Hard and soft references</a></h3>
+<p>This is the concept to take away if you take away one.</p>
+<p>A <strong>hard reference</strong> is resolved at load time. When Unreal loads an asset, it follows every hard
+reference it holds and loads those too, and then follows <em>their</em> hard references, recursively,
+before anything runs.</p>
+<p>Follow that through. Your main menu widget hard-references the player character, so it can show a
+preview. The player character hard-references its weapon. The weapon hard-references its impact
+effect. The impact effect hard-references a set of destruction meshes. Nobody did anything
+unreasonable at any single step. But opening the main menu now loads the destruction meshes.</p>
+<p>This pattern has a name in profiling circles, <em>reference hell</em>, and it is routinely the largest
+single cause of slow startup in real projects. In one of the games profiled in the
+<a href="./profiling_uobjects.html">Profiling</a> chapter, showing the main menu pulled in 8,300 packages and
+around 2.5 GB, because a globals data asset sat in the chain.</p>
+<p>A <strong>soft reference</strong> stores the <em>path</em> to an asset instead of the asset. Nothing loads until
+something asks for it. In C++ these are <code>TSoftObjectPtr</code> and <code>TSoftClassPtr</code>; in Blueprint you hold a
+Soft Object Reference and use <strong>Async Load Asset</strong> when you need the thing.</p>
+<p>The trade is real and worth stating plainly: soft references mean the asset is not there the instant
+you ask for it, so you need to handle the loading: a frame of delay, a placeholder, a loading state.
+That is why the answer is not &quot;make everything soft&quot;. The answer is that things which are <em>always</em>
+needed can be hard, and things which are <em>sometimes</em> needed should be soft.</p>
+<p>Size Map is how you see which one you have. That is the pairing to remember: the concept is
+invisible, and the tool makes it visible.</p>
+<h3 id="which-way-dependencies-should-point"><a class="header" href="#which-way-dependencies-should-point">Which way dependencies should point</a></h3>
+<p>The rule programmers apply to modules applies just as well to content:</p>
+<blockquote>
+<p>The general thing must not reference the specific thing.</p>
+</blockquote>
+<p>Your generic &quot;door&quot; Blueprint should not reference the boss room's special door. Your shared UI
+widget should not reference a particular level's HUD. A shared material should not reference one
+character's texture.</p>
+<p>The reason is not tidiness. It is that a reference is a loading instruction. When the general thing
+references the specific thing, everyone who uses the general thing pays for the specific thing, and
+because the general thing is <em>general</em>, that means everyone.</p>
+<h2 id="when-you-find-one"><a class="header" href="#when-you-find-one">When you find one</a></h2>
+<p>You opened a Size Map, found something enormous behind something small. Now what?</p>
+<ol>
+<li><strong>Make the reference soft</strong>, if the thing is only sometimes needed. Cheapest fix, and usually the
+right one for optional or situational content.</li>
+<li><strong>Move the asset</strong>, if it is on the wrong side of a boundary, such as a shared folder holding
+something that only one feature uses.</li>
+<li><strong>Split the asset</strong>, if a Blueprint or data asset has become a junction box that everything routes
+through. The globals-data-asset pattern above is exactly this: it is convenient, and it welds
+everything to everything.</li>
+<li><strong>Hand it to a programmer</strong>, if the reference is created in C++ or if breaking it means changing
+how something is loaded. Bring the Size Map screenshot; &quot;this widget loads 800 MB and here is the
+chain&quot; is a bug report someone can act on immediately.</li>
+</ol>
+<h2 id="where-to-go-next"><a class="header" href="#where-to-go-next">Where to go next</a></h2>
+<ul>
+<li><a href="./profiling_gpu.html">Profiling: GPU</a> covers what the things you make cost at render time: Nanite
+shading bins and material instance reuse, overlapping shadow-casting lights, translucency settings,
+Nanite foliage. Written with the same &quot;here is the mechanism&quot; approach as this chapter.</li>
+<li><a href="./profiling_physics.html">Profiling: Physics</a> matters because collision defaults are an
+art-pipeline decision more than a programming one, and the default is expensive. This is probably
+the highest-value twenty minutes in the book for an environment artist.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="profiling_gpu.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="altering_the_project.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="profiling_gpu.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="altering_the_project.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
