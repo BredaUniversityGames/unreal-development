@@ -1,8 +1,8 @@
 # Creating an Unreal Project from Scratch
 
-Let's peek behind the scenes to understand how project files and build processes interconnect. Instead of diving straight into the complexities, let me guide you through setting up a new project in Unreal Engine from scratch.
+Let's peek behind the scenes to see how project files and build processes connect. Rather than start with theory, I'll walk you through setting up a new project in Unreal Engine from scratch.
 
-Begin by carving out a cozy space for your project on your disk drive. When it comes to naming your project, don't overthink it. This name isn't etched in stone as part of your public-facing brand—it merely serves as a convenient identifier. A short codename suffices.
+Begin by carving out a cozy space for your project on your disk drive. Don't overthink the name. This name isn't etched in stone as part of your public-facing brand; it is just a convenient identifier. A short codename suffices.
 
 - Set up a folder where we'll work our magic.
 - Give your project a name.
@@ -18,12 +18,12 @@ We're gonna start with a .uproject file to lay down the basics and we'll need a 
 
 ## The .uproject File
 
-A .uproject file, short for **"Unreal Project File," serves as the entry point and configuration file for an Unreal Engine project.** It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules and/or plugins it uses. An Unreal Project File is **recognized by the UnrealVersionSelector**, this setting is stored in the your registry by Unreal when you installed it. The following attributes can be found within a .uproject file:
+A .uproject file, short for **"Unreal Project File," is the entry point and configuration file for an Unreal Engine project.** It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules and/or plugins it uses. An Unreal Project File is **recognized by the UnrealVersionSelector**, this setting is stored in the your registry by Unreal when you installed it. The following attributes can be found within a .uproject file:
 
 | Property                          | Description                                                                                                                                                   |
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------     |
 | **FileVersion**                      | Descriptor version number.                                                                                                                                 |
-| **EngineAssociation**                | Specifies the engine to open the project with. <br> Allows for opening the correct engine version when double-clicking on a project file. <br> Differentiates between editor versions for upgrade/downgrade UI flow. <br> For Launcher users, it indicates a stable version like "5.0" or "5.1". <br> For Perforce or Git users, it's left blank, allowing determination of the engine based on the directory hierarchy. <br> For source build users with a foreign project, uses a random identifier for engine mapping. <br> For users with the engine mounted through a Git submodule, can be manually edited as a relative path.                                                                                        |
+| **EngineAssociation**                | Specifies the engine to open the project with. <br> Allows for opening the correct engine version when double-clicking on a project file. <br> Differentiates between editor versions for upgrade/downgrade UI flow. <br> For Launcher users, it holds a stable version string such as "5.8". <br> For Perforce or Git users, it's left blank, allowing determination of the engine based on the directory hierarchy. <br> For source build users with a foreign project, uses a random identifier for engine mapping. <br> For users with the engine mounted through a Git submodule, can be manually edited as a relative path.                                                                                        |
 | **Category**                         | Category to show under the project browser.                                                                                                                |
 | **Description**                      | Description to show in the project browser.                                                                                                                |
 | **Modules**                          | List of all modules associated with this project.                                                                                                          |
@@ -41,7 +41,7 @@ A .uproject file, short for **"Unreal Project File," serves as the entry point a
 *When project file association is not working properly one can simply run **UnrealVersionSelector.exe -fileassociations** from the Unreal Engine Binaries.*
 *You could refer to the following files for proper debugging capabilities.*
 - *[UnrealVersionSelector.cpp](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealVersionSelector/Private/UnrealVersionSelector.cpp#L40)*
-- *[DesktopPlatformWindows.cpp](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Developer/DesktopPlatform/Private/Windows/DesktopPlatformWindows.cpp#L491https://)*
+- *[DesktopPlatformWindows.cpp](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Developer/DesktopPlatform/Private/Windows/DesktopPlatformWindows.cpp#L491)*
 
 *For more information about the Project Descriptor please visit the following files:*
 - *[ProjectDescriptor.h](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Public/ProjectDescriptor.h)*
@@ -52,7 +52,7 @@ The following is an example descriptor of an Unreal Project:
 ```json
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.3",
+	"EngineAssociation": "5.8",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -98,7 +98,7 @@ When the project file is loaded into memory it is stored within a `FProjectDescr
 - *[ModuleDescriptor.cpp](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Private/ModuleDescriptor.cpp)*
 
 The following is an example descriptor of a single module:
-This does not funciton on it's own, it needs to be encapsulated by either an Unreal Project or an Unreal Plugin
+This does not function on it's own, it needs to be encapsulated by either an Unreal Project or an Unreal Plugin
 
 ```json
 {
@@ -112,7 +112,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 
 Last architectural piece of the Unreal Engine are plugins, due to the complexity of UE plugins I will not go into full detail here rather give you a brief overview of what they are and how to use them. 
 
-Plugins are **collections of code and data that developers can easily enable or disable within the Editor on a per-project basis.** Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins.
+Plugins are **collections of code and data that developers can easily enable or disable within the Editor on a per-project basis.** Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many of the engine's own subsystems are designed to be extended through plugins.
 
 The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense **they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak.** Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. 
 
@@ -127,7 +127,7 @@ Last I'll leave you with an overview of some of the more common attributes of a 
 | **Description**       | Description of the plugin.                                                                                                                                                  |
 | **Category**          | The name of the category this plugin.                                                                                                                                       |
 | **DocsURL**           | Documentation URL string.                                                                                                                                                   |
-| **MarketplaceURL**   | Marketplace URL for this plugin. This URL will be embedded into projects that enable this plugin, so we can redirect to the marketplace if a user doesn't have it installed. |
+| **MarketplaceURL**   | Store URL for this plugin. Embedded into projects that enable the plugin so a user who does not have it installed can be sent somewhere to get it. The field name still says "Marketplace"; the storefront it points at was rebranded to **Fab** in late 2024. A good reminder that descriptor field names are frozen by backwards compatibility and do not always describe the world as it is now. |
 | **SupportURL**        | Support URL/email for this plugin.                                                                                                                                          |
 | **EngineVersion**     | Version of the engine that this plugin is compatible with.                                                                                                                  |
 | **EnabledByDefault** | Whether this plugin should be enabled by default for all projects.                                                                                                           |
@@ -137,7 +137,7 @@ Last I'll leave you with an overview of some of the more common attributes of a 
 | **Modules**           | List of all modules associated with this plugin.                                                                                                                            |
 
 
-For more information about Plugins I will refer you to the [Official Unreal Documentation](https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/) about Plugins.
+For more information about Plugins I will refer you to the [Official Unreal Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/plugins-in-unreal-engine) about Plugins.
 
 *Note:* 
 *For more information about the Plugin Descriptor please visit the following files:*
@@ -150,7 +150,7 @@ The following is an example descriptor of an Unreal Plugin
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "4.25.0",
+	"VersionName": "5.8.0",
 	"FriendlyName": "Advanced Locomotion System Community",
 	"Description": "Performance optimized community version of LongmireLocomotion's Advanced Locomotion System V4",
 	"Category": "Animation",
@@ -158,7 +158,7 @@ The following is an example descriptor of an Unreal Plugin
 	"CreatedByURL": "https://github.com/dyanikoglu",
 	"DocsURL": "https://github.com/dyanikoglu/ALS-Community",
 	"SupportURL": "https://github.com/dyanikoglu/ALS-Community/issues",
-	"EngineVersion": "5.3.0",
+	"EngineVersion": "5.8.0",
 	"EnabledByDefault": true,
 	"CanContainContent": true,
 	"IsBetaVersion": false, 
@@ -229,7 +229,7 @@ For those who have **not setup the environment variables**, this should open up 
 ```json
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.3",
+	"EngineAssociation": "5.8",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -259,9 +259,9 @@ Now that the initial setup for our project is setup we have can move on to setti
 | **Editor** | A target which extends the Unreal Editor.                                                           |
 | **Program** | A standalone utility program built on top of the Unreal Engine.                                      |
 
-Targets are declared through C# source files with a .target.cs extension, and are stored under your project's Source directory. **Each .target.cs** file declares a class deriving from the [TargetRules](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs) base class, and sets **properties controlling how it should be built** from its constructor. When asked to build a target, UnrealBuildTool will compile your target.cs file and construct the class inside it to determine its settings.
+Targets are declared through C# source files with a `.Target.cs` extension, and are stored under your project's Source directory. **Each `.Target.cs`** file declares a class deriving from the [TargetRules](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs) base class, and sets **properties controlling how it should be built** from its constructor. When asked to build a target, UnrealBuildTool will compile your `.Target.cs` file and construct the class inside it to determine its settings.
 
-The **name of the class must match the name of the file** it's declared in **followed by 'Target'** (so for example, Patrol.target.cs defines the class 'PatrolTarget'). They typical structure of a target file is as followed:
+The **name of the class must match the name of the file** it's declared in **followed by 'Target'** (so for example, `Patrol.Target.cs` defines the class `PatrolTarget`). The typical structure of a target file is as follows:
 
 ```Csharp
 using UnrealBuildTool;
@@ -273,15 +273,21 @@ public class PatrolTarget : TargetRules
     {
         Type = TargetType.Game;
 
+        DefaultBuildSettings = BuildSettingsVersion.V7;
+        IncludeOrderVersion  = EngineIncludeOrderVersion.Unreal5_8;
+
         // Other properties go here
     }
 }
 ```
 
-Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the [Official Unreal Documentation](https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/BuildTools/UnrealBuildTool/TargetFiles/) or examining the [Source Code](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs) (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to two properties that may prove particularly useful.
+Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the [Official Unreal Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-build-tool-target-reference) or examining the [Source Code](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs) (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to two properties that may prove particularly useful.
 
-- **DefaultBuildSettings** Specifies the engine version to maintain backwards-compatible default build settings with (eg. DefaultSettingsVersion.Release_4_23, DefaultSettingsVersion.Release_4_24). Specify DefaultSettingsVersion.Latest to always use defaults for the current engine version, at the risk of introducing build errors while upgrading.
+- **DefaultBuildSettings** Which engine version's default build settings this target wants. Every few releases Epic changes a default: a warning level, a language setting, whether some legacy behaviour is still on. Rather than silently changing your build, they bump this enum. Your target keeps the old defaults until you opt in. The values are `BuildSettingsVersion.V1` through `V7`, plus `Latest`. **Unreal Engine 5.8 expects `V7`**, and UnrealBuildTool will refuse to compile a target whose value does not match what the installed editor was built with.
+- **IncludeOrderVersion** Which engine version's header include order to assume, as `EngineIncludeOrderVersion.Unreal5_8` and so on. Unreal's headers historically relied on being included in a particular order; as that gets cleaned up, code written against an older ordering can stop compiling. This property lets you keep the old ordering while you fix things, and it is deliberately *separate* from `DefaultBuildSettings`, so moving one does not move the other.
 - **ExtraModuleNames** List of additional modules to be compiled into the target.
+
+*Note: these enums grow with every release, so do not take the values above as permanent. The definitive list is the `BuildSettingsVersion` and `EngineIncludeOrderVersion` enums in `{UE-Root}/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs`. This is the first of several places in this book where reading the engine source is faster and more reliable than reading documentation about it.*
 
 ## Populating the Target Rules
 
@@ -289,16 +295,18 @@ As mentioned the Target Rule Definitions need to be stored under your project's 
 
 - Navigate to your Source directory
 - Create a new Target Rules file
-  - {projectname}{modulename}.Target.cs
+  - `{projectname}.Target.cs`, declaring `class {projectname}Target`
   - We can use the snippet **umt** to autocomplete this file
 
 ![Game Target Rules Definition](./resources/game-target-rules-definition.png)
 
 - Navigate to your Source directory again
-- Create a new Target Rules file
-  - {projectname}{modulename}Editor.Target.cs
+- Create a second Target Rules file
+  - `{projectname}Editor.Target.cs`, declaring `class {projectname}EditorTarget`
   - We can use the snippet **umt** to autocomplete this file
-- Change the Target Type within this Editor Target Rules file to "Editor" instead of "Game"
+- Change the Target Type within this Editor Target Rules file to `TargetType.Editor` instead of `TargetType.Game`
+
+*Note: the target name is what you pass to `Build.bat` later on. `Patrol.Target.cs` gives you a target called `Patrol`, and `PatrolEditor.Target.cs` gives you `PatrolEditor`, which is exactly what the [build chapter](./building_unreal_project_from_scratch.md) invokes. Targets are named after the **project**, not after a module; modules are listed inside a target via `ExtraModuleNames`.*
 
 ![Editor Target Rules Definition](./resources/editor-target-rules-definition.png)
 

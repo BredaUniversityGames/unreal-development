@@ -1,6 +1,6 @@
 # Setup an Unreal Project from Scratch
 
-In the [previous section](./creating_unreal_project_from_scratch.md) we delved into the essence of a .uproject file and its interaction with the modules and plugins defined within your project. Additionally, we explored Target Rule Definitions, which outline the specifications for building a project. With the project now established, let's proceed to incorporate some source code for the module we've created. By now, you've likely recognized the common convention in Unreal Engine to organize a module's source code into Public and Private subdirectories. The Public directory houses headers that necessitate visibility to other modules, while the Private directory encompasses all implementation details specific to this module.
+In the [previous section](./creating_unreal_project_from_scratch.md) we looked at what a .uproject file is and how it relates to the modules and plugins defined within your project, along with the Target Rule Definitions, which outline the specifications for building a project. With the project now established, let's proceed to incorporate some source code for the module we've created. By now, you've likely recognized the common convention in Unreal Engine to organize a module's source code into Public and Private subdirectories. The Public directory houses headers that necessitate visibility to other modules, while the Private directory encompasses all implementation details specific to this module.
 
 Let's start by doing that.
 
@@ -12,7 +12,7 @@ Let's start by doing that.
 
 ## Module Build Rules
 
-Before we add any source code we will need an additional C# file, namly the Module Build Rules. As already mentioned **Modules are the building blocks of UE**. The engine is implemented as a large collection of modules, and games supply their own modules to augment them. Each module encapsulates a set of functionality, and can provide a public interface and compile environment (with macros, include paths, and so on) for use by other modules. Modules are declared through C# source files with a .build.cs extension, and are stored under your project's Source directory. The C++ source code belonging to a module is stored next to to the **.build.cs** file, or in subdirectories of it. Each .build.cs file declares a class deriving from the [ModuleRules](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs) base class, and sets **properties controlling how it should be built** from its constructor. These .build.cs files are compiled by UnrealBuildTool and constructed to determine the overall compile environment.
+Before we add any source code we will need an additional C# file, namely the Module Build Rules. As already mentioned **Modules are the building blocks of UE**. The engine is implemented as a large collection of modules, and games supply their own modules to augment them. Each module encapsulates a set of functionality, and can provide a public interface and compile environment (with macros, include paths, and so on) for use by other modules. Modules are declared through C# source files with a .build.cs extension, and are stored under your project's Source directory. The C++ source code belonging to a module is stored next to to the **.build.cs** file, or in subdirectories of it. Each .build.cs file declares a class deriving from the [ModuleRules](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs) base class, and sets **properties controlling how it should be built** from its constructor. These .build.cs files are compiled by UnrealBuildTool and constructed to determine the overall compile environment.
 
 The typical structure for a .build.cs file is as follows.
 
@@ -29,7 +29,7 @@ public class PatrolCore : ModuleRules
 }
 ```
 
-Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the [Official Unreal Documentation](https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/BuildTools/UnrealBuildTool/ModuleFiles/) or examining the [Source Code](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs) (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to some properties that may prove particularly useful.
+Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the [Official Unreal Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/module-properties-in-unreal-engine) or examining the [Source Code](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs) (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to some properties that may prove particularly useful.
 
 - **PCHUsage** What type of PCH to use for this module
     - Default: Engine modules use shared PCHs, game modules do not
@@ -47,6 +47,9 @@ Numerous properties are accessible from the base class, the details of which are
 
 - **PublicDependencyModuleNames** List of public dependency module names (no path needed) (automatically does the private/public include). These are modules that are required by our public source files.
 - **PrivateDependencyModuleNames** List of private dependency module names.  These are modules that our private code depends on but nothing in our public include files depend on.
+- **CppStandard** Which C++ language version to compile this module with. Unreal 5.8 compiles at **C++20** by default and requires at least C++20, so you rarely need to set this. It exists all the same, and it is per-module, which is how a project can move one module forward without moving all of them.
+
+The distinction between those two dependency lists is worth getting right rather than copying whatever compiles. A **public** dependency is propagated: anything that depends on your module also gets that module's include paths. A **private** dependency stops at your module boundary. Putting everything in the public list works, and quietly couples every downstream module to every dependency you ever added, which is the module-level version of the reference problem described in [For Designers and Artists](./for_designers_and_artists.md).
 
 ## Populating a Build Rules
 
@@ -63,7 +66,7 @@ Numerous properties are accessible from the base class, the details of which are
 
 ## Module Source Code
 
-**Every module necessitates**, at minimum, **a module definition**, typically found in a source file bearing the same name as the module. This module definition help Unreal know how to handle our module when it loads and unloads it. To commence, we'll add a public header named "{projectname}{modulename}.h". Additionally, we should create a corresponding "{projectname}{modulename}.cpp" file. Here, we register our module implementation as the primary module for our game. Each **project mandates precisely one module designated as the primary game module.** This **primary module** functions as **the entry point for the project.** Upon loading your project, the engine initiates by loading this primary module, which in turn initializes other modules and components as necessary. This systematic approach ensures a clear starting point for loading and running your project. By designating a primary module, Unreal adeptly manages dependencies. Other modules and parts of the game can count on the main module to load first. This **helps keep everything organized and makes it easier to manage how different parts of the game depend on each other**. While it might appear more adaptable to permit specifying regular modules without a primary module, such an approach could introduce ambiguity and complicate dependency management and project initialization. Requiring a primary module encourages best practices in project organization and contributes to the seamless execution of projects within Unreal.
+**Every module necessitates**, at minimum, **a module definition**, typically found in a source file bearing the same name as the module. This module definition help Unreal know how to handle our module when it loads and unloads it. To start, we'll add a public header named "{projectname}{modulename}.h" and a matching "{projectname}{modulename}.cpp". Here, we register our module implementation as the primary module for our game. Each **project mandates precisely one module designated as the primary game module.** This **primary module** functions as **the entry point for the project.** When your project loads, the engine loads this primary module first, and that module initializes whatever else it needs. Everything downstream can therefore count on it already being loaded, which is what makes the load order predictable. Without one, there would be no defined place for the engine to start.
 
 *Note:* 
 *For more information about the Module Loading please visit the following files:*
@@ -76,31 +79,31 @@ Numerous properties are accessible from the base class, the details of which are
 
 - Navigate to Source/{projectname}{modulename}/Public
 - Create a new Header file
-    - {modulename}.h
-    - We can use the snipper **umh** to autocomplete this file
+    - `{projectname}{modulename}.h`, the same name as the module
+    - We can use the snippet **umh** to autocomplete this file
 
 ![Create Module Definition Header](./resources/create-module-definition-header.png)
 
 - Navigate to Source/{projectname}{modulename}/Private
 - Create a new Source file
-    - {modulename}.cpp
-    - We can use the snipper **umcp** to autocomplete this file
+    - `{projectname}{modulename}.cpp`, again matching the module name
+    - We can use the snippet **umcp** to autocomplete this file
 
 ![Create Module Definition Source](./resources/create-module-definition-source.png)
 
-We will also add a Log category that is specific to our module. These files are internal to our module, so we can define the `Log.h` and `Log.cpp` within the Private directory of our module. Now from any source file within our module we can `#include Log.h` and add log output using an Unreal log line (`UE_LOG`). This will show up in the console output and the log files for our game, and we can filter by our category to get output from this module specifically.
+We will also add a Log category that is specific to our module. `Log.h` goes in **Public** so other files in the module (and, if you ever want it, other modules) can include it, and `Log.cpp` goes in **Private** because the category only needs to be defined once, in one translation unit. Now from any source file within our module we can `#include Log.h` and add log output using an Unreal log line (`UE_LOG`). This will show up in the console output and the log files for our game, and we can filter by our category to get output from this module specifically.
 
 - Navigate to Source/{projectname}{modulename}/Public
 - Create a new Header file
     - Log.h
-    - We can use the snipper **ulh** to autocomplete this file
+    - We can use the snippet **ulh** to autocomplete this file
 
 ![Create Log Definition Header](./resources/create-log-definition-header.png)
 
 - Navigate to Source/{projectname}{modulename}/Private
 - Create a new Source file
     - Log.cpp
-    - We can use the snipper **ulc** to autocomplete this file
+    - We can use the snippet **ulc** to autocomplete this file
 
 ![Create Log Definition Source](./resources/create-log-definition-source.png)
 
