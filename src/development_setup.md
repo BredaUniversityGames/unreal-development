@@ -1,6 +1,6 @@
 # Development Tools
 
-Before we dive into the exciting world of game engines and compilers, let's talk about two essential **tools every developer needs: a trusty text editor and a reliable terminal.** And guess what? With VS Code, you get both bundled in one neat package! Now, I know there are alternatives out there like Sublime Text and Cmder, but for this walkthrough, I'll be sticking with VS Code—it's my go-to choice when working with Unreal Engine.
+Before we get to game engines and compilers, two **tools every developer needs: a trusty text editor and a reliable terminal.** And guess what? With VS Code, you get both bundled in one neat package! Now, I know there are alternatives out there like Sublime Text and Cmder, but for this walkthrough, I'll be sticking with VS Code, my go-to choice when working with Unreal Engine.
 
 ### Why VS Code, you ask?
 
@@ -8,7 +8,11 @@ Let me break it down for you. VS Code doesn't clutter your workspace, it's highl
 
 ### What about Visual Studio?
 
-Unreal Engine is designed to integrate smoothly with Visual Studio, allowing you to make code changes in your projects “quickly” and "easily", and “immediately” see results upon compilation but it's essential to understand that for Unreal, **the Visual Studio IDE serves primarily as a frontend.** Unreal doesn't utilize the Visual Studio “toolset” directly for building; instead, it relies on a batch script that invokes builds for your target platform. However, the Visual Studio installation comes with certain features that are required to invoke builds (on Windows) so in order to use VS Code we have to go through the process of installing Visual Studio.
+Unreal Engine integrates with Visual Studio, and that integration is good: you can change C++ and see the result without restarting the editor. That mechanism is called **Live Coding**, it is on by default, and it is not a Visual Studio feature at all. It is triggered from the editor with `Ctrl+Alt+F11` and works exactly the same from VS Code. The [Iteration Speed](./iteration_speed.md) chapter covers what it can and cannot patch.
+
+What is worth understanding is that for Unreal, **the Visual Studio IDE serves primarily as a frontend.** Unreal does not use Visual Studio's build system; it uses its own, driven by a batch script that invokes builds for your target platform. The solution and project files that get generated are a Visual Studio compatible view onto that process, not the process itself.
+
+Visual Studio's *installer*, however, is how you get the C++ toolchain, the Windows SDKs and the .NET runtime that Unreal actually needs on Windows. So even if you never open the IDE, you still install it.
 
 ## Installing VS Code
 
@@ -22,6 +26,8 @@ Here's how to get started:
     - C++ IntelliSense: Your coding buddy that provides smart suggestions and auto-completions.
     - Visual Studio Keymaps: For those familiar shortcuts to keep your workflow smooth.
     - Tasks: see [quality of life improvements](./quality_of_life_improvements.md).
+
+*Note: Epic's own [VS Code setup page](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-code-for-unreal-engine) currently recommends Microsoft's **C/C++ Extension Pack** (which bundles C++ IntelliSense) and the **C#** extension. The latter matters because UnrealBuildTool and friends are C# programs, so you get IntelliSense in `.Build.cs` and `.Target.cs` files too. That matters more than it sounds: those are the files this book spends two chapters writing.*
 
 ![C/C++ - VS Code Extension](./resources/c-cpp-code-extension.png)
 ![Visual Studio Keymap - VS Code Extension](./resources/visual-studio-keymap-code-extension.png)
@@ -52,7 +58,7 @@ Add a touch of personality to your coding environment for extra cuteness:
 
 ### [Optional] VS Code - Launch from Windows Explorer (Windows Only)
 
-For seamless integration, follow these steps:
+Here is how to set that up:
 
 - Open the Start menu and search for "environment variables."
 - Access the "Edit the system environment variables" dialog.
@@ -63,23 +69,52 @@ For seamless integration, follow these steps:
 
 ![Edit Environment Variables](./resources/edit-environment-variables.png)
 
-Equipped with these essential tools, you're primed to traverse the intricacies of game development using VS Code. With precision and proficiency, let us embark on this journey into the realm of coding excellence.
+That covers the editor. The other half of the setup is the toolchain Unreal actually compiles with, which is where Visual Studio comes in.
 
 ## Installing Visual Studio
 
 ![Download Visual Studio Installer](./resources/download-visual-studio-installer.png)
 
-When it comes to installing Visual Studio, it's not as straightforward as opting for the latest version. Unreal Engine has specific requirements regarding the version of Visual Studio and its components. To determine the compatible version, you'll need to consult the [release notes](https://docs.unrealengine.com/5.0/en-US/unreal-engine-5.0-release-notes/) corresponding to your chosen version of Unreal Engine. For instance, if you're using Unreal Engine 5.0, refer to the release notes and navigate to the "Build farm" section to identify the officially supported version.
+Installing Visual Studio is not as simple as taking the latest version. Unreal has specific requirements about the version of Visual Studio *and* which of its components are installed, and those requirements move with every engine release.
+
+Two pages are authoritative, and they are the ones to check rather than trusting anything written here:
+
+- [Hardware and Software Specifications](https://dev.epicgames.com/documentation/en-us/unreal-engine/hardware-and-software-specifications-for-unreal-engine): which Visual Studio version Epic expects.
+- [Setting Up Visual Studio Development Environment for C++ Projects](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine): the exact workloads and individual components, by name.
+
+For Unreal Engine 5.8, Epic's guidance is **Visual Studio 2026 for general development**, with **.NET 10.0** as both the minimum and the recommended version. Visual Studio 2022 version 17.14 or later still builds 5.8, and is still required for Nintendo platforms and for AGDE below v26.1.102, so if you already have 2022 installed and working, you are not stranded.
 
 ![Unreal Engine Release Notes - Build Farm](./resources/unreal-engine-build-farm-output.png)
 
-While it's not mandatory to install the exact version specified in the release notes, it's advisable for team collaboration and to minimize potential build issues. However, if you already have a newer version installed, downgrading isn't necessary, but keep in mind potential compatibility issues.
+Matching your team is worth more than matching Epic exactly. Build problems that only reproduce on one machine are very often a toolchain difference, so agreeing on one version across a team removes an entire category of "works on mine".
 
-To install Visual Studio, download the installer from the [official website](https://visualstudio.microsoft.com/vs/) and run it. The Visual Studio Installer allows you to select and install various components, including the Visual C++ toolset, debugger, runtime SDKs, and more. Additionally, I recommend installing the .NET workload, as many external tools used within Unreal Engine are written in C#. This ensures compatibility and provides flexibility if you ever need to build these tools from source.
+Download the installer from the [official website](https://visualstudio.microsoft.com/vs/) and run it. In the **Workloads** tab, select:
+
+- **Desktop development with C++**: the compiler, linker and debugger.
+- **Game development with C++**: the Unreal-specific pieces.
+- **.NET desktop development**: UnrealBuildTool, UnrealHeaderTool and most of Unreal's other tools are C# programs. You need this to run them, and you need it if you ever want to build them from source.
+
+Then open **Installation details**, expand *Game development with C++*, and make sure these individual components are ticked:
+
+- **C++ profiling tools**
+- **C++ AddressSanitizer**
+- **Windows 10 or 11 SDK (10.0.18362 or newer)**
+- **Unreal Engine installer**
 
 ![Desktop Development With C++](./resources/desktop-development-with-cpp.png)
 ![.NET Desktop Development](./resources/net-desktop-development.png)
 
-Before proceeding to the [next section](./creating_unreal_project_from_scratch.md), verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This approach ensures a smooth development experience and minimizes compatibility hurdles down the line. You are also able to take a look at the [recommended workflow](./official_development_setup.md) by Epic on how to setup a project for beginners.
+Before proceeding to the [next section](./creating_unreal_project_from_scratch.md), verify that your Visual Studio version, .NET version and Windows SDK match what the two pages above ask for. Getting this wrong does not produce a clear error message. It produces a confusing link failure three chapters from now. You can also take a look at the [recommended workflow](./official_development_setup.md) by Epic on how to set up a project for beginners.
 
-For more information about setting up Visual Studio and some additional tips and tricks on how to modify Visual Studio as an IDE, you can visit the official documentation of Unreal: [Unreal Engine: Visual Studio Setup](https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/)
+### Debugging from VS Code
+
+The book sets up VS Code to *build* in the [Quality of Life](./quality_of_life_improvements.md) chapter, but building is only half of it. Sooner or later you will want to stop on a breakpoint.
+
+You do not have to write a `launch.json` by hand. Unreal generates one for you:
+
+- From the editor: **Tools > Refresh Visual Studio Code Project**
+- Or from the command line: `GenerateProjectFiles.bat -vscode`
+
+Either produces a `.code-workspace` file in your project folder along with launch configurations. Pick the **Development Editor** variant in the configuration dropdown (not the standalone or shipping ones) and press **F5** to build and launch under the debugger. The editor must not already be running when you start a debug session, since the debugger needs to launch the process itself.
+
+For more information about setting up Visual Studio and some additional tips and tricks on how to modify Visual Studio as an IDE, you can visit the official documentation of Unreal: [Unreal Engine: Visual Studio Setup](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
