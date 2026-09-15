@@ -1,6 +1,6 @@
 # Quality of Life
 
-In the [previous section](./running_a_game.md) we noticed that there are a lot of commands we have to enter in order to work with Unreal from the command line. This however will only slow us down rather than improve iteration speed. Luckily, we as developers can remedy this by introducing a quick fix and make our own batch files that invoke these commands. I will not bore you with writing these files yourself as we did with the snippets for VS Code you can download a script from [this GitHub repository](https://github.com/Dyronix/unreal-generation) that will setup these files for you. I know batch files aren't really the state of the art in build automation, but we're not doing anything fancy here, so this approach works fine. Feel free to upgrade it to your liking.
+In the [previous section](./running_a_game.md) we noticed that there are a lot of commands we have to enter to work with Unreal from the command line. This however will only slow us down rather than improve iteration speed. Luckily, we as developers can remedy this by introducing a quick fix and make our own batch files that invoke these commands. I will not bore you with writing these files yourself as we did with the snippets for VS Code you can download a script from [this GitHub repository](https://github.com/Dyronix/unreal-generation) that will setup these files for you. I know batch files aren't really the state of the art in build automation, but we're not doing anything fancy here, so this approach works fine. Feel free to upgrade it to your liking.
 
 ## Additional Unreal Batch Files
 
@@ -14,7 +14,7 @@ In the [previous section](./running_a_game.md) we noticed that there are a lot o
 ![Unreal Generation Copied Repository Contents](./resources/unreal-generation-copied-repository-contents.png)
 
 -	Run `setup.py -p=${ue5_path}`
-    -	`py setup.py –p="C:\Program Files\Epic Games\UE_5.3"`
+    -	e.g. `py setup.py -p="C:\Program Files\Epic Games\UE_5.8"`
 
 ![Unreal Generation Run Python Script](./resources/unreal-generation-run-python-script.png)
 
@@ -35,7 +35,10 @@ An extension that was installed in the [development setup](./development_setup.m
 - Fill the contents of this file with commands you would like to execute
 - Created tasks will end up at the bottom of the IDE
 
-And example of the tasks.json fill looks as followed:
+An example `tasks.json` looks as follows. Note the `"group"` field: setting it to `"build"` on one
+task makes **Ctrl+Shift+B** run that task directly, which is built into VS Code and needs no
+extension at all. The Tasks extension adds the status-bar buttons, but you are not stuck if it is
+unavailable.
 
 ```json
 {
@@ -48,7 +51,7 @@ And example of the tasks.json fill looks as followed:
             "windows": {
                 "command": "./build_editor.bat"
             },
-            "group": "none",
+            "group": "build",
             "presentation": {
                 "reveal": "always",
                 "clear": true
@@ -70,5 +73,50 @@ And example of the tasks.json fill looks as followed:
     ]
 }
 ```
+
+## Settings that follow you between projects
+
+Some preferences are not worth setting again in every project you ever open. Unreal reads config
+files out of `Documents\Unreal Engine\Engine\Config\`, and anything you put there overrides the
+corresponding setting for **every project, every engine install, and every shipped Unreal game on
+that machine**. The files are named with a `User` prefix: `UserEditorPerProjectUserSettings.ini`
+for editor preferences, `UserInput.ini` for input.
+
+The most useful one for this book is the console key. Unreal opens the console with `` ` `` by
+default, and on a lot of non-US keyboard layouts that key either does not exist or does not register.
+Rather than rebinding it per project through the editor UI:
+
+```ini
+; Documents\Unreal Engine\Engine\Config\UserInput.ini
+[/Script/Engine.InputSettings]
++ConsoleKeys=Insert
+```
+
+Now every Unreal project you open, and every Unreal game you play, opens its console with `Insert`.
+
+*Gotcha: these get cached into `{project_path}/Saved/Config/WindowsEditor/Input.ini`. If a change
+here does not seem to take effect, delete that cached file. It regenerates.*
+
+## Naming your generated solution
+
+If you work on more than one branch or engine version, you will end up with several generated
+solutions all called `UE5.sln`, and no way to tell which window is which. UnrealBuildTool reads a
+machine-wide config file at `%APPDATA%\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml`
+(this is the file that actually exists; you will see older material refer to a
+`BuildConfiguration.cs`, which does not):
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration xmlns="https://www.unrealengine.com/BuildConfiguration">
+    <ProjectFileGenerator>
+        <bPrimaryProjectNameFromFolder>true</bPrimaryProjectNameFromFolder>
+    </ProjectFileGenerator>
+</Configuration>
+```
+
+The solution is now named after its parent folder, so the title bar tells you which checkout you are
+looking at. The same file is where you would change UnrealBuildTool's other defaults. See the
+[Build Configuration documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/build-configuration-for-unreal-engine)
+for what else lives there.
 
 Now everything is in place to start working on our new project, in the [next section](./testing_the_setup.md) we will test the setup we created with a simple example.

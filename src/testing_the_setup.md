@@ -1,6 +1,6 @@
 # Testing the setup
 
-While having access to various development tools is exciting, their true value lies in practical application through testing otherwise this entire document is kind of useless. Let's consider a practical example within our project: introducing a new `AActor` instance. We'll attach a `UBillboardComponent` to it and initialize a property to a predefined value for demonstration purposes.
+Tools are only worth having if they work, otherwise this entire document is kind of useless. So here is a practical example to check ours with: introducing a new `AActor` instance. We'll attach a `UBillboardComponent` to it and initialize a property to a predefined value for demonstration purposes.
 
 ## Adding the Actor
 
@@ -18,12 +18,18 @@ When complete our header file should look like this:
 
 ![MyActor header file](./resources/myactor-header-file.png)
 
-- Add a new Private source fille call MyActor.cpp to your module
+- Add a new Private source file called MyActor.cpp to your module
 - Create the constructor
 - Create the `BeginPlay` function
 - Include required files
 
 ![MyActor source file](./resources/myactor-source-file.png)
+
+*Note: the constructor below uses `FObjectInitializer` to create its components. That still works and
+is worth recognising, but the form you will see far more often in engine code and in Epic's templates
+is `CreateDefaultSubobject<T>(TEXT("Name"))`, which does the same job without taking the initializer
+explicitly. Either is fine; do not be surprised when the two appear side by side in the same
+codebase.*
 
 - Use the `FObjectInitializer` to create a root `USceneComponent`
 - Use the `FObjectInitializer` to create a `UBillboardComponent`
@@ -40,17 +46,17 @@ When complete our header file should look like this:
 
 ## The iteration loop
 
-When we would like to test a feature there is a simple iteration loop we can run to speed up our development cycle. A fast and efficient development iteration cycle holds immense value for software development teams across various industries. One of its primary advantages lies in providing a faster feedback loop. By shortening the time between development, testing, and implementation, teams can swiftly identify any issues, bugs, or inefficiencies in their code or features. This rapid feedback loop enables developers to make necessary improvements promptly, leading to higher-quality software products.
+Every change you make to C++ has to travel the same road before you can see whether it worked:
+compile, link, load the editor, get into play mode, reach the thing you changed. If that road is
+thirty seconds long you will experiment freely. If it is five minutes long you will start guessing
+instead of checking, and guessing is where bugs come from.
 
-Moreover, an accelerated iteration cycle enhances the agility of development teams. In today's rapidly evolving technology landscape, the ability to quickly test and implement new features is essential for staying competitive. A fast iteration cycle allows teams to respond promptly to market demands, user feedback, and changing requirements. This agility enables companies to adapt their products swiftly, ensuring they remain relevant and meet the evolving needs of their users.
+So the loop below is deliberately the *slow, always-correct* one: a full rebuild and a fresh
+editor. It is the baseline: it works for every kind of change, including the ones that reshape
+classes. Once you trust it, the [Iteration Speed](./iteration_speed.md) chapter shows you how to cut
+most of it away with Live Coding and how to drive code from the console without restarting anything.
 
-Shortening the development cycle also translates to reduced time to market. By delivering features and updates more rapidly, companies can gain a significant advantage over their competitors. Being able to introduce new features quickly can lead to increased market share, revenue, and customer satisfaction. Additionally, a rapid iteration cycle allows companies to capitalize on opportunities swiftly and respond effectively to competitive threats.
-
-Furthermore, a fast iteration cycle fosters enhanced collaboration within development teams and across departments. By continuously integrating and testing new features, teams can identify potential conflicts, dependencies, or areas for improvement early in the development process. This collaborative approach promotes a culture of shared ownership and collective responsibility for the success of the product. It encourages cross-functional collaboration between developers, testers, designers, and other stakeholders, leading to more cohesive and well-rounded software solutions.
-
-Finally, a fast and efficient iteration cycle cultivates a culture of continuous improvement. By regularly releasing updates and gathering feedback from users, teams can iteratively enhance and optimize their products based on real-world usage and data. This iterative approach enables teams to make incremental improvements over time, ensuring that the product evolves and remains competitive in the market. Ultimately, a fast iteration cycle is essential for accelerating innovation, improving product quality, and driving business success in today's dynamic and competitive environment.
-
-Our development iteration loop looks as followed:
+Our development iteration loop looks as follows:
 
 - Press CTRL + Tilde (~)
 - Run `build_editor && run_editor`
@@ -61,6 +67,10 @@ Our development iteration loop looks as followed:
         - Press up arrow in the terminal
         - Press enter
 - Rinse and repeat
+
+*Note: once the editor is open and you are only changing the body of a function, you usually do not
+need to run this loop at all. `Ctrl+Alt+F11` recompiles and patches the running editor in place.
+See [Iteration Speed](./iteration_speed.md) for when that is safe and when it is not.*
 
 ![Iteration Loop Diagram](./resources/iteration-loop-diagram.png)
 

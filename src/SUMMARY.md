@@ -12,10 +12,20 @@
 - [Open an Unreal Project](./opening_unreal_project_from_scratch.md)
 - [Running a Game](./running_a_game.md)
 - [Quality of Life](./quality_of_life_improvements.md)
+- [Iteration Speed](./iteration_speed.md)
 - [Testing the Setup](./testing_the_setup.md)
 - [Conclusion](./conclusion.md)
 
+# Going Further
+
+- [Profiling](./profiling.md)
+    - [Reading a Capture](./profiling_reading_a_capture.md)
+    - [UObjects and Garbage Collection](./profiling_uobjects.md)
+    - [Physics](./profiling_physics.md)
+    - [GPU](./profiling_gpu.md)
+- [For Designers and Artists](./for_designers_and_artists.md)
+
 -----------
 
-[Appendix 1 - Altering the Template](./altering_the_project.md)
+[Appendix 1 - Altering the Project](./altering_the_project.md)
 [Appendix 2 - Additional Workflow Items](./additional_workflow_items.md)

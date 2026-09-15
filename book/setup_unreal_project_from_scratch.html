@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="profiling.html"><strong aria-hidden="true">12.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html"><strong aria-hidden="true">12.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">12.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">12.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">12.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html"><strong aria-hidden="true">13.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,7 +135,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="setup-an-unreal-project-from-scratch"><a class="header" href="#setup-an-unreal-project-from-scratch">Setup an Unreal Project from Scratch</a></h1>
-<p>In the <a href="./creating_unreal_project_from_scratch.html">previous section</a> we delved into the essence of a .uproject file and its interaction with the modules and plugins defined within your project. Additionally, we explored Target Rule Definitions, which outline the specifications for building a project. With the project now established, let's proceed to incorporate some source code for the module we've created. By now, you've likely recognized the common convention in Unreal Engine to organize a module's source code into Public and Private subdirectories. The Public directory houses headers that necessitate visibility to other modules, while the Private directory encompasses all implementation details specific to this module.</p>
+<p>In the <a href="./creating_unreal_project_from_scratch.html">previous section</a> we looked at what a .uproject file is and how it relates to the modules and plugins defined within your project, along with the Target Rule Definitions, which outline the specifications for building a project. With the project now established, let's proceed to incorporate some source code for the module we've created. By now, you've likely recognized the common convention in Unreal Engine to organize a module's source code into Public and Private subdirectories. The Public directory houses headers that necessitate visibility to other modules, while the Private directory encompasses all implementation details specific to this module.</p>
 <p>Let's start by doing that.</p>
 <ul>
 <li>Navigate to your Source/{projectname}{modulename} directory</li>
@@ -144,7 +144,7 @@
 </ul>
 <p><img src="./resources/adding-public-private-directory.png" alt="Adding Public and Private source directories" /></p>
 <h2 id="module-build-rules"><a class="header" href="#module-build-rules">Module Build Rules</a></h2>
-<p>Before we add any source code we will need an additional C# file, namly the Module Build Rules. As already mentioned <strong>Modules are the building blocks of UE</strong>. The engine is implemented as a large collection of modules, and games supply their own modules to augment them. Each module encapsulates a set of functionality, and can provide a public interface and compile environment (with macros, include paths, and so on) for use by other modules. Modules are declared through C# source files with a .build.cs extension, and are stored under your project's Source directory. The C++ source code belonging to a module is stored next to to the <strong>.build.cs</strong> file, or in subdirectories of it. Each .build.cs file declares a class deriving from the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs">ModuleRules</a> base class, and sets <strong>properties controlling how it should be built</strong> from its constructor. These .build.cs files are compiled by UnrealBuildTool and constructed to determine the overall compile environment.</p>
+<p>Before we add any source code we will need an additional C# file, namely the Module Build Rules. As already mentioned <strong>Modules are the building blocks of UE</strong>. The engine is implemented as a large collection of modules, and games supply their own modules to augment them. Each module encapsulates a set of functionality, and can provide a public interface and compile environment (with macros, include paths, and so on) for use by other modules. Modules are declared through C# source files with a .build.cs extension, and are stored under your project's Source directory. The C++ source code belonging to a module is stored next to to the <strong>.build.cs</strong> file, or in subdirectories of it. Each .build.cs file declares a class deriving from the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs">ModuleRules</a> base class, and sets <strong>properties controlling how it should be built</strong> from its constructor. These .build.cs files are compiled by UnrealBuildTool and constructed to determine the overall compile environment.</p>
 <p>The typical structure for a .build.cs file is as follows.</p>
 <pre><code class="language-Csharp">using UnrealBuildTool;
 using System.Collections.Generic;
@@ -157,7 +157,7 @@ public class PatrolCore : ModuleRules
     }
 }
 </code></pre>
-<p>Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the <a href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/BuildTools/UnrealBuildTool/ModuleFiles/">Official Unreal Documentation</a> or examining the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs">Source Code</a> (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to some properties that may prove particularly useful.</p>
+<p>Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/module-properties-in-unreal-engine">Official Unreal Documentation</a> or examining the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs">Source Code</a> (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to some properties that may prove particularly useful.</p>
 <ul>
 <li>
 <p><strong>PCHUsage</strong> What type of PCH to use for this module</p>
@@ -185,7 +185,11 @@ public class PatrolCore : ModuleRules
 <li>
 <p><strong>PrivateDependencyModuleNames</strong> List of private dependency module names.  These are modules that our private code depends on but nothing in our public include files depend on.</p>
 </li>
+<li>
+<p><strong>CppStandard</strong> Which C++ language version to compile this module with. Unreal 5.8 compiles at <strong>C++20</strong> by default and requires at least C++20, so you rarely need to set this. It exists all the same, and it is per-module, which is how a project can move one module forward without moving all of them.</p>
+</li>
 </ul>
+<p>The distinction between those two dependency lists is worth getting right rather than copying whatever compiles. A <strong>public</strong> dependency is propagated: anything that depends on your module also gets that module's include paths. A <strong>private</strong> dependency stops at your module boundary. Putting everything in the public list works, and quietly couples every downstream module to every dependency you ever added, which is the module-level version of the reference problem described in <a href="./for_designers_and_artists.html">For Designers and Artists</a>.</p>
 <h2 id="populating-a-build-rules"><a class="header" href="#populating-a-build-rules">Populating a Build Rules</a></h2>
 <ul>
 <li>Navigate to Source/{projectname}{modulename} directory</li>
@@ -205,7 +209,7 @@ public class PatrolCore : ModuleRules
 </ul>
 <p><img src="./resources/populate-module-build-rules-definition.png" alt="Populate Module Build Rules Definition" /></p>
 <h2 id="module-source-code"><a class="header" href="#module-source-code">Module Source Code</a></h2>
-<p><strong>Every module necessitates</strong>, at minimum, <strong>a module definition</strong>, typically found in a source file bearing the same name as the module. This module definition help Unreal know how to handle our module when it loads and unloads it. To commence, we'll add a public header named &quot;{projectname}{modulename}.h&quot;. Additionally, we should create a corresponding &quot;{projectname}{modulename}.cpp&quot; file. Here, we register our module implementation as the primary module for our game. Each <strong>project mandates precisely one module designated as the primary game module.</strong> This <strong>primary module</strong> functions as <strong>the entry point for the project.</strong> Upon loading your project, the engine initiates by loading this primary module, which in turn initializes other modules and components as necessary. This systematic approach ensures a clear starting point for loading and running your project. By designating a primary module, Unreal adeptly manages dependencies. Other modules and parts of the game can count on the main module to load first. This <strong>helps keep everything organized and makes it easier to manage how different parts of the game depend on each other</strong>. While it might appear more adaptable to permit specifying regular modules without a primary module, such an approach could introduce ambiguity and complicate dependency management and project initialization. Requiring a primary module encourages best practices in project organization and contributes to the seamless execution of projects within Unreal.</p>
+<p><strong>Every module necessitates</strong>, at minimum, <strong>a module definition</strong>, typically found in a source file bearing the same name as the module. This module definition help Unreal know how to handle our module when it loads and unloads it. To start, we'll add a public header named &quot;{projectname}{modulename}.h&quot; and a matching &quot;{projectname}{modulename}.cpp&quot;. Here, we register our module implementation as the primary module for our game. Each <strong>project mandates precisely one module designated as the primary game module.</strong> This <strong>primary module</strong> functions as <strong>the entry point for the project.</strong> When your project loads, the engine loads this primary module first, and that module initializes whatever else it needs. Everything downstream can therefore count on it already being loaded, which is what makes the load order predictable. Without one, there would be no defined place for the engine to start.</p>
 <p><em>Note:</em> 
 <em>For more information about the Module Loading please visit the following files:</em></p>
 <ul>
@@ -218,8 +222,8 @@ public class PatrolCore : ModuleRules
 <li>Navigate to Source/{projectname}{modulename}/Public</li>
 <li>Create a new Header file
 <ul>
-<li>{modulename}.h</li>
-<li>We can use the snipper <strong>umh</strong> to autocomplete this file</li>
+<li><code>{projectname}{modulename}.h</code>, the same name as the module</li>
+<li>We can use the snippet <strong>umh</strong> to autocomplete this file</li>
 </ul>
 </li>
 </ul>
@@ -228,19 +232,19 @@ public class PatrolCore : ModuleRules
 <li>Navigate to Source/{projectname}{modulename}/Private</li>
 <li>Create a new Source file
 <ul>
-<li>{modulename}.cpp</li>
-<li>We can use the snipper <strong>umcp</strong> to autocomplete this file</li>
+<li><code>{projectname}{modulename}.cpp</code>, again matching the module name</li>
+<li>We can use the snippet <strong>umcp</strong> to autocomplete this file</li>
 </ul>
 </li>
 </ul>
 <p><img src="./resources/create-module-definition-source.png" alt="Create Module Definition Source" /></p>
-<p>We will also add a Log category that is specific to our module. These files are internal to our module, so we can define the <code>Log.h</code> and <code>Log.cpp</code> within the Private directory of our module. Now from any source file within our module we can <code>#include Log.h</code> and add log output using an Unreal log line (<code>UE_LOG</code>). This will show up in the console output and the log files for our game, and we can filter by our category to get output from this module specifically.</p>
+<p>We will also add a Log category that is specific to our module. <code>Log.h</code> goes in <strong>Public</strong> so other files in the module (and, if you ever want it, other modules) can include it, and <code>Log.cpp</code> goes in <strong>Private</strong> because the category only needs to be defined once, in one translation unit. Now from any source file within our module we can <code>#include Log.h</code> and add log output using an Unreal log line (<code>UE_LOG</code>). This will show up in the console output and the log files for our game, and we can filter by our category to get output from this module specifically.</p>
 <ul>
 <li>Navigate to Source/{projectname}{modulename}/Public</li>
 <li>Create a new Header file
 <ul>
 <li>Log.h</li>
-<li>We can use the snipper <strong>ulh</strong> to autocomplete this file</li>
+<li>We can use the snippet <strong>ulh</strong> to autocomplete this file</li>
 </ul>
 </li>
 </ul>
@@ -250,7 +254,7 @@ public class PatrolCore : ModuleRules
 <li>Create a new Source file
 <ul>
 <li>Log.cpp</li>
-<li>We can use the snipper <strong>ulc</strong> to autocomplete this file</li>
+<li>We can use the snippet <strong>ulc</strong> to autocomplete this file</li>
 </ul>
 </li>
 </ul>

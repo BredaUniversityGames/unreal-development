@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Reading a Capture - Unreal Development</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="profiling.html"><strong aria-hidden="true">12.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html" class="active"><strong aria-hidden="true">12.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">12.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">12.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">12.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html"><strong aria-hidden="true">13.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Unreal Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="reading-a-capture"><a class="header" href="#reading-a-capture">Reading a Capture</a></h1>
+<p>The first time most people open an Unreal Insights capture, they close it again. It is a wall of
+coloured bars with no obvious entry point. The speakers whose talks this section is drawn from call
+it &quot;rainbow soup&quot;, which is fair.</p>
+<p>It is not actually complicated. There are three panels that matter and one interaction that does most
+of the work.</p>
+<h2 id="the-frames-panel"><a class="header" href="#the-frames-panel">The frames panel</a></h2>
+<p>Across the top is a row of vertical bars. Zoom in with the scroll wheel and they resolve into
+individual columns.</p>
+<p><strong>Each bar is one frame</strong>, not a fixed slice of time. This is the thing to internalise, because it
+is unlike every other timeline you have used. A bar can represent 16 milliseconds or several seconds;
+the <em>height</em> is the duration. A frame that took a minute produces a bar that shoots off the top.</p>
+<p>There are horizontal reference lines:</p>
+<ul>
+<li><strong>16.66 ms</strong> is the budget for 60 frames per second.</li>
+<li><strong>33.3 ms</strong> is the budget for 30 frames per second.</li>
+</ul>
+<p>Anything above your line is a dropped frame. Hold shift and scroll to zoom out and see the shape of a
+whole session; the spikes are where you start.</p>
+<h3 id="game-frames-and-rendering-frames"><a class="header" href="#game-frames-and-rendering-frames">Game frames and rendering frames</a></h3>
+<p>Insights tracks both, and clicking a bar can select the <em>rendering</em> frame when you meant the game
+frame, which is why your selection sometimes looks slightly offset from what you expected. Press
+<strong>R</strong> to toggle, or right-click and turn rendering frames off entirely while you are working on CPU
+problems.</p>
+<h2 id="the-timing-view"><a class="header" href="#the-timing-view">The timing view</a></h2>
+<p>Below is the timing view. Time runs left to right; depth is call nesting. <code>FEngineLoop::Tick</code> is at
+the bottom and everything else is inside it.</p>
+<p>Selecting a frame and walking down gets you from &quot;this frame was slow&quot; to &quot;this frame was slow
+<em>here</em>&quot; in a few clicks:</p>
+<pre><code>FEngineLoop::Tick
+  └─ WorldTick
+       ├─ TickTime          (PrePhysics and DuringPhysics work)
+       ├─ BlueprintLatentActions
+       └─ GameThreadTickableTime
+</code></pre>
+<p>When you find <code>EndPhysics</code> mostly consisting of &quot;wait for task&quot;, that is the game thread sitting idle
+waiting for physics running on another thread. That is a signal to go look at
+<a href="./profiling_physics.html">Physics</a> rather than at anything in this list.</p>
+<h2 id="the-one-interaction-to-learn"><a class="header" href="#the-one-interaction-to-learn">The one interaction to learn</a></h2>
+<p>Select a time range, then <strong>single-click</strong> a function. Insights reports how many times that function
+was called within the selection, along with inclusive and exclusive time.</p>
+<p>This is the interaction that turns impressions into statements. &quot;The physics looks busy&quot; is not
+something a programmer can act on. &quot;You are doing 500 ray casts into the physics scene in a single
+frame&quot; is, because somebody can go and find out why, and there is usually an obvious answer.</p>
+<p>Double-clicking a function highlights every other instance of it across the timeline, which is how
+you find out whether something is one expensive call or a hundred cheap ones spread out.</p>
+<h2 id="what-real-findings-look-like"><a class="header" href="#what-real-findings-look-like">What real findings look like</a></h2>
+<p>Worked examples from the two games profiled in these talks. They are here for their <em>shape</em>, not
+their specifics. You will not have these exact bugs, but you will have bugs that look like them.</p>
+<p><strong>Work for things nobody can see.</strong> Character movement components were ticking for a large number of
+characters in a scene containing two. The rest were enemies from encounters later in the level, being
+simulated in advance. The fix was to not simulate them until they matter, and it was available
+because there was already a natural checkpoint where the tutorial ended.</p>
+<p><strong>Doing it for everyone instead of for the ones on screen.</strong> A <code>SetGender</code> call was running for every
+character in the entire level rather than the two visible. This is the single most common shape of
+performance bug in gameplay code, and it is invisible in the source: the function does not look
+expensive, it is just being handed a much larger set than anyone intended.</p>
+<p><strong>Doing it twice.</strong> See <a href="./profiling_uobjects.html">UObjects and Garbage Collection</a> for the best
+example of this: nine thousand packages loaded, garbage collected, and loaded again.</p>
+<p><strong>Blowing a time budget you did not know existed.</strong> <code>UpdateLevelStreaming</code> adds components to the
+world incrementally, with a time budget of a few milliseconds per frame, so that streaming does not
+hitch. One frame took 28 ms anyway, because the budget is only checked every few
+components, so a <em>single</em> component that takes 26 milliseconds sails straight past it. In this case a
+single instanced static mesh component was creating physics state for an enormous number of
+instances.</p>
+<p><strong>Forcing async work to be synchronous.</strong> Skeletal mesh animation is normally evaluated on a worker
+thread. Certain operations, such as spawning an actor or changing animation, force it to be evaluated
+immediately instead, so that the result is visible in the same frame you asked for it. You usually do
+not need that immediacy, particularly during a fade or a transition, and it is a setting rather than
+a rewrite. If you hit this, search the engine source for where animation evaluation decides to run
+immediately; the flag is near it and the name changes between versions.</p>
+<p><strong>Using the wrong LOD because nobody said not to.</strong> MetaHuman LOD0 is built for virtual production
+and film work. For games, Epic's own recommendation is LOD1 at most, dropping aggressively from
+there, giving you fewer facial bones and much less evaluation. Characters occupying a
+two-hundred-and-fifty-sixth of the screen do not need the Hollywood head.</p>
+<p><strong>UI that is more expensive than it looks.</strong> Widget components redraw much like drawing a material to
+a render target, and 2,800 of them were ticking. There is an <em>Automatic Tick Mode</em> setting if you
+need many of them. Separately, the habit carried over from UE4 of putting a canvas panel at
+the root of every user widget costs layout work on every one of them, for no benefit in the common
+case.</p>
+<h2 id="next"><a class="header" href="#next">Next</a></h2>
+<p><a href="./profiling_uobjects.html">UObjects and Garbage Collection</a>, the counting problem that sits behind a
+surprising number of hitches.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="profiling.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="profiling_uobjects.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="profiling.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="profiling_uobjects.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

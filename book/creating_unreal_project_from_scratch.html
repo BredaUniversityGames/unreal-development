@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="profiling.html"><strong aria-hidden="true">12.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html"><strong aria-hidden="true">12.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">12.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">12.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">12.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html"><strong aria-hidden="true">13.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,8 +135,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="creating-an-unreal-project-from-scratch"><a class="header" href="#creating-an-unreal-project-from-scratch">Creating an Unreal Project from Scratch</a></h1>
-<p>Let's peek behind the scenes to understand how project files and build processes interconnect. Instead of diving straight into the complexities, let me guide you through setting up a new project in Unreal Engine from scratch.</p>
-<p>Begin by carving out a cozy space for your project on your disk drive. When it comes to naming your project, don't overthink it. This name isn't etched in stone as part of your public-facing brand—it merely serves as a convenient identifier. A short codename suffices.</p>
+<p>Let's peek behind the scenes to see how project files and build processes connect. Rather than start with theory, I'll walk you through setting up a new project in Unreal Engine from scratch.</p>
+<p>Begin by carving out a cozy space for your project on your disk drive. Don't overthink the name. This name isn't etched in stone as part of your public-facing brand; it is just a convenient identifier. A short codename suffices.</p>
 <ul>
 <li>Set up a folder where we'll work our magic.</li>
 <li>Give your project a name.
@@ -152,10 +152,10 @@
 </ul>
 <p><img src="./resources/starting-pos-unreal-project-from-scratch.png" alt="Starting Position Unreal Project From Scratch" /></p>
 <h2 id="the-uproject-file"><a class="header" href="#the-uproject-file">The .uproject File</a></h2>
-<p>A .uproject file, short for <strong>&quot;Unreal Project File,&quot; serves as the entry point and configuration file for an Unreal Engine project.</strong> It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules and/or plugins it uses. An Unreal Project File is <strong>recognized by the UnrealVersionSelector</strong>, this setting is stored in the your registry by Unreal when you installed it. The following attributes can be found within a .uproject file:</p>
+<p>A .uproject file, short for <strong>&quot;Unreal Project File,&quot; is the entry point and configuration file for an Unreal Engine project.</strong> It's a JSON-formatted file that contains essential information about the project, such as its name, description, and the list of modules and/or plugins it uses. An Unreal Project File is <strong>recognized by the UnrealVersionSelector</strong>, this setting is stored in the your registry by Unreal when you installed it. The following attributes can be found within a .uproject file:</p>
 <table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
 <tr><td><strong>FileVersion</strong></td><td>Descriptor version number.</td></tr>
-<tr><td><strong>EngineAssociation</strong></td><td>Specifies the engine to open the project with. <br> Allows for opening the correct engine version when double-clicking on a project file. <br> Differentiates between editor versions for upgrade/downgrade UI flow. <br> For Launcher users, it indicates a stable version like &quot;5.0&quot; or &quot;5.1&quot;. <br> For Perforce or Git users, it's left blank, allowing determination of the engine based on the directory hierarchy. <br> For source build users with a foreign project, uses a random identifier for engine mapping. <br> For users with the engine mounted through a Git submodule, can be manually edited as a relative path.</td></tr>
+<tr><td><strong>EngineAssociation</strong></td><td>Specifies the engine to open the project with. <br> Allows for opening the correct engine version when double-clicking on a project file. <br> Differentiates between editor versions for upgrade/downgrade UI flow. <br> For Launcher users, it holds a stable version string such as &quot;5.8&quot;. <br> For Perforce or Git users, it's left blank, allowing determination of the engine based on the directory hierarchy. <br> For source build users with a foreign project, uses a random identifier for engine mapping. <br> For users with the engine mounted through a Git submodule, can be manually edited as a relative path.</td></tr>
 <tr><td><strong>Category</strong></td><td>Category to show under the project browser.</td></tr>
 <tr><td><strong>Description</strong></td><td>Description to show in the project browser.</td></tr>
 <tr><td><strong>Modules</strong></td><td>List of all modules associated with this project.</td></tr>
@@ -172,7 +172,7 @@
 <em>You could refer to the following files for proper debugging capabilities.</em></p>
 <ul>
 <li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealVersionSelector/Private/UnrealVersionSelector.cpp#L40">UnrealVersionSelector.cpp</a></em></li>
-<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Developer/DesktopPlatform/Private/Windows/DesktopPlatformWindows.cpp#L491https://">DesktopPlatformWindows.cpp</a></em></li>
+<li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Developer/DesktopPlatform/Private/Windows/DesktopPlatformWindows.cpp#L491">DesktopPlatformWindows.cpp</a></em></li>
 </ul>
 <p><em>For more information about the Project Descriptor please visit the following files:</em></p>
 <ul>
@@ -182,7 +182,7 @@
 <p>The following is an example descriptor of an Unreal Project:</p>
 <pre><code class="language-json">{
 	&quot;FileVersion&quot;: 3,
-	&quot;EngineAssociation&quot;: &quot;5.3&quot;,
+	&quot;EngineAssociation&quot;: &quot;5.8&quot;,
 	&quot;Category&quot;: &quot;&quot;,
 	&quot;Description&quot;: &quot;&quot;,
 	&quot;Modules&quot;: [
@@ -223,7 +223,7 @@
 <li><em><a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Projects/Private/ModuleDescriptor.cpp">ModuleDescriptor.cpp</a></em></li>
 </ul>
 <p>The following is an example descriptor of a single module:
-This does not funciton on it's own, it needs to be encapsulated by either an Unreal Project or an Unreal Plugin</p>
+This does not function on it's own, it needs to be encapsulated by either an Unreal Project or an Unreal Plugin</p>
 <pre><code class="language-json">{
   &quot;Name&quot;: &quot;PatrolCore&quot;,
   &quot;Type&quot;: &quot;Runtime&quot;,
@@ -232,7 +232,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 </code></pre>
 <h3 id="plugins"><a class="header" href="#plugins">Plugins</a></h3>
 <p>Last architectural piece of the Unreal Engine are plugins, due to the complexity of UE plugins I will not go into full detail here rather give you a brief overview of what they are and how to use them. </p>
-<p>Plugins are <strong>collections of code and data that developers can easily enable or disable within the Editor on a per-project basis.</strong> Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many existing UE4 subsystems were designed to be extensible using plugins.</p>
+<p>Plugins are <strong>collections of code and data that developers can easily enable or disable within the Editor on a per-project basis.</strong> Plugins can add runtime gameplay functionality, modify built-in Engine features (or add new ones), create new file types, and extend the capabilities of the Editor with new menus, tool bar commands, and sub-modes. Many of the engine's own subsystems are designed to be extended through plugins.</p>
 <p>The main difference between modules and plugins is that plugins (usually) will contain one or more modules, and can also optionally contain their own content. So in a sense <strong>they’re a higher level construct than a module. You can see them as a sub-project within your main project so to speak.</strong> Each plugin if they have source code will have their own Source folder, with the accompanied Binaries folder that contains the compiled code for that plugin. They can have their own Content folder that contains Assets specific for that Plugin. </p>
 <p>Last I'll leave you with an overview of some of the more common attributes of a Plugin that you need to be aware of, this data is stored in a structure called <code>FPluginDescriptor</code>, you'll notice that they are quite similar to the ones of an Unreal Project:</p>
 <table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
@@ -243,7 +243,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 <tr><td><strong>Description</strong></td><td>Description of the plugin.</td></tr>
 <tr><td><strong>Category</strong></td><td>The name of the category this plugin.</td></tr>
 <tr><td><strong>DocsURL</strong></td><td>Documentation URL string.</td></tr>
-<tr><td><strong>MarketplaceURL</strong></td><td>Marketplace URL for this plugin. This URL will be embedded into projects that enable this plugin, so we can redirect to the marketplace if a user doesn't have it installed.</td></tr>
+<tr><td><strong>MarketplaceURL</strong></td><td>Store URL for this plugin. Embedded into projects that enable the plugin so a user who does not have it installed can be sent somewhere to get it. The field name still says &quot;Marketplace&quot;; the storefront it points at was rebranded to <strong>Fab</strong> in late 2024. A good reminder that descriptor field names are frozen by backwards compatibility and do not always describe the world as it is now.</td></tr>
 <tr><td><strong>SupportURL</strong></td><td>Support URL/email for this plugin.</td></tr>
 <tr><td><strong>EngineVersion</strong></td><td>Version of the engine that this plugin is compatible with.</td></tr>
 <tr><td><strong>EnabledByDefault</strong></td><td>Whether this plugin should be enabled by default for all projects.</td></tr>
@@ -252,7 +252,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 <tr><td><strong>Installed</strong></td><td>Signifies that the plugin was installed on top of the engine.</td></tr>
 <tr><td><strong>Modules</strong></td><td>List of all modules associated with this plugin.</td></tr>
 </tbody></table>
-<p>For more information about Plugins I will refer you to the <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/">Official Unreal Documentation</a> about Plugins.</p>
+<p>For more information about Plugins I will refer you to the <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/plugins-in-unreal-engine">Official Unreal Documentation</a> about Plugins.</p>
 <p><em>Note:</em> 
 <em>For more information about the Plugin Descriptor please visit the following files:</em></p>
 <ul>
@@ -263,7 +263,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 <pre><code class="language-json">{
 	&quot;FileVersion&quot;: 3,
 	&quot;Version&quot;: 1,
-	&quot;VersionName&quot;: &quot;4.25.0&quot;,
+	&quot;VersionName&quot;: &quot;5.8.0&quot;,
 	&quot;FriendlyName&quot;: &quot;Advanced Locomotion System Community&quot;,
 	&quot;Description&quot;: &quot;Performance optimized community version of LongmireLocomotion's Advanced Locomotion System V4&quot;,
 	&quot;Category&quot;: &quot;Animation&quot;,
@@ -271,7 +271,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 	&quot;CreatedByURL&quot;: &quot;https://github.com/dyanikoglu&quot;,
 	&quot;DocsURL&quot;: &quot;https://github.com/dyanikoglu/ALS-Community&quot;,
 	&quot;SupportURL&quot;: &quot;https://github.com/dyanikoglu/ALS-Community/issues&quot;,
-	&quot;EngineVersion&quot;: &quot;5.3.0&quot;,
+	&quot;EngineVersion&quot;: &quot;5.8.0&quot;,
 	&quot;EnabledByDefault&quot;: true,
 	&quot;CanContainContent&quot;: true,
 	&quot;IsBetaVersion&quot;: false, 
@@ -353,7 +353,7 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 <em>The following is an example when multiple modules are required:</em></p>
 <pre><code class="language-json">{
 	&quot;FileVersion&quot;: 3,
-	&quot;EngineAssociation&quot;: &quot;5.3&quot;,
+	&quot;EngineAssociation&quot;: &quot;5.8&quot;,
 	&quot;Category&quot;: &quot;&quot;,
 	&quot;Description&quot;: &quot;&quot;,
 	&quot;Modules&quot;: [
@@ -379,8 +379,8 @@ This does not funciton on it's own, it needs to be encapsulated by either an Unr
 <tr><td><strong>Editor</strong></td><td>A target which extends the Unreal Editor.</td></tr>
 <tr><td><strong>Program</strong></td><td>A standalone utility program built on top of the Unreal Engine.</td></tr>
 </tbody></table>
-<p>Targets are declared through C# source files with a .target.cs extension, and are stored under your project's Source directory. <strong>Each .target.cs</strong> file declares a class deriving from the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs">TargetRules</a> base class, and sets <strong>properties controlling how it should be built</strong> from its constructor. When asked to build a target, UnrealBuildTool will compile your target.cs file and construct the class inside it to determine its settings.</p>
-<p>The <strong>name of the class must match the name of the file</strong> it's declared in <strong>followed by 'Target'</strong> (so for example, Patrol.target.cs defines the class 'PatrolTarget'). They typical structure of a target file is as followed:</p>
+<p>Targets are declared through C# source files with a <code>.Target.cs</code> extension, and are stored under your project's Source directory. <strong>Each <code>.Target.cs</code></strong> file declares a class deriving from the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs">TargetRules</a> base class, and sets <strong>properties controlling how it should be built</strong> from its constructor. When asked to build a target, UnrealBuildTool will compile your <code>.Target.cs</code> file and construct the class inside it to determine its settings.</p>
+<p>The <strong>name of the class must match the name of the file</strong> it's declared in <strong>followed by 'Target'</strong> (so for example, <code>Patrol.Target.cs</code> defines the class <code>PatrolTarget</code>). The typical structure of a target file is as follows:</p>
 <pre><code class="language-Csharp">using UnrealBuildTool;
 using System.Collections.Generic;
 
@@ -390,22 +390,27 @@ public class PatrolTarget : TargetRules
     {
         Type = TargetType.Game;
 
+        DefaultBuildSettings = BuildSettingsVersion.V7;
+        IncludeOrderVersion  = EngineIncludeOrderVersion.Unreal5_8;
+
         // Other properties go here
     }
 }
 </code></pre>
-<p>Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the <a href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/BuildTools/UnrealBuildTool/TargetFiles/">Official Unreal Documentation</a> or examining the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs">Source Code</a> (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to two properties that may prove particularly useful.</p>
+<p>Numerous properties are accessible from the base class, the details of which are too extensive to cover within this page. For a comprehensive list of all available properties, I recommend consulting the <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-build-tool-target-reference">Official Unreal Documentation</a> or examining the <a href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs">Source Code</a> (Regrettably, not all properties are exhaustively described within the documentation.). However, I'd like to direct your attention to two properties that may prove particularly useful.</p>
 <ul>
-<li><strong>DefaultBuildSettings</strong> Specifies the engine version to maintain backwards-compatible default build settings with (eg. DefaultSettingsVersion.Release_4_23, DefaultSettingsVersion.Release_4_24). Specify DefaultSettingsVersion.Latest to always use defaults for the current engine version, at the risk of introducing build errors while upgrading.</li>
+<li><strong>DefaultBuildSettings</strong> Which engine version's default build settings this target wants. Every few releases Epic changes a default: a warning level, a language setting, whether some legacy behaviour is still on. Rather than silently changing your build, they bump this enum. Your target keeps the old defaults until you opt in. The values are <code>BuildSettingsVersion.V1</code> through <code>V7</code>, plus <code>Latest</code>. <strong>Unreal Engine 5.8 expects <code>V7</code></strong>, and UnrealBuildTool will refuse to compile a target whose value does not match what the installed editor was built with.</li>
+<li><strong>IncludeOrderVersion</strong> Which engine version's header include order to assume, as <code>EngineIncludeOrderVersion.Unreal5_8</code> and so on. Unreal's headers historically relied on being included in a particular order; as that gets cleaned up, code written against an older ordering can stop compiling. This property lets you keep the old ordering while you fix things, and it is deliberately <em>separate</em> from <code>DefaultBuildSettings</code>, so moving one does not move the other.</li>
 <li><strong>ExtraModuleNames</strong> List of additional modules to be compiled into the target.</li>
 </ul>
+<p><em>Note: these enums grow with every release, so do not take the values above as permanent. The definitive list is the <code>BuildSettingsVersion</code> and <code>EngineIncludeOrderVersion</code> enums in <code>{UE-Root}/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs</code>. This is the first of several places in this book where reading the engine source is faster and more reliable than reading documentation about it.</em></p>
 <h2 id="populating-the-target-rules"><a class="header" href="#populating-the-target-rules">Populating the Target Rules</a></h2>
 <p>As mentioned the Target Rule Definitions need to be stored under your project's Source directory. So let's do that now.</p>
 <ul>
 <li>Navigate to your Source directory</li>
 <li>Create a new Target Rules file
 <ul>
-<li>{projectname}{modulename}.Target.cs</li>
+<li><code>{projectname}.Target.cs</code>, declaring <code>class {projectname}Target</code></li>
 <li>We can use the snippet <strong>umt</strong> to autocomplete this file</li>
 </ul>
 </li>
@@ -413,14 +418,15 @@ public class PatrolTarget : TargetRules
 <p><img src="./resources/game-target-rules-definition.png" alt="Game Target Rules Definition" /></p>
 <ul>
 <li>Navigate to your Source directory again</li>
-<li>Create a new Target Rules file
+<li>Create a second Target Rules file
 <ul>
-<li>{projectname}{modulename}Editor.Target.cs</li>
+<li><code>{projectname}Editor.Target.cs</code>, declaring <code>class {projectname}EditorTarget</code></li>
 <li>We can use the snippet <strong>umt</strong> to autocomplete this file</li>
 </ul>
 </li>
-<li>Change the Target Type within this Editor Target Rules file to &quot;Editor&quot; instead of &quot;Game&quot;</li>
+<li>Change the Target Type within this Editor Target Rules file to <code>TargetType.Editor</code> instead of <code>TargetType.Game</code></li>
 </ul>
+<p><em>Note: the target name is what you pass to <code>Build.bat</code> later on. <code>Patrol.Target.cs</code> gives you a target called <code>Patrol</code>, and <code>PatrolEditor.Target.cs</code> gives you <code>PatrolEditor</code>, which is exactly what the <a href="./building_unreal_project_from_scratch.html">build chapter</a> invokes. Targets are named after the <strong>project</strong>, not after a module; modules are listed inside a target via <code>ExtraModuleNames</code>.</em></p>
 <p><img src="./resources/editor-target-rules-definition.png" alt="Editor Target Rules Definition" /></p>
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap up</a></h2>
 <p>That's it for the creation of our project, in the <a href="./setup_unreal_project_from_scratch.html">next section</a> we will discuss how we can setup our Unreal Project properly by adding source code and Build Rule Definition files. Within this section we learned that the .uproject file tells Unreal Editor that it can open this directory as an Unreal Project using the specified version. It also specifies that when the Editor opens this project, it should find and load the DLL for the module called &quot;PatrolCore&quot;. The .Target.cs file tells the Unreal Build System that it can build all the necessary code for this project by building the &quot;PatrolCore&quot; module. </p>
@@ -429,7 +435,7 @@ public class PatrolTarget : TargetRules
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="development_setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="official_development_setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                             <a rel="next" href="setup_unreal_project_from_scratch.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
@@ -441,7 +447,7 @@ public class PatrolTarget : TargetRules
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="development_setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="official_development_setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                     <a rel="next" href="setup_unreal_project_from_scratch.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">

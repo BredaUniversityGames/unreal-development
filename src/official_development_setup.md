@@ -1,25 +1,29 @@
 # Official Workflow
 
-In contrast to the custom workflow, I will demonstrate how game code can be written using Visual Studio which you should be familiar with already. If we would start completely from scratch, most people will install the newest version of Visual Studio that is “recommended” for this version and move on. But we are not most people. We are going to pay attention to specific versions, and Visual Studio versions can become a bit confusing.
+In contrast to the custom workflow, I will demonstrate how game code can be written using Visual Studio, which you should be familiar with already. If we started completely from scratch, most people would install the newest version of Visual Studio that looks recommended and move on. But we are not most people. We are going to pay attention to specific versions, because Visual Studio versioning is confusing: the product year, the toolset version and the MSVC compiler version are three different numbers that do not match each other.
 
 ![Visual Studio Versions](./resources/visual-studio-versions.png)
 
 ## Installing Visual Studio
 
-To figure out what version of Visual Studio we have to install we have to look at the release notes of the version of Unreal you would like to use. I’m using Unreal 5.0, if we navigate to the this link and look for “Build farm”. We’ll see what version is officially supported. This may not be the latest version, but this is what Epic tested against for this release.
+To figure out which version of Visual Studio to install, check what Epic documents for the engine version you are using. The two pages that carry this are [Hardware and Software Specifications](https://dev.epicgames.com/documentation/en-us/unreal-engine/hardware-and-software-specifications-for-unreal-engine) and [Setting Up Visual Studio Development Environment for C++ Projects](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine). Whatever they list is what Epic actually built and tested this release against, which is not always the newest thing available.
+
+For Unreal Engine 5.8 that is **Visual Studio 2026** for general development, with **.NET 10.0**. Visual Studio 2022 17.14 or later still works, and is still the required option for Nintendo platforms and for AGDE below v26.1.102.
 
 ![Visual Studio Unreal Version](./resources/visual-studio-unreal-version.png)
 
-It's not a hard requirement for you to install this specific version, meaning if you already have a newer version installed you don't have to downgrade to an older version just remember if you have issues using Visual Studio you might want to check the version. Although when you are working within a team, making sure that everybody has the same build tools is a good way to avoid build problems. You can download Visual Studio from the official [website](https://visualstudio.microsoft.com/vs/)
+Installing that exact version is not a hard requirement. If you already have a newer one, you do not need to downgrade. Just remember it as a suspect: when Visual Studio starts behaving oddly or a build fails for no visible reason, the toolchain version is worth checking early. Within a team, everyone having the same build tools removes a whole class of problems that otherwise look like bugs in your code. You can download Visual Studio from the official [website](https://visualstudio.microsoft.com/vs/)
 
 ![Download Visual Studio Installer](./resources/download-visual-studio-installer.png)
 
-After the installer is downloaded we can open it. The Visual Studio Installer will be used to install the traditional Visual C++ toolset, including the compiler, linker, build tools, the debugger and the runtime platform SDKs. What I recommend when installing Visual Studio using the Visual Studio installer is to install the .NET workload as well (if you don't you can also download and install manually if it turns out you need it).A lot of external tools used within Unreal are written in C#, including the Unreal build system itself, so if you ever need to build those from source, the .NET tools will come in handy.
+After the installer is downloaded we can open it. The Visual Studio Installer is what actually delivers the traditional Visual C++ toolset: the compiler, linker, build tools, the debugger and the runtime platform SDKs. Alongside *Desktop development with C++* and *Game development with C++*, install the **.NET desktop development** workload as well. A lot of the tooling inside Unreal is written in C#, UnrealBuildTool and UnrealHeaderTool among them, so .NET is not optional decoration, it is what runs your build.
 
 ![Desktop Development With C++](./resources/desktop-development-with-cpp.png)
 ![.NET Desktop Development](./resources/net-desktop-development.png)
 
-Remember that the release notes of Unreal requested a specific version, within the individual components of the Visual Studio installer we can check that those specific versions are installed. The products that we need to check are the version of Visual Studio itself, the .NET package and the Windows SDK. ( your versions may vary from the screenshots, please use the Unreal release notes to verify your version )
+Epic asked for specific versions, and the **Individual components** tab of the installer is where you confirm you actually have them. Three things are worth checking: the Visual Studio version itself, the .NET version, and the Windows SDK version.
+
+*The screenshots below were captured against an older release and the version numbers in them will not match what you need. Use the documentation pages linked above as the source of truth, not the screenshots.*
 
 ![Compilers, Build Tools and Runtimes](./resources/compilers-buildtools-runtimes.png)
 ![SDKs, Libraries and Frameworks](./resources/sdk-libraries-frameworks.png)
@@ -31,7 +35,7 @@ Next up, I am going to assume you also have Unreal already installed, but for go
 
 ![Epic Games Launcher](./resources/epic-games-launcher.png)
 
-If you would like to make changes to the engine itself cloning and building is the way to go, but the Launcher makes it easy to get things up and running so that's what we will use for now. Everybody has an Epic Games account so we can "Sign In" and get the latest version of Unreal. Remember the download is about 17GB and it will take up 56GB once installed so make sure you have space when using Unreal (without debugging symbols included).
+If you would like to make changes to the engine itself, cloning and building is the way to go, but the Launcher makes it easy to get things up and running, so that is what we will use for now. Everybody has an Epic Games account, so we can sign in and get Unreal from there. Be aware that a modern engine install is large: tens of gigabytes downloaded, and well over a hundred once installed if you include debugging symbols. The Launcher shows you the current figures before you commit, so check there rather than trusting a number printed in a book.
 When we create the project, Unreal generates a new project directory and populate it with a .uproject file as well as Config, Content and Source directories. It will generate a visual studio solution for us and it begins build our project from source. When it's done we end up with an editor DLL for our project, and the editor then loads that module and opens up the project. Let’s take a look at how we could achieve this.
 
 - Create a new project using the Epic Games Launcher

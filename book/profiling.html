@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Profiling - Unreal Development</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="profiling.html" class="active"><strong aria-hidden="true">12.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html"><strong aria-hidden="true">12.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">12.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">12.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">12.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html"><strong aria-hidden="true">13.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Unreal Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="profiling"><a class="header" href="#profiling">Profiling</a></h1>
+<p>Up to this point the book has been about making a project build and run. This section is about
+finding out why it is slow, which is a different skill, and one that is mostly about refusing to
+guess.</p>
+<p>The material here comes from two talks by Epic's technical developer relations team, who profile
+other studios' games for a living. What makes them worth transcribing into a book is that they were
+not demonstrating on sample projects. They were handed two real, in-development games by studios who
+said outright that they had not started optimising yet, and worked through them in public. Every
+finding below has a cause, a measurement and a fix attached, which is the only form in which this
+kind of knowledge is actually useful.</p>
+<h2 id="the-method"><a class="header" href="#the-method">The method</a></h2>
+<p>One sentence carries the whole section:</p>
+<blockquote>
+<p><strong>Never guess. Always investigate. What is slow, why is it slow, and how do you fix it.</strong></p>
+</blockquote>
+<p>The failure mode this guards against is not laziness, it is plausibility. Performance problems come
+with a ready-made story (&quot;it's probably the shadows&quot;, &quot;it's the physics&quot;, &quot;that mesh looks heavy&quot;),
+and the story is frequently wrong in a way that costs a week. In one of the captures below a gap in
+the GPU timeline sat right next to something called <code>OcclusionCullPipe</code>, which made &quot;it's occlusion&quot;
+almost irresistible. It was not occlusion. It was the profiling tools' own overhead.</p>
+<p>Once you have a capture in front of you, the reading order is:</p>
+<ol>
+<li><strong>Find the big number.</strong> Scroll into it. Find out why it is big.</li>
+<li><strong>Find lots of little numbers.</strong> Five hundred things costing a microsecond each is also a big
+number, and it hides better.</li>
+<li><strong>Find numbers where there shouldn't be any.</strong> Work happening for something off screen, a system
+running in a game that does not use that system. These are the cheapest wins in the whole
+exercise, because the correct cost is zero.</li>
+</ol>
+<p>Then it is mechanical: click the tallest frame, find the cause, fix it, click the next one.</p>
+<h2 id="profile-on-hardware-that-means-something"><a class="header" href="#profile-on-hardware-that-means-something">Profile on hardware that means something</a></h2>
+<p>A development workstation is not a console and is not a player's PC. This matters more now than it
+used to: the render thread was parallelised in <strong>5.4</strong> and RHI translation in <strong>5.5</strong>, so Unreal
+scales across cores, and a machine with 64 of them will hide problems that a six-core
+machine will not. Half of the CPUs in the Steam hardware survey have six cores or fewer.</p>
+<p>Options, roughly in order of preference:</p>
+<ul>
+<li><strong>Real devkits:</strong> fixed hardware, consistent numbers, comparable between people.</li>
+<li><strong>PC handhelds used as consoles:</strong> a Steam Deck or ROG Ally is a fixed, known, modest hardware
+target that you can buy without a publishing agreement. Several studios use them as a poor
+developer's devkit, and it works well.</li>
+<li><strong>Deliberately different machines per developer:</strong> if everyone tests daily on different hardware
+you get broad coverage of GPUs, CPUs and drivers for free, at the cost of never having two
+comparable numbers.</li>
+<li><strong><code>-corelimit=14</code></strong> to make a workstation behave more like current-gen hardware. Not a substitute
+for the real thing, but it is one command-line flag.</li>
+</ul>
+<p>Whatever you pick, the point is <em>consistency</em>. A number you cannot compare to last week's number is
+not a measurement.</p>
+<h2 id="launch-parameters"><a class="header" href="#launch-parameters">Launch parameters</a></h2>
+<p>These all go on the command line of the build you are profiling. If the build was distributed through
+Steam, you do not need a special build to set them: right-click the game, <strong>Properties &gt; General &gt;
+Launch Options</strong>. (Distributing PC dev builds through a private Steam beta branch is a reasonable
+trick in general: you have already paid the fee, and you get the content delivery network.)</p>
+<h3 id="the-one-that-matters"><a class="header" href="#the-one-that-matters">The one that matters</a></h3>
+<pre><code>-trace=default,task
+</code></pre>
+<p><code>-trace</code> turns on tracing to Unreal Insights. On its own, with no argument, it uses a default set of
+channels and that is enough to start with. Everything else on this page is refinement.</p>
+<p><strong>A note on the default channel set:</strong> it has changed across releases, and Epic's own documentation
+and their own conference talks currently disagree about what it contains. So this book is not going
+to print a list. Check <code>TraceAuxiliary.cpp</code> in the engine source, or simply start a trace and look at
+what the Insights front end reports. This is the first of several places in this section where the
+source is faster and more trustworthy than documentation about the source.</p>
+<p>The Insights front end is <code>UnrealInsights.exe</code>, in <code>{UE-Binaries}</code>. No shortcut is created for you;
+make one. If it is already running when a traced game starts, it connects automatically and the
+session shows up in its list.</p>
+<h3 id="channels-worth-adding"><a class="header" href="#channels-worth-adding">Channels worth adding</a></h3>
+<p><strong><code>task</code></strong> draws arrows showing which task a thread is blocked on, and what that task was waiting
+for in turn. Without it, &quot;waiting for task&quot; is where profiling stops and guessing begins; with it you
+follow the chain. It carries overhead, which is why it is not on by default, but by the time you are
+taking a capture, something is usually already wrong, so pay it.</p>
+<p><strong><code>counters</code></strong> adds per-frame counters, and a surprising amount of value for one word:</p>
+<ul>
+<li>Platform memory: total and available physical for the system, used physical for the process.</li>
+<li>Primitive component count and draw calls after CPU culling, plus the GPU adapter name.</li>
+<li>Chaos solver body counts: kinematic, dynamic, total. The number of physics shapes actually active
+each frame, which the <a href="./profiling_physics.html">Physics</a> page leans on heavily.</li>
+<li>Scene lights.</li>
+<li><strong>UObject count:</strong> added in 5.8, by one of the speakers, in about two lines of code.
+A useful reminder that the profiler is engine code you are allowed to extend when it does not tell
+you what you need.</li>
+</ul>
+<p><strong><code>loadtime</code></strong> turns on the Loading track in the timing view (press <strong>L</strong>) and adds an <strong>Asset
+Loading</strong> tab. It shows CPU-side package processing, not pak or IO Store reads, which is the right
+thing to care about because the CPU-side work is where the extra processing happens. The <strong>Requests</strong>
+table gives each load request's duration <em>including everything it dragged in</em>, and the package count.
+That table is how you discover that opening a main menu loaded 8,300 packages.</p>
+<p><strong><code>stats</code></strong> forwards Unreal's whole <code>stat</code> system into Insights. Pure overhead if you do not need
+it, but it carries video memory counters and navigation memory. Concretely: it is how one team found
+100 MB going to navigation data in a game with no navigation.</p>
+<h3 id="quality-of-life-flags"><a class="header" href="#quality-of-life-flags">Quality-of-life flags</a></h3>
+<p><strong><code>-statnamedevents</code></strong> traces additional named events, so Insights shows you far more function
+names. It is not free: measured at roughly <strong>20% overhead</strong> on one of the games profiled. At that
+cost it is the wrong flag for &quot;are we hitting our frame budget?&quot; and the right flag for
+&quot;why aren't we?&quot;</p>
+<p>The payoff looks like this. Without it, an animation Blueprint shows up as a 100-microsecond block:
+mildly annoying, maybe just what animation Blueprints cost. With it, that block resolves into <strong>16
+ray casts into the physics scene, per character, per frame</strong>, all of them tracing straight down at the
+ground and most of them redundant. That is not a performance mystery any more, it is a bug with an
+obvious fix.</p>
+<p><strong><code>-execcmds=&quot;stat unitgraph,stat fps&quot;</code></strong> runs console commands after engine initialisation.
+<code>stat unitgraph</code> gives a rolling graph of recent frame times in the corner, so you can <em>see</em> a hitch
+happen instead of staring at a number; <code>stat fps</code> adds the frame rate.</p>
+<p><strong><code>-noverifygc</code></strong>. Development builds spend extra time verifying the garbage collector's
+assumptions. That verification is useful, since it catches real mistakes in C++ code, but
+it roughly doubles how long garbage collection takes, and every GC then shows up in your capture as a
+hitch. You click it, you investigate it, and it turns out to be the verification. Turn it off when
+you are measuring performance rather than correctness. It does not run in shipping builds anyway.</p>
+<p><strong><code>-dpcvars=&quot;gc.VerifyAssumptionsOnFullPurge=0&quot;</code></strong> overrides console variables at launch.</p>
+<p>This one deserves an explanation, because you would never guess its use from its name. <code>dpcvars</code>
+stands for <em>device profile cvars</em>, and it is called that purely because the device profile team
+happened to be the first group that needed a way to override cvars at startup. The name records who
+asked for it, not what it does. What it actually does, and the reason to prefer it over
+<code>-execcmds</code> for setting cvars, is run <strong>before engine initialisation</strong>, which means it can override
+<strong>read-only</strong> cvars that <code>-execcmds</code> cannot touch.</p>
+<p>That is a small thing, but it is a good illustration of a general rule about this engine: names
+frequently describe history rather than intent, and the way you find out what something really does
+is to read it.</p>
+<p><strong><code>-logcmds=&quot;log LogGarbage verbose&quot;</code></strong> sets per-category log verbosity. <code>LogGarbage</code> at verbose
+prints detailed timings for every phase of garbage collection <em>and</em> the UObject count, which is
+otherwise awkward to get out of a running game.</p>
+<p>Honest caveat: verbose logging costs real time, since the text has to be formatted, flushed and
+written, and can itself appear as hitches. But it appears in the profiler as logging, so it is
+visible rather than mysterious, which is the distinction that matters.</p>
+<p><strong><code>-handleensurepercent=0</code></strong>. An <code>ensure()</code> that fires does a stack walk and writes a dump, which can
+take the better part of a second. Insights shows you none of that work; you just get an unexplained
+hole in the timeline that no amount of scrolling explains. The default is 100 (handle all of them).
+Set it to 0 when you are measuring performance rather than stability.</p>
+<p><strong><code>-attachpix</code></strong> is required, or PIX will not pick up the process.</p>
+<h2 id="when-insights-is-not-enough"><a class="header" href="#when-insights-is-not-enough">When Insights is not enough</a></h2>
+<p>Unreal Insights is <strong>telemetry</strong>. It shows you what somebody instrumented. That is enormously
+valuable and also a hard limit: if the slow thing has no trace event around it, Insights will show
+you a gap and nothing else.</p>
+<p>A <strong>sampling profiler</strong> takes the opposite approach. It needs only symbols for your executable, and
+it captures the entire C++ call stack thousands of times per second: everything, instrumented or
+not. When you have a hitch that Insights has no explanation for, this is the tool.</p>
+<ul>
+<li><strong>Superluminal</strong> is paid, inexpensive, and very good.</li>
+<li><strong>PIX for Windows</strong> is free, from Microsoft, and built for game developers.</li>
+<li>Platform vendors ship their own for consoles, mobile and XR.</li>
+</ul>
+<p>Roughly double the overhead, and you can run one alongside Insights so you have both views of the
+same moment. Insights gained its own sampling profiler in 5.7.</p>
+<h2 id="make-it-repeatable"><a class="header" href="#make-it-repeatable">Make it repeatable</a></h2>
+<p>A measurement you cannot reproduce is an anecdote. Three cheap habits:</p>
+<ul>
+<li><strong><code>BugIt</code> / <code>BugItGo</code></strong>, introduced in <a href="./iteration_speed.html">Iteration Speed</a>. <code>BugIt</code> puts a
+command on your clipboard that returns any player to your exact camera position and rotation. For
+profiling this is how you take the same capture twice.</li>
+<li><strong>Record your screen alongside the capture.</strong> OBS is free. With <code>stat unitgraph</code> visible you can
+line up a spike in the recording with a spike in the trace and see what was actually on screen when
+it happened. Insights can also embed screenshots directly into a trace.</li>
+<li><strong>Add a console command that jumps to a known point.</strong> If you profile the same cinematic or the
+same encounter repeatedly, spending twenty minutes on a command that skips straight there pays for
+itself within a day.</li>
+</ul>
+<h2 id="the-rest-of-this-section"><a class="header" href="#the-rest-of-this-section">The rest of this section</a></h2>
+<ul>
+<li><strong><a href="./profiling_reading_a_capture.html">Reading a Capture</a></strong>: how to read Unreal Insights without
+bouncing off it, and what real findings look like.</li>
+<li><strong><a href="./profiling_uobjects.html">UObjects and Garbage Collection</a></strong>: object counts, GC cost, and how to
+find out what is keeping something alive.</li>
+<li><strong><a href="./profiling_physics.html">Physics</a></strong>: the default that costs almost every project time, and the
+tool that shows it to you.</li>
+<li><strong><a href="./profiling_gpu.html">GPU</a></strong>: GPU captures, Nanite bins, shadows, translucency and foliage.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="conclusion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="profiling_reading_a_capture.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="conclusion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="profiling_reading_a_capture.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

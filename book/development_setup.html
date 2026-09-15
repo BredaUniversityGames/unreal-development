@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html" class="active"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html" class="active"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="profiling.html"><strong aria-hidden="true">12.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html"><strong aria-hidden="true">12.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">12.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">12.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">12.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html"><strong aria-hidden="true">13.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,11 +135,13 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="development-tools"><a class="header" href="#development-tools">Development Tools</a></h1>
-<p>Before we dive into the exciting world of game engines and compilers, let's talk about two essential <strong>tools every developer needs: a trusty text editor and a reliable terminal.</strong> And guess what? With VS Code, you get both bundled in one neat package! Now, I know there are alternatives out there like Sublime Text and Cmder, but for this walkthrough, I'll be sticking with VS Code—it's my go-to choice when working with Unreal Engine.</p>
+<p>Before we get to game engines and compilers, two <strong>tools every developer needs: a trusty text editor and a reliable terminal.</strong> And guess what? With VS Code, you get both bundled in one neat package! Now, I know there are alternatives out there like Sublime Text and Cmder, but for this walkthrough, I'll be sticking with VS Code, my go-to choice when working with Unreal Engine.</p>
 <h3 id="why-vs-code-you-ask"><a class="header" href="#why-vs-code-you-ask">Why VS Code, you ask?</a></h3>
 <p>Let me break it down for you. VS Code doesn't clutter your workspace, it's highly customizable to match your preferences, packed with awesome features, and incredibly lightweight and responsive. Even when dealing with massive codebases like Unreal, it won't drag you down.</p>
 <h3 id="what-about-visual-studio"><a class="header" href="#what-about-visual-studio">What about Visual Studio?</a></h3>
-<p>Unreal Engine is designed to integrate smoothly with Visual Studio, allowing you to make code changes in your projects “quickly” and &quot;easily&quot;, and “immediately” see results upon compilation but it's essential to understand that for Unreal, <strong>the Visual Studio IDE serves primarily as a frontend.</strong> Unreal doesn't utilize the Visual Studio “toolset” directly for building; instead, it relies on a batch script that invokes builds for your target platform. However, the Visual Studio installation comes with certain features that are required to invoke builds (on Windows) so in order to use VS Code we have to go through the process of installing Visual Studio.</p>
+<p>Unreal Engine integrates with Visual Studio, and that integration is good: you can change C++ and see the result without restarting the editor. That mechanism is called <strong>Live Coding</strong>, it is on by default, and it is not a Visual Studio feature at all. It is triggered from the editor with <code>Ctrl+Alt+F11</code> and works exactly the same from VS Code. The <a href="./iteration_speed.html">Iteration Speed</a> chapter covers what it can and cannot patch.</p>
+<p>What is worth understanding is that for Unreal, <strong>the Visual Studio IDE serves primarily as a frontend.</strong> Unreal does not use Visual Studio's build system; it uses its own, driven by a batch script that invokes builds for your target platform. The solution and project files that get generated are a Visual Studio compatible view onto that process, not the process itself.</p>
+<p>Visual Studio's <em>installer</em>, however, is how you get the C++ toolchain, the Windows SDKs and the .NET runtime that Unreal actually needs on Windows. So even if you never open the IDE, you still install it.</p>
 <h2 id="installing-vs-code"><a class="header" href="#installing-vs-code">Installing VS Code</a></h2>
 <p><img src="./resources/download-vs-code.png" alt="Download Visual Studio Code" /></p>
 <p>Here's how to get started:</p>
@@ -150,10 +152,11 @@
 <ul>
 <li>C++ IntelliSense: Your coding buddy that provides smart suggestions and auto-completions.</li>
 <li>Visual Studio Keymaps: For those familiar shortcuts to keep your workflow smooth.</li>
-<li>Tasks: We'll get into this later.</li>
+<li>Tasks: see <a href="./quality_of_life_improvements.html">quality of life improvements</a>.</li>
 </ul>
 </li>
 </ul>
+<p><em>Note: Epic's own <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-code-for-unreal-engine">VS Code setup page</a> currently recommends Microsoft's <strong>C/C++ Extension Pack</strong> (which bundles C++ IntelliSense) and the <strong>C#</strong> extension. The latter matters because UnrealBuildTool and friends are C# programs, so you get IntelliSense in <code>.Build.cs</code> and <code>.Target.cs</code> files too. That matters more than it sounds: those are the files this book spends two chapters writing.</em></p>
 <p><img src="./resources/c-cpp-code-extension.png" alt="C/C++ - VS Code Extension" />
 <img src="./resources/visual-studio-keymap-code-extension.png" alt="Visual Studio Keymap - VS Code Extension" />
 <img src="./resources/tasks-code-extension.png" alt="Tasks - VS Code Extension" /></p>
@@ -176,7 +179,7 @@
 <p><img src="./resources/dracula-code-extension.png" alt="Dracula - VS Code Extension" />
 <img src="./resources/icons-code-extension.png" alt="Icons - VS Code Extension" /></p>
 <h3 id="optional-vs-code---launch-from-windows-explorer-windows-only"><a class="header" href="#optional-vs-code---launch-from-windows-explorer-windows-only">[Optional] VS Code - Launch from Windows Explorer (Windows Only)</a></h3>
-<p>For seamless integration, follow these steps:</p>
+<p>Here is how to set that up:</p>
 <ul>
 <li>Open the Start menu and search for &quot;environment variables.&quot;</li>
 <li>Access the &quot;Edit the system environment variables&quot; dialog.</li>
@@ -189,17 +192,43 @@
 <li>Open the Task Manager and restart Explorer.exe to finalize the changes (this will refresh everything related to Windows Explorer).</li>
 </ul>
 <p><img src="./resources/edit-environment-variables.png" alt="Edit Environment Variables" /></p>
-<p>Equipped with these essential tools, you're primed to traverse the intricacies of game development using VS Code. With precision and proficiency, let us embark on this journey into the realm of coding excellence.</p>
+<p>That covers the editor. The other half of the setup is the toolchain Unreal actually compiles with, which is where Visual Studio comes in.</p>
 <h2 id="installing-visual-studio"><a class="header" href="#installing-visual-studio">Installing Visual Studio</a></h2>
 <p><img src="./resources/download-visual-studio-installer.png" alt="Download Visual Studio Installer" /></p>
-<p>When it comes to installing Visual Studio, it's not as straightforward as opting for the latest version. Unreal Engine has specific requirements regarding the version of Visual Studio and its components. To determine the compatible version, you'll need to consult the <a href="https://docs.unrealengine.com/5.0/en-US/unreal-engine-5.0-release-notes/">release notes</a> corresponding to your chosen version of Unreal Engine. For instance, if you're using Unreal Engine 5.0, refer to the release notes and navigate to the &quot;Build farm&quot; section to identify the officially supported version.</p>
+<p>Installing Visual Studio is not as simple as taking the latest version. Unreal has specific requirements about the version of Visual Studio <em>and</em> which of its components are installed, and those requirements move with every engine release.</p>
+<p>Two pages are authoritative, and they are the ones to check rather than trusting anything written here:</p>
+<ul>
+<li><a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/hardware-and-software-specifications-for-unreal-engine">Hardware and Software Specifications</a>: which Visual Studio version Epic expects.</li>
+<li><a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine">Setting Up Visual Studio Development Environment for C++ Projects</a>: the exact workloads and individual components, by name.</li>
+</ul>
+<p>For Unreal Engine 5.8, Epic's guidance is <strong>Visual Studio 2026 for general development</strong>, with <strong>.NET 10.0</strong> as both the minimum and the recommended version. Visual Studio 2022 version 17.14 or later still builds 5.8, and is still required for Nintendo platforms and for AGDE below v26.1.102, so if you already have 2022 installed and working, you are not stranded.</p>
 <p><img src="./resources/unreal-engine-build-farm-output.png" alt="Unreal Engine Release Notes - Build Farm" /></p>
-<p>While it's not mandatory to install the exact version specified in the release notes, it's advisable for team collaboration and to minimize potential build issues. However, if you already have a newer version installed, downgrading isn't necessary, but keep in mind potential compatibility issues.</p>
-<p>To install Visual Studio, download the installer from the <a href="https://visualstudio.microsoft.com/vs/">official website</a> and run it. The Visual Studio Installer allows you to select and install various components, including the Visual C++ toolset, debugger, runtime SDKs, and more. Additionally, I recommend installing the .NET workload, as many external tools used within Unreal Engine are written in C#. This ensures compatibility and provides flexibility if you ever need to build these tools from source.</p>
+<p>Matching your team is worth more than matching Epic exactly. Build problems that only reproduce on one machine are very often a toolchain difference, so agreeing on one version across a team removes an entire category of &quot;works on mine&quot;.</p>
+<p>Download the installer from the <a href="https://visualstudio.microsoft.com/vs/">official website</a> and run it. In the <strong>Workloads</strong> tab, select:</p>
+<ul>
+<li><strong>Desktop development with C++</strong>: the compiler, linker and debugger.</li>
+<li><strong>Game development with C++</strong>: the Unreal-specific pieces.</li>
+<li><strong>.NET desktop development</strong>: UnrealBuildTool, UnrealHeaderTool and most of Unreal's other tools are C# programs. You need this to run them, and you need it if you ever want to build them from source.</li>
+</ul>
+<p>Then open <strong>Installation details</strong>, expand <em>Game development with C++</em>, and make sure these individual components are ticked:</p>
+<ul>
+<li><strong>C++ profiling tools</strong></li>
+<li><strong>C++ AddressSanitizer</strong></li>
+<li><strong>Windows 10 or 11 SDK (10.0.18362 or newer)</strong></li>
+<li><strong>Unreal Engine installer</strong></li>
+</ul>
 <p><img src="./resources/desktop-development-with-cpp.png" alt="Desktop Development With C++" />
 <img src="./resources/net-desktop-development.png" alt=".NET Desktop Development" /></p>
-<p>Before proceeding to the <a href="./creating_unreal_project_from_scratch.html">next section</a>, verify that the versions of Visual Studio, .NET package, and Windows SDK match the requirements specified in the Unreal release notes. This approach ensures a smooth development experience and minimizes compatibility hurdles down the line.</p>
-<p>For more information about setting up Visual Studio and some additional tips and tricks on how to modify Visual Studio as an IDE, you can visit the official documentation of Unreal: <a href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/">Unreal Engine: Visual Studio Setup</a></p>
+<p>Before proceeding to the <a href="./creating_unreal_project_from_scratch.html">next section</a>, verify that your Visual Studio version, .NET version and Windows SDK match what the two pages above ask for. Getting this wrong does not produce a clear error message. It produces a confusing link failure three chapters from now. You can also take a look at the <a href="./official_development_setup.html">recommended workflow</a> by Epic on how to set up a project for beginners.</p>
+<h3 id="debugging-from-vs-code"><a class="header" href="#debugging-from-vs-code">Debugging from VS Code</a></h3>
+<p>The book sets up VS Code to <em>build</em> in the <a href="./quality_of_life_improvements.html">Quality of Life</a> chapter, but building is only half of it. Sooner or later you will want to stop on a breakpoint.</p>
+<p>You do not have to write a <code>launch.json</code> by hand. Unreal generates one for you:</p>
+<ul>
+<li>From the editor: <strong>Tools &gt; Refresh Visual Studio Code Project</strong></li>
+<li>Or from the command line: <code>GenerateProjectFiles.bat -vscode</code></li>
+</ul>
+<p>Either produces a <code>.code-workspace</code> file in your project folder along with launch configurations. Pick the <strong>Development Editor</strong> variant in the configuration dropdown (not the standalone or shipping ones) and press <strong>F5</strong> to build and launch under the debugger. The editor must not already be running when you start a debug session, since the debugger needs to launch the process itself.</p>
+<p>For more information about setting up Visual Studio and some additional tips and tricks on how to modify Visual Studio as an IDE, you can visit the official documentation of Unreal: <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine">Unreal Engine: Visual Studio Setup</a></p>
 
                     </main>
 
@@ -208,7 +237,7 @@
                             <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="creating_unreal_project_from_scratch.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="official_development_setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -220,7 +249,7 @@
                     <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="creating_unreal_project_from_scratch.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="official_development_setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

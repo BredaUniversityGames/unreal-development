@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html" class="active"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html" class="active"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="profiling.html"><strong aria-hidden="true">12.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html"><strong aria-hidden="true">12.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">12.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">12.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">12.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html"><strong aria-hidden="true">13.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -144,7 +144,7 @@
 <li>CTRL + Tilde (~)</li>
 <li>Type <code>{UE-BatchFiles}/Build.bat</code>
 <ul>
-<li><code>I:\Epic Games Unreal Engine\UE_5.3\Engine\Build\BatchFiles\Build.bat</code></li>
+<li>e.g. <code>C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\Build.bat</code></li>
 </ul>
 </li>
 <li>Define a Target that you would like to build
@@ -167,13 +167,13 @@
 </ul>
 </li>
 </ul>
-<pre><code class="language-shell">{UE-BatchFiles}/Build.bat Patrol Win64 Development “{project_path}/Patrol.uproject&quot; -waitMutex -NoHotReload
+<pre><code class="language-shell">{UE-BatchFiles}/Build.bat Patrol Win64 Development &quot;{project_path}/Patrol.uproject&quot; -waitMutex -NoHotReload
 </code></pre>
-<p><em>Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&amp;“</em></p>
+<p><em>Note: if the path contains spaces, wrap it in straight double quotes (<code>&quot;</code>) and start the command with <code>&amp;</code>, PowerShell's call operator.</em></p>
 <p><img src="./resources/unreal-generated-binaries.png" alt="Generated Binaries" /></p>
 <h2 id="cooking-content"><a class="header" href="#cooking-content">Cooking Content</a></h2>
-<p>Before running our executable, we must first take the essential step of preparing our content also known as &quot;cooking&quot;. <strong>In the realm of Unreal, content assets are stored in specific internal formats,</strong> such as PNG for textures and WAV for audio. However, this content needs to be converted to different formats for the various platforms, either because the platform uses a proprietary format, does not support the format Unreal uses to store the asset, or a more memory- or performance-effective format exists.</p>
-<p>This conversion process, <strong>known as &quot;cooking,&quot;</strong> is crucial for the seamless integration of content into the final game. We can start this process either through command-line operations or by utilizing in-editor tools. It's important to note that, for some platforms, all content must undergo the cooking process before it can be used on the device to ensure proper functionality. You should verify with the specifications of the platform they are targeting to ensure compliance with these requirements.</p>
+<p>Before running our executable, we must first take the essential step of preparing our content also known as &quot;cooking&quot;. <strong>Unreal stores content assets in its own internal formats,</strong> such as PNG for textures and WAV for audio. However, this content needs to be converted to different formats for the various platforms, either because the platform uses a proprietary format, does not support the format Unreal uses to store the asset, or a more memory- or performance-effective format exists.</p>
+<p>That conversion is <strong>called &quot;cooking&quot;</strong>, and you can run it from the command line or from the in-editor tools. On some platforms every asset has to be cooked before the device can load it at all. You should verify with the specifications of the platform they are targeting to ensure compliance with these requirements.</p>
 <p>There are <strong>two ways to cook content</strong> for your projects</p>
 <ul>
 <li><strong>by the book</strong></li>
@@ -187,11 +187,11 @@
 <p>When you choose to cook content on the fly (COTF), it will <strong>delay cooking it until after the game has been deployed to the platform</strong>. Only the executable and some other basic files are installed, which use network communication with a Cook Server to make requests on-demand as the content is needed. COTF allows for faster iteration for developers who will be making changes to content regularly or those who will only be exploring sections of the game.</p>
 <p>To cook on the fly, you will first need to start a Cook Server on a machine which has the full project available to it. This can be either your local machine or a remote server which performs the cook.</p>
 <p>Cooking on the fly is specified with the command-line argument: <code>-cookonthefly</code>. This launches a server which waits for a game to connect and then serves the cooked data as needed. Requires <code>-filehostip=&lt;Server IP&gt;</code> on the game's command line to connect with the server.</p>
-<p>For more information on how to cook on the fly please visit the <a href="https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Deployment/BuildOperations/">Official Documentation</a></p>
+<p>For more information on how to cook on the fly please visit the <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/build-operations-cooking-packaging-deploying-and-running-projects-in-unreal-engine">Official Documentation</a></p>
 <h3 id="cooking-our-content"><a class="header" href="#cooking-our-content">Cooking our Content</a></h3>
 <p>Given that we've already executed our entire pipeline via the command line, it's sensible to continue with the cooking process using the same method. We will cook our content <code>By the book</code> as we don't have or own a server to hook up.</p>
 <ul>
-<li>Run {UE-Binaries}\UnrealEditor-Cmd.exe</li>
+<li>Run <code>{UE-Binaries}\UnrealEditor-Cmd.exe</code></li>
 <li>Define a Target that you would like to build
 <ul>
 <li><code>{projectname}</code></li>
@@ -206,15 +206,15 @@
 <ul>
 <li><code>targetplatform=Windows</code>
 <ul>
-<li>Additional platforms could be added here: - <code>targetplatform=Windows+PS4+XboxOne</code></li>
+<li>Additional platforms are added with <code>+</code>, e.g. <code>-TargetPlatform=Windows+PS5+XSX</code>. You need the matching platform SDK installed for each one.</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<pre><code class="language-shell">{UE-Binaries}\UnrealEditor-Cmd.exe&quot; “${project_path}\Patrol.uproject -run=Cook -TargetPlatform=Windows
+<pre><code class="language-shell">{UE-Binaries}\UnrealEditor-Cmd.exe &quot;{project_path}\Patrol.uproject&quot; -run=Cook -TargetPlatform=Windows
 </code></pre>
-<p><em>Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&amp;“</em></p>
+<p><em>Note: if the path contains spaces, wrap it in straight double quotes (<code>&quot;</code>) and start the command with <code>&amp;</code>, PowerShell's call operator.</em></p>
 <p>Other command-line arguments for the cooking process are as followed:</p>
 <table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody>
 <tr><td><strong>iterate</strong></td><td>Specifies the cooker only cook items that are out of date. Without this option, the sandbox directory is deleted and everything is recooked.</td></tr>
@@ -224,18 +224,51 @@
 <tr><td><strong>CookAll</strong></td><td>Cooks everything.</td></tr>
 <tr><td><strong>Compressed</strong></td><td>Tells the cooker to compress the cooked packages.</td></tr>
 </tbody></table>
-<p>After our content is cooked, we end up with a Saved/Cooked directory. This is where our standalone game exectuable will find all the assets it needs to load at runtime</p>
+<h3 id="when-a-cook-complains"><a class="header" href="#when-a-cook-complains">When a cook complains</a></h3>
+<p>Sooner or later a cook will emit a warning that names no asset, something like <em>&quot;cooked packages
+2887&quot;</em> followed by a complaint, with no indication of which of those 2887 assets is the problem. Two
+settings in <strong>Project Settings &gt; Cooker</strong> turn that from a guessing game into an answer:</p>
+<ul>
+<li><strong>Cooker Progress Display Mode</strong> set to show <strong>names</strong> makes the cooker log the asset it is
+currently working on, so whatever warning fires next is attributable to the line above it.</li>
+<li>The same setting can show <strong>instigators</strong>: <em>what pulled this asset into the cook in the first
+place</em>. This is the more valuable of the two, because the usual reaction to an unexpected asset in
+a cook is &quot;why is that even in here?&quot;, and instigators answer exactly that. It is the cook-time
+equivalent of the Reference Viewer described in
+<a href="./for_designers_and_artists.html">For Designers and Artists</a>.</li>
+</ul>
+<p>The same settings are reachable as the <code>cook.displaymode</code> console variable, which is what you want
+when the cook is running on a build machine rather than your desk. The full list lives in the
+<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/cooker-settings-in-the-unreal-engine-project-settings">Cooker Settings documentation</a>.</p>
+<p><em>One thing that saves real time: cooking depends on the <strong>target platform</strong>, not
+on the build configuration. The editor's Cook button says it cooks &quot;for the selected configuration
+and target&quot;, but the cook commandlet does not take configuration into account. Configuration starts
+to matter later, at packaging and staging. So switching between Development and Shipping does not
+require you to re-cook.</em></p>
+<p>After our content is cooked, we end up with a Saved/Cooked directory. This is where our standalone game executable will find all the assets it needs to load at runtime</p>
 <p><img src="./resources/unreal-cooked-assests-location.png" alt="Cooked Assets" /></p>
 <p>Now we can run our game this should be functionally the same as running from editor binaries, except we're now using cooked data loaded straight from disk the engine isn't building any assets on demand at runtime. We've still built in the Development configuration, though, so we have access to all the same developer tools.</p>
 <ul>
-<li>Run {projectdirectory}/Binaries/Win64/{projectname}.exe</li>
+<li>Run <code>{project_path}/Binaries/Win64/{projectname}.exe</code></li>
 <li>Define <code>-log</code></li>
-<li>Define <code>-windowed resx=1280 resy=720</code></li>
+<li>Define <code>-windowed -ResX=1280 -ResY=720</code></li>
 </ul>
-<pre><code class="language-shell">${projectdirectory}/Binaries/Win64/{projectname}.exe -log -windowed -resx-1280 -resy=720
+<pre><code class="language-shell">{project_path}/Binaries/Win64/{projectname}.exe -log -windowed -ResX=1280 -ResY=720
 </code></pre>
-<p><em>Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&amp;“</em></p>
+<p><em>Note: if the path contains spaces, wrap it in straight double quotes (<code>&quot;</code>) and start the command with <code>&amp;</code>, PowerShell's call operator.</em></p>
 <p><img src="./resources/unreal-standalone-game.png" alt="Standalone Game" /></p>
+<h3 id="running-a-build-against-someone-elses-cooked-content"><a class="header" href="#running-a-build-against-someone-elses-cooked-content">Running a build against someone else's cooked content</a></h3>
+<p>There is one more command-line argument to cover here, because it solves a problem that
+otherwise costs an afternoon. Suppose a bug only reproduces in a build someone else packaged, a
+Shipping build on Steam for instance, and you want to attach a debugger to it. You cannot debug Shipping
+comfortably, and re-cooking the whole project locally at the matching revision is slow.</p>
+<p>You do not have to. <code>-BaseDir=</code> tells an executable where to consider its installation to be:</p>
+<pre><code class="language-shell">{project_path}/Binaries/Win64/{projectname}.exe -BaseDir=&quot;C:/path/to/the/packaged/build/Binaries/Win64&quot;
+</code></pre>
+<p>From then on it uses that directory's cooked content, save games, config and logs. Which means you
+can build a <strong>Development</strong> or <strong>Debug</strong> executable locally, point it at a Shipping build's cooked
+data, and step through the problem with full symbols. (<code>-BaseFromWorkingDir</code> is the variant that
+infers the same thing from the working directory instead of being told.)</p>
 <p>So sure, we don't need to use Visual Studio to build and run our project. That's cool and all but having to invoke this batch file with these specific arguments is kind of a pain in the a**. In the <a href="./quality_of_life_improvements.html">next section</a> we will introduce some quality of life improvements to prevent this.</p>
 
                     </main>

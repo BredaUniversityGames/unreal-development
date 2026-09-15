@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">2.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">5.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">6.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">7.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">8.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">9.</strong> Conclusion</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Template</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html" class="active"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="profiling.html"><strong aria-hidden="true">12.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html"><strong aria-hidden="true">12.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">12.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">12.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">12.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html"><strong aria-hidden="true">13.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -139,18 +139,18 @@
 <h2 id="open-in-editor"><a class="header" href="#open-in-editor">Open in Editor</a></h2>
 <p>To open your project: </p>
 <ul>
-<li>Run ${Unreal-Install-Dir}/Engine/Binaries/Win64/UnrealEditor.exe</li>
+<li>Run <code>{UE-Binaries}/UnrealEditor.exe</code></li>
 <li>Define the path to your .uproject</li>
 <li>Define -log</li>
 </ul>
 <p>The full command should look like this: </p>
-<pre><code class="language-shell">{UE-Bin}/UnrealEditor.exe “{project_path}/Patrol.uproject&quot; -log
+<pre><code class="language-shell">{UE-Binaries}/UnrealEditor.exe &quot;{project_path}/Patrol.uproject&quot; -log
 </code></pre>
-<p><em>Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&amp;“</em></p>
+<p><em>Note: if the path contains spaces, wrap it in straight double quotes (<code>&quot;</code>) and start the command with <code>&amp;</code>, PowerShell's call operator.</em></p>
 <p>Since this is our first time booting up the project, we can see the Editor writing out some new files in our project directory.</p>
 <ul>
 <li><strong>Saved</strong> contains logs and other files created at runtime, either by the game or the editor</li>
-<li><strong>Derived Data Cache</strong> where the editor can cache data that it has built for specfic assets</li>
+<li><strong>Derived Data Cache</strong> where the editor can cache data that it has built for specific assets</li>
 <li><strong>Content</strong> which maps directly to our project's assets in the Content Browser</li>
 <li><strong>Config</strong> project configuration changes have been stored in .ini files</li>
 </ul>
@@ -162,9 +162,9 @@
 <li>If the data is not found, then it is first generated, then asynchronously copied into the caches so it is available for you (and potentially your team) in the future.</li>
 </ul>
 <p>Content stored in the DDC is disposable, and can be regenerated at any time using the data stored in the .uasset file. Storing these derived formats externally makes it possible to easily add or change the formats used by the engine without needing to modify the source Asset file.</p>
-<p>For more information about DDC please visit the <a href="https://docs.unrealengine.com/5.3/en-US/derived-data-cache/">Official Documentation</a>.</p>
+<p>For more information about DDC please visit the <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/using-derived-data-cache-in-unreal-engine">Official Documentation</a>.</p>
 <h3 id="altering-our-project"><a class="header" href="#altering-our-project">Altering our project</a></h3>
-<p>As we get ready to showcase our project, I'm going to shake things up a bit and tweak the defaults to give it some extra flavor. When we fire up the &quot;Standalone Editor&quot; and &quot;Standalone Game&quot; for testing, we'll be making sure our special map and engine settings are all loaded up correctly. To view the changes I made please navigate to the following <a href="./altering_the_project.html">page</a>.</p>
+<p>Before we show the project off, I'm going to shake things up a bit and tweak the defaults to give it some extra flavor. When we fire up the &quot;Standalone Editor&quot; and &quot;Standalone Game&quot; for testing, we'll be making sure our special map and engine settings are all loaded up correctly. To view the changes I made please navigate to the following <a href="./altering_the_project.html">page</a>.</p>
 <h2 id="open-in-standalone-editor"><a class="header" href="#open-in-standalone-editor">Open in Standalone Editor</a></h2>
 <p>Opening the Editor is cool, but as a developer we might not always need full control of the Editor this is why we can specify the <code>-game</code> flag to the previously defined command mentioned in the &quot;Open in Editor&quot; section. Like any program the Unreal Editor accepts different types of command-line arguments. When passing it different arguments the application (in this case the Unreal Editor) will react differently. Previously we only mentioned the command-line argument <code>-log</code> to display a log window while the application is running. When we specify the <code>-game</code> flag we ask the Editor to launch itself as a game client instead of the full application. </p>
 <p>Several useful commands to remember when running in Standalone mode are as followed:</p>
@@ -175,13 +175,19 @@
 <tr><td><strong>-fullscreen</strong></td><td>Flag</td><td>Launch the client in full-screen mode.</td></tr>
 <tr><td><strong>-ResX=&lt;HORIZONTAL_RES&gt; -ResY=&lt;VERTICAL_RES&gt;</strong></td><td>Key-Value Pair</td><td>Specify the horizontal (X) and vertical (Y) resolution size for a client. Example: -ResX=1920 -ResY=1080</td></tr>
 </tbody></table>
-<p>For more information about how to create custom command line arguments, customize command line arguments or other types of command line arguments such as graphics command line arguments please visit the <a href="https://docs.unrealengine.com/5.3/en-US/command-line-arguments-in-unreal-engine/">Official Documentation</a>.</p>
+<p>For more information about how to create custom command line arguments, customize command line arguments or other types of command line arguments such as graphics command line arguments please visit the <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/command-line-arguments-in-unreal-engine">Official Documentation</a>.</p>
 <p>To run our the editor as a single game client we run the following command: </p>
-<pre><code class="language-shell">{UE-Bin}/UnrealEditor.exe “{project_path}/Patrol.uproject&quot; -log -game -ResX=1280 -ResY=720
+<pre><code class="language-shell">{UE-Binaries}/UnrealEditor.exe &quot;{project_path}/Patrol.uproject&quot; -log -game -ResX=1280 -ResY=720
 </code></pre>
-<p><em>Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&amp;“</em></p>
+<p><em>Note: if the path contains spaces, wrap it in straight double quotes (<code>&quot;</code>) and start the command with <code>&amp;</code>, PowerShell's call operator.</em></p>
 <p><img src="./resources/run-standalone-editor.png" alt="Run Standalone Editor" /></p>
-<p>This is a fully playable instance of our game. We can fly around and we can use console commands as this is still a development build. This results in a quick way to test out the game in a development setting running from editor binaries. Because we are running from editor binaries we need this full installation of Unreal Engine in order to run the build. When we want to ship our game and avoid people having to install the entire Engine we need a standalone version of our project, that's what our non-editor target is for, in the <a href="./running_a_game.html">next section</a> we will demonstrate how we can run our game without the Editor attached. </p>
+<p><em>Note: this same thing is reachable without typing anything: right-click the <code>.uproject</code> file and
+choose <strong>Launch Game</strong>. Either way, the important detail is that <strong>no cooking is involved</strong>. It runs
+the game against your uncooked content, straight out of the editor binaries. That makes it a far
+better performance reference than Play-In-Editor, which carries all of the editor's overhead along
+with it, so if you are trying to judge whether something is actually slow, measure here rather than
+in PIE.</em></p>
+<p>This is a fully playable instance of our game. We can fly around and we can use console commands as this is still a development build. This results in a quick way to test out the game in a development setting running from editor binaries. Because we are running from editor binaries we need the full installation of Unreal Engine to run the build. When we want to ship our game and avoid people having to install the entire Engine we need a standalone version of our project, that's what our non-editor target is for, in the <a href="./running_a_game.html">next section</a> we will demonstrate how we can run our game without the Editor attached. </p>
 
                     </main>
 
