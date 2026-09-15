@@ -9,7 +9,7 @@ All we must do to run a standalone game is invoke the same build process, passin
 - Open your terminal
     - CTRL + Tilde (~)
     - Type `{UE-BatchFiles}/Build.bat`
-        - `I:\Epic Games Unreal Engine\UE_5.3\Engine\Build\BatchFiles\Build.bat`
+        - e.g. `C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\Build.bat`
     - Define a Target that you would like to build
         - `{projectname}`
     - Define a Platform that would like to build for
@@ -20,17 +20,17 @@ All we must do to run a standalone game is invoke the same build process, passin
     - Define `-waitMutex` and `-NoHotReload`
 
 ```shell
-{UE-BatchFiles}/Build.bat Patrol Win64 Development “{project_path}/Patrol.uproject" -waitMutex -NoHotReload
+{UE-BatchFiles}/Build.bat Patrol Win64 Development "{project_path}/Patrol.uproject" -waitMutex -NoHotReload
 ```
-*Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&“*
+*Note: if the path contains spaces, wrap it in straight double quotes (`"`) and start the command with `&`, PowerShell's call operator.*
 
 ![Generated Binaries](./resources/unreal-generated-binaries.png)
 
 ## Cooking Content
 
-Before running our executable, we must first take the essential step of preparing our content also known as "cooking". **In the realm of Unreal, content assets are stored in specific internal formats,** such as PNG for textures and WAV for audio. However, this content needs to be converted to different formats for the various platforms, either because the platform uses a proprietary format, does not support the format Unreal uses to store the asset, or a more memory- or performance-effective format exists.
+Before running our executable, we must first take the essential step of preparing our content also known as "cooking". **Unreal stores content assets in its own internal formats,** such as PNG for textures and WAV for audio. However, this content needs to be converted to different formats for the various platforms, either because the platform uses a proprietary format, does not support the format Unreal uses to store the asset, or a more memory- or performance-effective format exists.
 
-This conversion process, **known as "cooking,"** is crucial for the seamless integration of content into the final game. We can start this process either through command-line operations or by utilizing in-editor tools. It's important to note that, for some platforms, all content must undergo the cooking process before it can be used on the device to ensure proper functionality. You should verify with the specifications of the platform they are targeting to ensure compliance with these requirements.
+That conversion is **called "cooking"**, and you can run it from the command line or from the in-editor tools. On some platforms every asset has to be cooked before the device can load it at all. You should verify with the specifications of the platform they are targeting to ensure compliance with these requirements.
 
 There are **two ways to cook content** for your projects
 
@@ -53,26 +53,26 @@ To cook on the fly, you will first need to start a Cook Server on a machine whic
 
 Cooking on the fly is specified with the command-line argument: `-cookonthefly`. This launches a server which waits for a game to connect and then serves the cooked data as needed. Requires `-filehostip=<Server IP>` on the game's command line to connect with the server.
 
-For more information on how to cook on the fly please visit the [Official Documentation](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Deployment/BuildOperations/)
+For more information on how to cook on the fly please visit the [Official Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/build-operations-cooking-packaging-deploying-and-running-projects-in-unreal-engine)
 
 ### Cooking our Content
 
 Given that we've already executed our entire pipeline via the command line, it's sensible to continue with the cooking process using the same method. We will cook our content `By the book` as we don't have or own a server to hook up.
 
-- Run {UE-Binaries}\UnrealEditor-Cmd.exe
+- Run `{UE-Binaries}\UnrealEditor-Cmd.exe`
 - Define a Target that you would like to build
     - `{projectname}`
 -	Define a task
     - `run=cook`
 -	Define a target platform
     - `targetplatform=Windows`
-        - Additional platforms could be added here: - `targetplatform=Windows+PS4+XboxOne`
+        - Additional platforms are added with `+`, e.g. `-TargetPlatform=Windows+PS5+XSX`. You need the matching platform SDK installed for each one.
         
 
 ```shell
-{UE-Binaries}\UnrealEditor-Cmd.exe" “${project_path}\Patrol.uproject -run=Cook -TargetPlatform=Windows
+{UE-Binaries}\UnrealEditor-Cmd.exe "{project_path}\Patrol.uproject" -run=Cook -TargetPlatform=Windows
 ```
-*Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&“*
+*Note: if the path contains spaces, wrap it in straight double quotes (`"`) and start the command with `&`, PowerShell's call operator.*
 
 Other command-line arguments for the cooking process are as followed:
 
@@ -85,21 +85,63 @@ Other command-line arguments for the cooking process are as followed:
 | **CookAll**               | Cooks everything.                                                                                                                                 |
 | **Compressed**            | Tells the cooker to compress the cooked packages.                                                                                                 |
 
-After our content is cooked, we end up with a Saved/Cooked directory. This is where our standalone game exectuable will find all the assets it needs to load at runtime
+### When a cook complains
+
+Sooner or later a cook will emit a warning that names no asset, something like *"cooked packages
+2887"* followed by a complaint, with no indication of which of those 2887 assets is the problem. Two
+settings in **Project Settings > Cooker** turn that from a guessing game into an answer:
+
+- **Cooker Progress Display Mode** set to show **names** makes the cooker log the asset it is
+  currently working on, so whatever warning fires next is attributable to the line above it.
+- The same setting can show **instigators**: *what pulled this asset into the cook in the first
+  place*. This is the more valuable of the two, because the usual reaction to an unexpected asset in
+  a cook is "why is that even in here?", and instigators answer exactly that. It is the cook-time
+  equivalent of the Reference Viewer described in
+  [For Designers and Artists](./for_designers_and_artists.md).
+
+The same settings are reachable as the `cook.displaymode` console variable, which is what you want
+when the cook is running on a build machine rather than your desk. The full list lives in the
+[Cooker Settings documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/cooker-settings-in-the-unreal-engine-project-settings).
+
+*One thing that saves real time: cooking depends on the **target platform**, not
+on the build configuration. The editor's Cook button says it cooks "for the selected configuration
+and target", but the cook commandlet does not take configuration into account. Configuration starts
+to matter later, at packaging and staging. So switching between Development and Shipping does not
+require you to re-cook.*
+
+After our content is cooked, we end up with a Saved/Cooked directory. This is where our standalone game executable will find all the assets it needs to load at runtime
 
 ![Cooked Assets](./resources/unreal-cooked-assests-location.png)
 
 Now we can run our game this should be functionally the same as running from editor binaries, except we're now using cooked data loaded straight from disk the engine isn't building any assets on demand at runtime. We've still built in the Development configuration, though, so we have access to all the same developer tools.
 
-- Run {projectdirectory}/Binaries/Win64/{projectname}.exe
+- Run `{project_path}/Binaries/Win64/{projectname}.exe`
 - Define `-log`
-- Define `-windowed resx=1280 resy=720`
+- Define `-windowed -ResX=1280 -ResY=720`
 
 ```shell
-${projectdirectory}/Binaries/Win64/{projectname}.exe -log -windowed -resx-1280 -resy=720
+{project_path}/Binaries/Win64/{projectname}.exe -log -windowed -ResX=1280 -ResY=720
 ```
-*Note: if your path towards the batch file contains spaces encapsulate it with (“) and start your command with a “&“*
+*Note: if the path contains spaces, wrap it in straight double quotes (`"`) and start the command with `&`, PowerShell's call operator.*
 
 ![Standalone Game](./resources/unreal-standalone-game.png)
+
+### Running a build against someone else's cooked content
+
+There is one more command-line argument to cover here, because it solves a problem that
+otherwise costs an afternoon. Suppose a bug only reproduces in a build someone else packaged, a
+Shipping build on Steam for instance, and you want to attach a debugger to it. You cannot debug Shipping
+comfortably, and re-cooking the whole project locally at the matching revision is slow.
+
+You do not have to. `-BaseDir=` tells an executable where to consider its installation to be:
+
+```shell
+{project_path}/Binaries/Win64/{projectname}.exe -BaseDir="C:/path/to/the/packaged/build/Binaries/Win64"
+```
+
+From then on it uses that directory's cooked content, save games, config and logs. Which means you
+can build a **Development** or **Debug** executable locally, point it at a Shipping build's cooked
+data, and step through the problem with full symbols. (`-BaseFromWorkingDir` is the variant that
+infers the same thing from the working directory instead of being told.)
 
 So sure, we don't need to use Visual Studio to build and run our project. That's cool and all but having to invoke this batch file with these specific arguments is kind of a pain in the a**. In the [next section](./quality_of_life_improvements.md) we will introduce some quality of life improvements to prevent this.
