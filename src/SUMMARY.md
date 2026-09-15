@@ -12,10 +12,11 @@
 - [Open an Unreal Project](./opening_unreal_project_from_scratch.md)
 - [Running a Game](./running_a_game.md)
 - [Quality of Life](./quality_of_life_improvements.md)
+- [Iteration Speed](./iteration_speed.md)
 - [Testing the Setup](./testing_the_setup.md)
 - [Conclusion](./conclusion.md)
 
 -----------
 
-[Appendix 1 - Altering the Template](./altering_the_project.md)
+[Appendix 1 - Altering the Project](./altering_the_project.md)
 [Appendix 2 - Additional Workflow Items](./additional_workflow_items.md)
