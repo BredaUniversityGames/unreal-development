@@ -16,6 +16,14 @@
 - [Testing the Setup](./testing_the_setup.md)
 - [Conclusion](./conclusion.md)
 
+# Going Further
+
+- [Profiling](./profiling.md)
+    - [Reading a Capture](./profiling_reading_a_capture.md)
+    - [UObjects and Garbage Collection](./profiling_uobjects.md)
+    - [Physics](./profiling_physics.md)
+    - [GPU](./profiling_gpu.md)
+
 -----------
 
 [Appendix 1 - Altering the Project](./altering_the_project.md)
