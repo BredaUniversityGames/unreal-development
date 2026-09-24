@@ -1,0 +1,581 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Asset Manager - Unreal Development</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="development_setup.html"><strong aria-hidden="true">1.</strong> Development Setup</a></li><li class="chapter-item expanded "><a href="official_development_setup.html"><strong aria-hidden="true">2.</strong> Official Workflow</a></li><li class="chapter-item expanded "><a href="creating_unreal_project_from_scratch.html"><strong aria-hidden="true">3.</strong> Creating an Unreal Project</a></li><li class="chapter-item expanded "><a href="setup_unreal_project_from_scratch.html"><strong aria-hidden="true">4.</strong> Setup an Unreal Project</a></li><li class="chapter-item expanded "><a href="building_unreal_project_from_scratch.html"><strong aria-hidden="true">5.</strong> Build an Unreal Project</a></li><li class="chapter-item expanded "><a href="opening_unreal_project_from_scratch.html"><strong aria-hidden="true">6.</strong> Open an Unreal Project</a></li><li class="chapter-item expanded "><a href="running_a_game.html"><strong aria-hidden="true">7.</strong> Running a Game</a></li><li class="chapter-item expanded "><a href="quality_of_life_improvements.html"><strong aria-hidden="true">8.</strong> Quality of Life</a></li><li class="chapter-item expanded "><a href="iteration_speed.html"><strong aria-hidden="true">9.</strong> Iteration Speed</a></li><li class="chapter-item expanded "><a href="testing_the_setup.html"><strong aria-hidden="true">10.</strong> Testing the Setup</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded affix "><li class="part-title">Going Further</li><li class="chapter-item expanded "><a href="programming_in_unreal.html"><strong aria-hidden="true">12.</strong> Programming in Unreal</a></li><li class="chapter-item expanded "><a href="engine_overview.html"><strong aria-hidden="true">13.</strong> Engine Overview</a></li><li class="chapter-item expanded "><a href="gameplay_framework.html"><strong aria-hidden="true">14.</strong> The Gameplay Framework</a></li><li class="chapter-item expanded "><a href="asset_manager.html" class="active"><strong aria-hidden="true">15.</strong> The Asset Manager</a></li><li class="chapter-item expanded "><a href="profiling.html"><strong aria-hidden="true">16.</strong> Profiling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="profiling_reading_a_capture.html"><strong aria-hidden="true">16.1.</strong> Reading a Capture</a></li><li class="chapter-item expanded "><a href="profiling_uobjects.html"><strong aria-hidden="true">16.2.</strong> UObjects and Garbage Collection</a></li><li class="chapter-item expanded "><a href="profiling_physics.html"><strong aria-hidden="true">16.3.</strong> Physics</a></li><li class="chapter-item expanded "><a href="profiling_gpu.html"><strong aria-hidden="true">16.4.</strong> GPU</a></li></ol></li><li class="chapter-item expanded "><a href="for_designers_and_artists.html"><strong aria-hidden="true">17.</strong> For Designers and Artists</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="altering_the_project.html">Appendix 1 - Altering the Project</a></li><li class="chapter-item expanded affix "><a href="additional_workflow_items.html">Appendix 2 - Additional Workflow Items</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Unreal Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-asset-manager"><a class="header" href="#the-asset-manager">The Asset Manager</a></h1>
+<p>Every asset in a game raises three questions:</p>
+<ol>
+<li><strong>What is it?</strong> How does code refer to it without hard-coding a file path?</li>
+<li><strong>When is it in memory?</strong> Who loads it, when, and what keeps it alive?</li>
+<li><strong>Does it ship, and where?</strong> Is it cooked into the build, and in which package file?</li>
+</ol>
+<p>For a small game the answers take care of themselves. Everything references everything, it all
+loads at startup, and it all ships. As a game grows, that stops working: load times climb, memory
+runs out, and the prototype level that &quot;nobody uses&quot; turns out to be in the shipped build. The
+<strong>Asset Manager</strong> is Unreal's answer to all three questions at once, and this chapter builds up to
+it one piece at a time.</p>
+<p>The main source for this chapter is Ben Zeigler's <em>Inside Unreal: Asset Manager Explained</em>
+livestream. Zeigler wrote the system. Epic's
+<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/asset-management-in-unreal-engine">Asset Management</a>
+documentation and Tom Looman's
+<a href="https://tomlooman.com/unreal-engine-asset-manager-async-loading/">Asset Manager for Data Assets &amp; Async Loading</a>
+are good follow-ups. One piece of advice from the livestream is worth repeating first: don't expect
+to get your asset setup right the first time. Everyone restructures it at least once.</p>
+<h2 id="the-problem-hard-references"><a class="header" href="#the-problem-hard-references">The problem: hard references</a></h2>
+<p>A <strong>hard reference</strong> is a <code>UPROPERTY</code> that points straight at another asset, such as a
+<code>TObjectPtr&lt;UStaticMesh&gt;</code> or a Blueprint variable of an object type. When the asset holding it
+loads, everything it hard-references loads too, and everything <em>those</em> reference, and so on.
+Referencing one weapon Blueprint from the player can pull in its mesh, its materials, their
+textures, its sounds, its impact effects, and every other weapon those happen to reference.
+<a href="./for_designers_and_artists.html#hard-and-soft-references">For Designers and Artists</a> shows how to
+spot this in the Reference Viewer and Size Map.</p>
+<p>A <strong>soft reference</strong> (<code>TSoftObjectPtr&lt;T&gt;</code>, <code>TSoftClassPtr&lt;T&gt;</code>, or <code>FSoftObjectPath</code>
+underneath) stores only the <em>path</em>. Nothing loads until you ask for it. That fixes the cascade,
+and it gives you a new job: now <em>you</em> have to load the asset at the right moment, asynchronously
+so the game doesn't hitch, and keep it alive while it's in use. Making every reference soft doesn't
+solve your memory problem. It hands you the loading problem instead.</p>
+<p>In Blueprint the difference is the variable type. An object reference is hard, and a <em>soft</em> object
+reference is soft.</p>
+<h3 id="loading-a-soft-reference-yourself"><a class="header" href="#loading-a-soft-reference-yourself">Loading a soft reference yourself</a></h3>
+<p>There are two ways to turn the path back into an object:</p>
+<pre><code class="language-cpp">// Blocking: the game thread stalls until the asset is read from disk
+USkeletalMesh* LoadedMesh = Mesh.LoadSynchronous();
+
+// Asynchronous: ask, keep running, get a callback
+FStreamableManager&amp; Streamer = UAssetManager::GetStreamableManager();
+MeshHandle = Streamer.RequestAsyncLoad(Mesh.ToSoftObjectPath(),
+    FStreamableDelegate::CreateUObject(this, &amp;AHero::OnMeshLoaded));
+</code></pre>
+<p><code>LoadSynchronous</code> is fine in editor tools and at boot, and it causes a visible hitch during
+gameplay. The asynchronous version streams the asset in the background. Keep the returned
+<code>TSharedPtr&lt;FStreamableHandle&gt;</code>: the handle is what keeps the loaded asset alive, and if you drop
+it and nothing else references the asset, it can be garbage collected straight after loading. The
+Blueprint equivalents are the <strong>Async Load Asset</strong> and <strong>Async Load Class Asset</strong> nodes.</p>
+<p>Doing this by hand for five hundred items, with menus, levels and a server that all need different
+subsets, gets messy fast. The Asset Manager exists to do that bookkeeping for you.</p>
+<h2 id="the-asset-manager-1"><a class="header" href="#the-asset-manager-1">The Asset Manager</a></h2>
+<p><code>UAssetManager</code> is a single global <code>UObject</code>. The engine creates it at startup, in
+<code>UEngine::InitializeObjectReferences</code>, from the class named in <code>AssetManagerClassName</code> in
+<code>DefaultEngine.ini</code>. It lives until shutdown, so it survives every level and game mode change.
+That's how it can hold on to loaded assets between levels. It isn't technically a subsystem, but
+it behaves like an engine-lifetime one. It grew out of an older class, <code>UObjectLibrary</code>, which could
+only find assets of one type.</p>
+<p>You never create it. You ask for it:</p>
+<pre><code class="language-cpp">// Anywhere in game code
+UAssetManager&amp; Manager = UAssetManager::Get();
+
+// Code that can run before the engine is up: module startup, CDOs, commandlets
+if (UAssetManager* EarlyManager = UAssetManager::GetIfInitialized())
+{
+    // safe to use here
+}
+</code></pre>
+<p><code>Get()</code> returns a reference and stops with a fatal error if there is no Asset Manager, because
+that means the project is misconfigured. <code>GetIfInitialized()</code> returns <code>nullptr</code> instead. It
+replaces <code>GetIfValid()</code>, which has been deprecated since 5.3. Blueprint has no node that returns
+the Asset Manager itself. You use the nodes that call it instead: <strong>Async Load Primary Asset</strong>,
+<strong>Get Primary Asset Id List</strong>, <strong>Get Object from Primary Asset Id</strong> and <strong>Unload Primary Asset</strong>.</p>
+<h2 id="packages"><a class="header" href="#packages">Packages</a></h2>
+<p>Before the Asset Manager can find anything, two building blocks need explaining: what an asset is
+on disk, and how Unreal knows about assets it hasn't loaded.</p>
+<p>The storage unit is the <strong>package</strong>. One asset has three names, and they get mixed up constantly:</p>
+<table><thead><tr><th>Name</th><th>Example</th><th>Where you see it</th></tr></thead><tbody>
+<tr><td>Package name</td><td><code>/Game/Items/HealthPotion</code></td><td>The Content Browser. <code>/Game</code> is the <code>Content/</code> folder</td></tr>
+<tr><td>Object path</td><td><code>/Game/Items/HealthPotion.HealthPotion</code></td><td>What a soft reference stores (package, then object)</td></tr>
+<tr><td>File on disk</td><td><code>Content/Items/HealthPotion.uasset</code></td><td>Explorer; levels are <code>.umap</code></td></tr>
+</tbody></table>
+<p>In the editor a package is one file. It usually holds one main asset plus the sub-objects that
+belong to it. A Blueprint package, for example, holds the generated class and its default object.
+Material instances and textures aren't sub-objects: they are assets of their own, in packages of
+their own. (One package <em>can</em> hold several assets, in legacy content and from some importers, but
+one asset per package is the rule in UE5.)</p>
+<p>Packages reference other packages. The potion uses a mesh, the mesh uses a material, and the
+material uses a texture. That dependency graph is what the Reference Viewer draws and what the
+cooker walks. When you cook, the editor-only data is stripped out and each package is split into
+<code>.uasset</code> (the header), <code>.uexp</code> (the object data) and <code>.ubulk</code> (large data such as texture mips).
+You'll never see those last two in your <code>Content/</code> folder. They end up inside the container files
+described under <a href="#cooking-and-chunking">Cooking and chunking</a>.</p>
+<h2 id="the-asset-registry-knowing-without-loading"><a class="header" href="#the-asset-registry-knowing-without-loading">The Asset Registry: knowing without loading</a></h2>
+<p>The <strong>Asset Registry</strong> is an index of every package: its name, its asset name, its class, a set of
+tags, and its dependencies. One entry is an <code>FAssetData</code>. The registry is built by reading package
+<em>headers</em>, never by loading the objects. That's why the Content Browser can list fifty thousand
+assets instantly, and it's the &quot;discovering assets&quot; progress bar you see the first time you open a
+large project.</p>
+<p>The tags are how you search it. The fixed fields are the package name, asset name and class path,
+and on top of those every property you mark <code>UPROPERTY(AssetRegistrySearchable)</code>, or that a class
+adds by overriding <code>GetAssetRegistryTags</code>, is stored as a name/string pair. Tags are written when
+the asset is <strong>saved</strong>, so after adding the specifier, re-save the existing assets. From then on you
+can ask &quot;every item where <code>Rarity</code> is <code>Rare</code>&quot; without loading a single item:</p>
+<pre><code class="language-cpp">#include &quot;AssetRegistry/AssetRegistryModule.h&quot;
+
+IAssetRegistry&amp; Registry = IAssetRegistry::GetChecked();
+
+TArray&lt;FAssetData&gt; Items;
+Registry.GetAssetsByClass(UItemData::StaticClass()-&gt;GetClassPathName(), Items);
+
+for (const FAssetData&amp; Item : Items)
+{
+    FString Rarity;
+    Item.GetTagValue(TEXT(&quot;Rarity&quot;), Rarity);   // read from the index, nothing loaded
+    UE_LOG(LogTemp, Log, TEXT(&quot;%s is %s&quot;), *Item.AssetName.ToString(), *Rarity);
+}
+</code></pre>
+<p><code>GetAssetsByPath</code> searches a folder, and <code>GetAssets</code> takes an <code>FARFilter</code> that combines class, path
+and tag values. What comes back is only the index entry. <code>Item.GetAsset()</code> gets you the real object
+but loads it <em>synchronously</em>. It's usually better to take <code>Item.GetSoftObjectPath()</code> and load that
+asynchronously, or to let the Asset Manager do it. Blueprint has the same queries: <strong>Get Asset
+Registry</strong>, then <strong>Get Assets By Class</strong> or <strong>Get Assets By Path</strong>.</p>
+<p>Some notes for UE5:</p>
+<ul>
+<li><strong>Use <code>AssetClassPath</code> and class path names.</strong> The old <code>AssetClass</code> field was deprecated in 5.1.</li>
+<li><strong>In the editor, the registry fills in asynchronously.</strong> Query it too early and you get a partial
+list. Check <code>IsLoadingAssets()</code> and wait for <code>OnFilesLoaded()</code>.</li>
+<li><strong>A cooked copy, <code>AssetRegistry.bin</code>, ships with the game.</strong> Runtime queries work, and in a
+packaged game the registry is loaded up front.</li>
+<li><strong>Projects can strip tags from cooked builds</strong> in the <code>[AssetRegistry]</code> section of the engine
+config. If a query works in the editor and returns nothing in a build, check that first.</li>
+</ul>
+<p>The API is in <code>Engine/Source/Runtime/AssetRegistry/Public/AssetRegistry/IAssetRegistry.h</code>.</p>
+<p>The split to remember: <strong>the registry is the catalogue, and the Asset Manager is the librarian.</strong>
+The registry knows every asset that exists, loads nothing, and has no opinion about what matters.
+It's used engine-wide by the editor, the cooker and your code. The Asset Manager is specific to
+your game. You tell it which assets matter, it finds them in the registry, then loads them, unloads
+them and applies rules to them.</p>
+<h2 id="primary-and-secondary-assets"><a class="header" href="#primary-and-secondary-assets">Primary and secondary assets</a></h2>
+<p>The Asset Manager divides assets into two kinds:</p>
+<ul>
+<li><strong>Primary assets</strong> are the ones you ask for by name: an item definition, a hero, a map, a quest.
+The Asset Manager tracks them, loads them and unloads them.</li>
+<li><strong>Secondary assets</strong> are everything else: meshes, textures, sounds, materials. They're never
+loaded directly. They load because a primary asset references them.</li>
+</ul>
+<p>That split is what makes the system manageable. You deal with a few hundred primary assets, and the
+thousands of secondary assets follow from their references. It's also why rules you set on a
+primary asset, such as cook and chunk rules, spread to the secondary assets it pulls in.</p>
+<p>Maps are primary assets out of the box, with the type <code>Map</code>. Anything else you opt into. Technically
+any asset type can be scanned as primary, but if you want a texture to be independently loadable,
+it's cleaner to wrap it in a data asset.</p>
+<p>An asset is primary when <strong>both</strong> of these are true:</p>
+<ol>
+<li>Its class returns a valid ID from <code>GetPrimaryAssetId()</code>. <code>UPrimaryDataAsset</code> does this for
+you. A plain <code>UDataAsset</code> does <strong>not</strong>, and that's the most common reason an asset &quot;isn't found&quot;.</li>
+<li>Its type is listed in <strong>Primary Asset Types to Scan</strong> in the Asset Manager settings.</li>
+</ol>
+<h3 id="primary-asset-ids"><a class="header" href="#primary-asset-ids">Primary Asset IDs</a></h3>
+<p>A <strong>Primary Asset ID</strong> (<code>FPrimaryAssetId</code>) is a type plus a name, written <code>Type:Name</code>, for example
+<code>Item:HealthPotion</code> or <code>Map:Arena01</code>. Code, save games and data tables can refer to an asset by ID
+instead of by path. IDs are small, they serialize, and they survive the asset being <strong>moved</strong> to
+another folder. They don't survive it being <strong>renamed</strong>. For that you add a Primary Asset ID
+redirect in the settings.</p>
+<p>Because the name part is the asset's <em>short</em> name and not its path, two items can't both be called
+<code>HealthPotion</code>, even in different folders. The Asset Manager warns about duplicates at startup. A
+naming convention (<code>DA_Item_HealthPotion</code>, or a prefix per type) avoids the problem.</p>
+<p><code>UPrimaryDataAsset</code> works out its type from the class hierarchy. It's the first native class going
+up from the asset, or the top-most Blueprint class (the rules are spelled out above the class in
+<code>Engine/Source/Runtime/Engine/Classes/Engine/DataAsset.h</code>). It's clearer to state it outright:</p>
+<pre><code class="language-cpp">UCLASS()
+class UItemData : public UPrimaryDataAsset
+{
+    GENERATED_BODY()
+
+public:
+    virtual FPrimaryAssetId GetPrimaryAssetId() const override
+    {
+        return FPrimaryAssetId(TEXT(&quot;Item&quot;), GetFName());
+    }
+
+    UPROPERTY(EditDefaultsOnly, AssetRegistrySearchable)
+    FName Rarity;
+
+    UPROPERTY(EditDefaultsOnly, meta = (AssetBundles = &quot;UI&quot;))
+    TSoftObjectPtr&lt;UTexture2D&gt; Icon;
+
+    UPROPERTY(EditDefaultsOnly, meta = (AssetBundles = &quot;Gameplay&quot;))
+    TSoftObjectPtr&lt;UStaticMesh&gt; WorldMesh;
+};
+</code></pre>
+<h3 id="telling-the-asset-manager-what-to-scan"><a class="header" href="#telling-the-asset-manager-what-to-scan">Telling the Asset Manager what to scan</a></h3>
+<p><strong>Project Settings → Game → Asset Manager</strong> lists the primary asset types to scan. Each entry gives
+a type name that matches your <code>GetPrimaryAssetId()</code>, a base class, the directories to search, and
+whether the type is Blueprint <em>classes</em> (<strong>Has Blueprint Classes</strong> on) or data asset <em>instances</em>
+(off). <strong>Is Editor Only</strong> is for types that only tools use: they're never loaded at runtime or
+cooked. Keep the directory list tight, because every scanned folder costs startup time, and
+scanning all of <code>/Game</code> is expensive. The settings are saved to <code>DefaultGame.ini</code>, one line per
+entry. Editing that file directly works, but needs an editor restart:</p>
+<pre><code class="language-ini">[/Script/Engine.AssetManagerSettings]
++PrimaryAssetTypesToScan=(PrimaryAssetType=&quot;Item&quot;,AssetBaseClass=/Script/MyProjectCore.ItemData,bHasBlueprintClasses=False,bIsEditorOnly=False,Directories=((Path=&quot;/Game/Data/Items&quot;)),Rules=(CookRule=AlwaysCook))
+</code></pre>
+<p>The engine's own entries (maps and labels) are in <code>{UE-Root}/Engine/Config/BaseGame.ini</code>. They're
+worth reading as examples. If an asset isn't showing up, check these in order: the class returns
+a valid ID, the type name matches exactly, the directory is being scanned, <strong>Has Blueprint
+Classes</strong> is set correctly. Then run <code>AssetManager.DumpTypeSummary</code> in the console.</p>
+<h2 id="loading-by-id"><a class="header" href="#loading-by-id">Loading by ID</a></h2>
+<p>A load by ID takes five steps. You ask with an ID, optionally naming bundles. The Asset Manager
+looks the ID up in the registry data to get the path and bundle lists. It starts an asynchronous
+load through its streamable manager while the game keeps running. Your delegate fires when
+everything is in memory. Then you fetch the object:</p>
+<pre><code class="language-cpp">#include &quot;Engine/AssetManager.h&quot;
+
+UAssetManager&amp; Manager = UAssetManager::Get();
+
+// One asset, with only its &quot;Gameplay&quot; bundle
+const FPrimaryAssetId Id(TEXT(&quot;Item&quot;), TEXT(&quot;HealthPotion&quot;));
+Manager.LoadPrimaryAsset(Id, { TEXT(&quot;Gameplay&quot;) },
+    FStreamableDelegate::CreateUObject(this, &amp;AMyActor::OnItemLoaded, Id));
+
+// Every asset of a type
+TArray&lt;FPrimaryAssetId&gt; AllItems;
+Manager.GetPrimaryAssetIdList(TEXT(&quot;Item&quot;), AllItems);
+Manager.LoadPrimaryAssets(AllItems, { TEXT(&quot;UI&quot;) });
+</code></pre>
+<p>Loading is asynchronous. The data streams in in the background, and your delegate runs on the game
+thread once it's ready, so don't touch the object before then. If the asset is already loaded, the
+delegate still fires, straight away. That way you write the same code for both cases. In the
+callback, <code>Manager.GetPrimaryAssetObject&lt;UItemData&gt;(Id)</code> gives you the object. It returns <code>nullptr</code>
+while the asset isn't loaded. <code>LoadPrimaryAsset</code> also returns a <code>TSharedPtr&lt;FStreamableHandle&gt;</code>. You
+don't need to keep it, because the Asset Manager holds its own, but it's useful for progress
+(<code>GetProgress</code>) or for cancelling.</p>
+<p>Getting the list of IDs is free, because it comes from registry data. Loading is what costs, so
+filter first where you can, for example on a registry tag via <code>GetPrimaryAssetData</code>.
+<code>LoadPrimaryAssetsWithType</code> loads every asset of a type in one call. Think twice before using it on
+a type with five hundred entries. In Blueprint, use <strong>Get Primary Asset Id List</strong> followed by <strong>Async
+Load Primary Asset List</strong>.</p>
+<p>The Asset Manager keeps what it loaded alive until you call <code>UnloadPrimaryAsset(Id)</code>. That doesn't
+free anything immediately. It releases the Asset Manager's hold, and the object goes at the next
+garbage collection, as long as nothing else references it. If you load soft references yourself
+instead, through <code>FStreamableManager</code>, keep the returned <code>FStreamableHandle</code>. Otherwise the asset
+can be collected right after it loads. The Asset Manager doesn't replace garbage collection. It's
+one more thing keeping objects alive, on top of ordinary references, which is convenient when you
+want items to survive a level change and a leak when you forget to unload.
+<a href="./profiling_uobjects.html">UObjects and Garbage Collection</a> covers the collector itself.</p>
+<p>The load functions are declared in <code>Engine/Source/Runtime/Engine/Classes/Engine/AssetManager.h</code>.</p>
+<h3 id="asset-bundles"><a class="header" href="#asset-bundles">Asset bundles</a></h3>
+<p>An <strong>asset bundle</strong> is a named group of soft references <em>inside one primary asset</em>. In
+<code>UItemData</code> above, the icon is in the <code>UI</code> bundle and the world mesh in the <code>Gameplay</code> bundle. The
+inventory screen loads items with <code>UI</code>, and a pickup in the world loads with <code>Gameplay</code>. A hero
+might add a <code>Cinematics</code> bundle with high-resolution textures that only load for cutscenes.</p>
+<p>What ends up in memory is the primary asset itself, everything it hard-references, and the soft
+references in whichever bundles are active. Bundles combine, and you can switch them on assets that
+are already loaded:</p>
+<pre><code class="language-cpp">// Character select: the hero data asset plus only its UI bundle
+Manager.LoadPrimaryAsset(HeroId, { FName(&quot;UI&quot;) });
+
+// Start of the match: add Gameplay, drop UI
+Manager.ChangeBundleStateForPrimaryAssets({ HeroId }, { FName(&quot;Gameplay&quot;) }, { FName(&quot;UI&quot;) });
+</code></pre>
+<p>Ben Zeigler recommends switching bundles during loading screens, where a hitch doesn't matter.
+Bundles are also a common way to keep client-only content such as UI and cosmetics off a dedicated
+server.</p>
+<p>Two things catch everyone:</p>
+<ul>
+<li><strong>Bundles only filter soft references.</strong> A hard <code>TObjectPtr</code> loads with the asset no matter
+which bundles you ask for. If &quot;everything still loads&quot;, check for hard references first.</li>
+<li><strong>Bundle data is collected when the asset is saved.</strong> After adding <code>AssetBundles</code> meta to a
+class, re-save its data assets.</li>
+</ul>
+<p>(These are nothing like Unity's AssetBundles, which are downloadable archives. The closest Unreal
+equivalent to those is chunks, below.)</p>
+<h2 id="rules-labels-and-collections"><a class="header" href="#rules-labels-and-collections">Rules, labels and collections</a></h2>
+<h3 id="primary-asset-rules"><a class="header" href="#primary-asset-rules">Primary asset rules</a></h3>
+<p><strong>Rules</strong> (<code>FPrimaryAssetRules</code>) are set per type (the <code>Rules</code> of a Primary Asset Types to Scan
+entry), per individual asset (the Primary Asset Rules list in the Asset Manager settings), or
+through a label (below). With <code>bApplyRecursively</code>, which is on by default, they also apply to the
+secondary assets a primary asset pulls in. There are three knobs:</p>
+<ul>
+<li><strong>CookRule</strong>: whether the asset ships. <code>AlwaysCook</code>, <code>NeverCook</code>, <code>ProductionNeverCook</code> (cooks
+in development builds if something references it, never in production), and a few variations.
+<code>Unknown</code>, the default, means &quot;cook it if something references it&quot;. The full list, with
+comments, is <code>EPrimaryAssetCookRule</code> in <code>Engine/Source/Runtime/Engine/Classes/Engine/AssetManagerTypes.h</code>.
+<code>DevelopmentCook</code> from older tutorials is now a legacy alias for <code>ProductionNeverCook</code>.</li>
+<li><strong>ChunkId</strong>: which chunk the asset, and the secondary assets it pulls in, go into.</li>
+<li><strong>Priority</strong>: <strong>not</strong> load order. When one secondary asset is referenced by several primary
+assets that have different rules, the higher priority's chunk and cook rule win. Epic's own
+example gives the main menu's label a very high priority, so that everything the menu uses ends
+up in chunk 0.</li>
+</ul>
+<p>The Asset Audit window shows the rule that actually applies to each asset.</p>
+<h3 id="primary-asset-labels"><a class="header" href="#primary-asset-labels">Primary asset labels</a></h3>
+<p>A <strong>Primary Asset Label</strong> (<code>UPrimaryAssetLabel</code>) is a primary asset with no gameplay data of its
+own. It exists to apply rules to a group of other assets. You create one in the Content Browser
+under <strong>Miscellaneous → Data Asset → PrimaryAssetLabel</strong>. It collects assets in three ways, which
+you can combine:</p>
+<ul>
+<li><strong>Label Assets In My Directory</strong>: everything in the label's folder and its subfolders.</li>
+<li><strong>Explicit Assets</strong> and <strong>Explicit Blueprints</strong>: a list you pick by hand.</li>
+<li><strong>Asset Collection</strong>: a Content Browser collection.</li>
+</ul>
+<p>Its rules then apply to all of them, and to everything <em>they</em> reference. For example, label
+<code>/Game/Cinematics</code> with <code>ChunkId=2</code> and all cinematic content ships in its own chunk. Label
+<code>/Game/Prototype</code> with <code>NeverCook</code>, and it is guaranteed never to ship. Labels are how most projects
+assign chunks. The engine scans for labels everywhere under <code>/Game</code> by default, so you don't need
+to register them. <strong>Is Runtime Label</strong> lets the label itself be loaded at runtime to load everything
+it covers. It's off by default, because labels are normally a cook-time tool.</p>
+<p>If a label points at a collection, make it a <strong>Shared</strong> collection (checked into source control),
+so that the build machine sees the same collection you do. Local and private collections only exist
+on your own machine.</p>
+<h3 id="which-grouping-tool-to-use"><a class="header" href="#which-grouping-tool-to-use">Which grouping tool to use</a></h3>
+<table><thead><tr><th></th><th>Asset Bundle</th><th>Primary Asset Label</th><th>Collection</th></tr></thead><tbody>
+<tr><td>Scope</td><td>Inside one primary asset</td><td>Many assets, by folder or list</td><td>Hand-picked set of assets</td></tr>
+<tr><td>Used for</td><td>Loading <em>part</em> of an asset at runtime</td><td>Cook and chunk rules in bulk</td><td>Organising in the Content Browser</td></tr>
+<tr><td>Exists at runtime?</td><td>Yes</td><td>Only in its effect on the build</td><td>No, editor only (but a label can reference one)</td></tr>
+</tbody></table>
+<h2 id="cooking-and-chunking"><a class="header" href="#cooking-and-chunking">Cooking and chunking</a></h2>
+<p><a href="./running_a_game.html#cooking-content">Running a Game</a> covers the mechanics of cooking. From the
+Asset Manager's side, the cooker starts from a set of <strong>seeds</strong>:</p>
+<ul>
+<li>the maps in <strong>Project Settings → Packaging → List of maps to include in a packaged build</strong>, or
+every map if that list is empty;</li>
+<li>the primary assets the Asset Manager adds, which are only those with <code>AlwaysCook</code> (plus the
+<code>DevelopmentAlways...</code> rules in a development cook);</li>
+<li><strong>Additional Asset Directories to Cook</strong> in the same Packaging settings;</li>
+<li>anything still in memory when the Asset Manager finishes its initial loading.</li>
+</ul>
+<p>It then follows every reference, <strong>soft ones too</strong>, and cooks whatever it reaches, subject to the
+cook rules. A primary asset left on the default <code>Unknown</code> rule is therefore only cooked if something
+references it. You can read the seeding in <code>UAssetManager::ModifyCook</code> in <code>AssetManager.cpp</code>.</p>
+<p>Following soft references is why a prototype asset turns up in a shipped build: something
+references it, even softly. Use the Reference Viewer to find what, then fix the reference or give
+the asset a <code>NeverCook</code> or <code>ProductionNeverCook</code> rule. <strong>Project Settings → Game → Asset Manager →
+Only Cook Production Assets</strong> turns any development-only asset that would be cooked into an error.</p>
+<p>Cooked packages are bundled into container files for distribution. In UE5 that means <strong>IoStore</strong>
+by default (<code>bUseIoStore=True</code> in <code>{UE-Root}/Engine/Config/BaseGame.ini</code>). Most of the data goes
+into a <code>.ucas</code> file, with a <code>.utoc</code> table of contents, and a small <code>.pak</code> sits next to them for
+loose files.</p>
+<p><strong>Chunking</strong> splits those containers into several numbered sets. By default everything goes into
+chunk 0. Chunk IDs from rules and labels only take effect when <strong>Project Settings → Packaging →
+Generate Chunks</strong> is on (<code>bGenerateChunks</code>, <code>False</code> in <code>BaseGame.ini</code>). Each chunk then becomes its
+own set of files: <code>pakchunk0-Windows.pak</code>/<code>.utoc</code>/<code>.ucas</code>, <code>pakchunk1-Windows...</code>, and so on. Chunk
+0 acts as the parent of the others, so anything already in chunk 0 isn't duplicated into another
+chunk. More complex parent/child setups use <code>ChunkDependencyInfo</code> in the config. The
+<strong>ChunkDownloader</strong> plugin (<code>{UE-Root}/Engine/Plugins/Runtime/ChunkDownloader</code>) builds optional
+downloads on top of chunks.</p>
+<p><strong>Chunks are about files, not memory.</strong> Putting an asset in chunk 3 changes which download it
+ships in. It doesn't change when it loads or how much memory it uses. You need chunks for mobile
+download size limits, console streaming installs (&quot;start playing at 30%&quot;), DLC and language packs.
+A student project almost certainly doesn't need them. What matters is knowing they exist.</p>
+<h3 id="advanced-overriding-the-asset-manager"><a class="header" href="#advanced-overriding-the-asset-manager">Advanced: overriding the Asset Manager</a></h3>
+<p>You can subclass <code>UAssetManager</code> and set it under <strong>Project Settings → Engine → General Settings →
+Asset Manager Class Name</strong> (written to <code>AssetManagerClassName</code> in <code>DefaultEngine.ini</code>). Give your
+subclass its own static <code>Get()</code> that casts <code>GEngine-&gt;AssetManager</code>, the way Lyra does.</p>
+<ul>
+<li><code>StartInitialLoading</code> and <code>FinishInitialLoading</code> let you load game-wide data at startup. Keep in
+mind that anything in memory when initial loading finishes gets cooked.</li>
+<li><code>ModifyCook</code> and <code>ModifyCookReferences</code> (editor only) let you add packages to or remove them from
+a cook.</li>
+<li><code>GetPackageCookRule</code> (editor only) decides the cook rule per package, for example <code>NeverCook</code> for
+everything under <code>/Game/Prototype/</code>.</li>
+</ul>
+<p>These signatures have changed between engine versions, so copy them from <code>AssetManager.h</code> rather
+than from a tutorial. Lyra's <code>ULyraAssetManager</code> is a good real-world subclass to read.</p>
+<h2 id="tools"><a class="header" href="#tools">Tools</a></h2>
+<p>&quot;Don't expect anyone to do this correctly the first time,&quot; as Ben Zeigler puts it, so check the
+result with the tools:</p>
+<ul>
+<li><strong>Reference Viewer</strong> (right-click an asset): who references what. You can toggle hard, soft and
+<em>management</em> references. Management references show which primary asset or label owns a
+secondary asset for chunking.</li>
+<li><strong>Size Map</strong> (right-click an asset): the total size of an asset including everything it pulls
+in. Look for the one outlier that's ten times the rest.</li>
+<li><strong>Asset Audit</strong> (<strong>Tools → Audit → Asset Audit</strong>): a sortable list with chunk IDs, cook rules and
+primary asset IDs. Switch it to a cooked platform to see cooked sizes, the best quick estimate of
+memory cost. It also exports to CSV.</li>
+</ul>
+<p>All three are covered in more depth in <a href="./for_designers_and_artists.html">For Designers and Artists</a>.</p>
+<ul>
+<li><strong>Console commands:</strong>
+<ul>
+<li><code>AssetManager.DumpTypeSummary</code>: which types exist, and how many assets of each.</li>
+<li><code>AssetManager.DumpLoadedAssets</code>: what the Asset Manager currently has loaded.</li>
+<li><code>AssetManager.DumpBundlesForAsset &lt;Type:Name&gt;</code>: which bundles an asset has, and what's in them.</li>
+<li><code>AssetManager.DumpReferencersForPackage &lt;path&gt;</code>: why a package is being pulled in.</li>
+</ul>
+</li>
+</ul>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<table><thead><tr><th>Term</th><th>In one line</th></tr></thead><tbody>
+<tr><td>Package</td><td>One asset on disk: a <code>.uasset</code> or <code>.umap</code></td></tr>
+<tr><td>Hard reference</td><td>Loads the target together with the referencer</td></tr>
+<tr><td>Soft reference</td><td>A path; nothing loads until someone asks</td></tr>
+<tr><td>Asset Registry</td><td>The index of every asset; never loads anything</td></tr>
+<tr><td>Asset Manager</td><td>Finds, loads and applies rules to primary assets</td></tr>
+<tr><td>Primary asset</td><td>An asset with an ID that you ask for by name</td></tr>
+<tr><td>Primary Asset ID</td><td><code>Type:Name</code>, e.g. <code>Item:HealthPotion</code></td></tr>
+<tr><td>Asset bundle</td><td>A named group of soft references inside one primary asset</td></tr>
+<tr><td>Primary asset rules</td><td>CookRule, ChunkId, and Priority (resolves conflicts, not load order)</td></tr>
+<tr><td>Primary asset label</td><td>A data-less primary asset that applies rules to a group</td></tr>
+<tr><td>Chunk</td><td>Which shipped file set an asset goes in; not memory</td></tr>
+</tbody></table>
+<p>Good asset management isn't about loading less. It's about loading the right thing at the right
+time.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="gameplay_framework.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="profiling.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="gameplay_framework.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="profiling.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
