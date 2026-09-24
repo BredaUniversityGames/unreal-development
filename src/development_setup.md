@@ -86,6 +86,8 @@ Two pages are authoritative, and they are the ones to check rather than trusting
 - [Hardware and Software Specifications](https://dev.epicgames.com/documentation/en-us/unreal-engine/hardware-and-software-specifications-for-unreal-engine): which Visual Studio version Epic expects.
 - [Setting Up Visual Studio Development Environment for C++ Projects](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine): the exact workloads and individual components, by name.
 
+The [Unreal Engine 5.8 release notes](https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes) also list the IDE and SDK versions Epic's build farm compiled that release with, which is what the screenshot below shows.
+
 For Unreal Engine 5.8, Epic's guidance is **Visual Studio 2026 for general development**, with **.NET 10.0** as both the minimum and the recommended version. Visual Studio 2022 version 17.14 or later still builds 5.8, and is still required for Nintendo platforms and for AGDE below v26.1.102, so if you already have 2022 installed and working, you are not stranded.
 
 ![Unreal Engine Release Notes - Build Farm](./resources/unreal-engine-build-farm-output.png)
