@@ -213,7 +213,7 @@ framework if you want to work test-first.
 
 - **[Epic Developer Community](https://dev.epicgames.com/community/unreal-engine/learning)**: the
   official documentation, tutorials and courses.
-- **[Unreal Engine forums](https://forums.unrealengine.com)** and the Unreal Slackers Discord
+- **[Unreal Engine forums](https://forums.unrealengine.com)** and the Unreal Source Discord
   community.
 - **Alex Forsythe** and **Mathew Wadstein** on YouTube. Forsythe's videos on the gameplay framework
   and the build process are some of the best explanations anywhere. Wadstein has a short video on
