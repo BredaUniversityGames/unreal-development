@@ -4,6 +4,8 @@ In the [previous section](./running_a_game.md) we noticed that there are a lot o
 
 ## Additional Unreal Batch Files
 
+*If you generated your project with [UEProjectGenerator](https://marketplace.visualstudio.com/items?itemName=breda-university-games.ueprojectgenerator), these batch files (`build_editor.bat`, `run_editor.bat`, `cook_content.bat` and the rest) are already in your project folder. Skip the steps below and carry on from chaining commands. The steps are for the by-hand route.*
+
 [![Unreal Engine Generation](./resources/unreal-engine-batch-file-generation.png)](https://github.com/Dyronix/unreal-generation)
 
 -	Download/Clone the repository to disk

@@ -15,6 +15,8 @@ We're gonna start with a .uproject file to lay down the basics and we'll need a 
 
 ![Starting Position Unreal Project From Scratch](./resources/starting-pos-unreal-project-from-scratch.png)
 
+*Using UEProjectGenerator instead? Open your empty project folder in VS Code, run the extension's **GenProjectFiles** command and select your engine version. It creates the `.uproject`, the `Source` directory, a module with its `Public` and `Private` folders, both `.Target.cs` files, the module's `.Build.cs`, its `{modulename}.h`/`.cpp`, a `Log.h`/`Log.cpp`, and the batch files from the [Quality of Life](./quality_of_life_improvements.md) chapter. Nothing in this chapter or the [next one](./setup_unreal_project_from_scratch.md) needs typing out. Read them anyway and check each generated file against what they describe. Double-check that `EngineAssociation` in the `.uproject` matches the engine you installed.*
+
 
 ## The .uproject File
 

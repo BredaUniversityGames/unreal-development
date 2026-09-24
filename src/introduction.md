@@ -6,6 +6,15 @@ You don’t need to use Visual Studio to write game code in Unreal. You can gene
 
 Within this document I will show you how you can create an Unreal project from scratch with just a text editor. I will explain how we can build and run that project from the command line. After going through this document I hope that you get a basic understanding on what happens when you build an Unreal project. If down the line you are ever faced with a wall of cryptic error messages, you’ll have a better idea of how to diagnose the problem and get moving again.
 
+## Two ways to get there
+
+There are two valid ways to end up with the project this book builds, and you can pick either one:
+
+- **By hand.** You write the `.uproject`, the target and module rules, and the module source files yourself, using a set of VS Code snippets. This is the path the chapters walk through, because writing each file once is the quickest way to learn what it is for.
+- **Generated.** The [UEProjectGenerator](https://marketplace.visualstudio.com/items?itemName=breda-university-games.ueprojectgenerator) VS Code extension creates the same files for you in one step, along with the batch files from the [Quality of Life](./quality_of_life_improvements.md) chapter. This is what we use in class, and it is the sensible choice once you know what it generates.
+
+Both produce the same project structure, so everything from building onwards is identical. If you go the generated route, still read the creation and setup chapters: they explain each file the generator hands you.
+
 ## Conventions
 
 **This book targets Unreal Engine 5.8.** Most of it is version-independent, since the shape of a

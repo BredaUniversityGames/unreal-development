@@ -46,6 +46,10 @@ Make your life easier by setting up Unreal snippets in VS Code:
 
 ![Unreal Engine VS Code Snippets Directory](./resources/unreal-engine-snippets.png)
 
+### VS Code - UEProjectGenerator
+
+If you would rather [generate your project](./introduction.md#two-ways-to-get-there) than write it by hand, install the [UEProjectGenerator](https://marketplace.visualstudio.com/items?itemName=breda-university-games.ueprojectgenerator) extension from the marketplace. It ships with the same Unreal snippets (`uca`, `ull`, `umb` and friends), so you can skip copying the snippets repository above. Either route gives you the snippets the rest of this book uses.
+
 ### [Optional] VS Code - Theme
 
 Add a touch of personality to your coding environment for extra cuteness:
