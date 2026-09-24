@@ -8,6 +8,11 @@ Happy coding!
 
 Where to go from here:
 
+- **[Programming in Unreal](./programming_in_unreal.md)** and **[Engine Overview](./engine_overview.md)**:
+  the vocabulary, conventions and folder layout you'll run into as soon as you write real code.
+- **[The Gameplay Framework](./gameplay_framework.md)**: which class does which job when you press
+  Play, and therefore where your gameplay code belongs.
+- **[The Asset Manager](./asset_manager.md)**: controlling what is loaded, when, and what ships.
 - **[Iteration Speed](./iteration_speed.md)**: Live Coding, driving your own code from the console,
   and the other things that shorten the gap between writing a line and seeing it run.
 - **[Profiling](./profiling.md)**: how to find out why something is slow instead of guessing,
