@@ -39,4 +39,10 @@ default set of trace channels), the fastest reliable answer is not documentation
 source sitting on your disk. Documentation lags releases; the source *is* the release. Wherever this
 book states such a value, it also tells you which file to read to confirm it.
 
+Once the project runs, the **Going Further** section moves on from the setup to what goes inside
+it: [Unreal's C++ conventions](./programming_in_unreal.md), the
+[engine's layout](./engine_overview.md), the [Gameplay Framework](./gameplay_framework.md), the
+[Asset Manager](./asset_manager.md) and [profiling](./profiling.md). These chapters are the written
+companion to the Unreal master classes, and each one stands on its own.
+
 But first let us [set up the environment](./development_setup.md) I use to work within Unreal.
