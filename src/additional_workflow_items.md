@@ -10,6 +10,12 @@ IDE practical. Console commands used to live here too; they have moved to the
 
 ![Looking for files](./resources/workflow-looking-for-files.png)
 
+Ctrl+P is only as good as your names. If assets and classes follow a consistent naming convention,
+a few keystrokes are enough to find anything: `BP_` narrows to Blueprints, `M_` to materials, `T_`
+to textures. The convention most Unreal teams start from is
+[Allar's Unreal Engine style guide](https://github.com/Allar/ue5-style-guide). Which convention you
+pick matters less than the whole team using the same one.
+
 ## Creating a Code workspace
 
 - You can add {UE-Root}/Engine/Source/Runtime directory to your project workspace so you have the Unreal source code at your fingertips.
